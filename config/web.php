@@ -15,6 +15,16 @@ $config = [
             'baseUrl' => '@web/themes/adminlte',
           ],
         ],
+        'assetManager' => [
+             'bundles' => [
+                 'dmstr\web\AdminLteAsset' => [
+                     'skin' => 'skin-green',
+                 ],
+             ],
+         ],
+        'menuHelper' => [
+    			'class' => 'app\components\MenuHelper',
+    		],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Ixdk8YgAEis2nRwyiQF9zzngw-7mFIZ9',

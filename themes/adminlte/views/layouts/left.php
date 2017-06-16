@@ -1,3 +1,7 @@
+<?php
+use app\components\MenuHelper;
+?>
+
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -30,7 +34,12 @@
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => 'Test', 'icon' => 'file-car', 'url' => ['/test']],
+                    [
+                      'label' => 'Test',
+                      'icon' => 'file-car',
+                      'url' => ['/test'],
+                      'active' => MenuHelper::Active('test')
+                    ],
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
