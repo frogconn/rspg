@@ -46,14 +46,19 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+    			'enablePrettyUrl' => true,
+    			'showScriptName' => false,
+    			'rules' => [
+    				'' => 'site/index',
+    				'register' => 'site/register',
+    				'view' => 'site/view',
+    				'page/<alias:[\w\W\d\D]+>' => 'site/content',
+    				'<controller:\w+[-\w]*>/<id:\d+>' => '<controller>/view',
+    				'<controller:\w+[-\w]*>/<action:\w+[-\w]*>/<id:\d+>' => '<controller>/<action>',
+    				'<module:\w+[-\w]*>/<controller:\w+[-\w]*>/<action:\w+[-\w]*>' => '<module>/<controller>/<action>',
+    			],
+    		],
     ],
     'params' => $params,
 ];
