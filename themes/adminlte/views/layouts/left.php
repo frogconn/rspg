@@ -35,11 +35,57 @@ use app\components\MenuHelper;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     [
-                      'label' => 'Test',
+                      'label' => 'ลงทะเบียนนักวิจัย',
                       'icon' => 'file-car',
-                      'url' => ['/test'],
-                      'active' => MenuHelper::Active('test')
+                      'url' => ['/researcher'],
+                      'active' => MenuHelper::Active('researcher')
                     ],
+					[
+                      'label' => 'ข้อมูลพื้นที่วิจัย',
+                      'icon' => 'file-car',
+                      'url' => ['/research-zone'],
+                      'active' => MenuHelper::Active('research-zone')
+                    ],
+					//
+					[
+                        'label' => 'ข้อมูลผลงานวิจัย',
+                        'icon' => 'share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'ข้อมูลพื้นที่วิจัย', 'icon' => 'file-code-o', 'url' => ['/research-zone'],],
+                            [
+                                'label' => 'ข้อมูลทรัพยากร',
+                                'icon' => 'circle-o',
+                                'url' => '#',
+                                'items' => [
+                                    ['label' => 'พืช', 'icon' => 'circle-o', 'url' => '#',],
+									['label' => 'สัตว์และแมลง', 'icon' => 'circle-o', 'url' => '#',],
+									['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => '#',],
+                                    /*[
+                                        'label' => 'Level Two',
+                                        'icon' => 'circle-o',
+                                        'url' => '#',
+                                        'items' => [
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                        ],
+                                    ],*/
+                                ],
+                            ],
+							['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => ['/debug'],],
+							                            [
+                                'label' => 'พืชอนุรักษ์ยางนา',
+                                'icon' => 'circle-o',
+                                'url' => '#',
+                                'items' => [
+                                    ['label' => 'กรอบการเรียนรู้', 'icon' => 'circle-o', 'url' => '#',],
+									['label' => 'กรอบการใช้ประโยชน์', 'icon' => 'circle-o', 'url' => '#',],
+									['label' => 'กรอบการสร้างจิตสำนึก', 'icon' => 'circle-o', 'url' => '#',],
+                                ],
+                            ],
+                        ],
+                    ],
+					//
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
