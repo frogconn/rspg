@@ -40,12 +40,6 @@ use app\components\MenuHelper;
                       'url' => ['/researcher'],
                       'active' => MenuHelper::Active('researcher')
                     ],
-					[
-                      'label' => 'ข้อมูลพื้นที่วิจัย',
-                      'icon' => 'file-car',
-                      'url' => ['/research-zone'],
-                      'active' => MenuHelper::Active('research-zone')
-                    ],
 					//
 					[
                         'label' => 'ข้อมูลผลงานวิจัย',
