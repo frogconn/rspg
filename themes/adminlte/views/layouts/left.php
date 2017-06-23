@@ -40,6 +40,19 @@ use app\components\MenuHelper;
                       'url' => ['/test'],
                       'active' => MenuHelper::Active('test')
                     ],
+					 [
+                      'label' => 'Animal',
+                      'icon' => 'file-car',
+                      'url' => ['/animal'],
+                      'active' => MenuHelper::Active('animal')
+                    ],
+					[
+                      'label' => 'Faculty',
+                      'icon' => 'file-car',
+                      'url' => ['/faculty'],
+                      'active' => MenuHelper::Active('faculty')
+                    ],
+					
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
