@@ -40,21 +40,6 @@ use app\components\MenuHelper;
                       'url' => ['/researcher'],
                       'active' => MenuHelper::Active('researcher')
                     ],
-<<<<<<< HEAD
-					 [
-                      'label' => 'Animal',
-                      'icon' => 'file-car',
-                      'url' => ['/animal'],
-                      'active' => MenuHelper::Active('animal')
-                    ],
-					[
-                      'label' => 'Faculty',
-                      'icon' => 'file-car',
-                      'url' => ['/faculty'],
-                      'active' => MenuHelper::Active('faculty')
-                    ],
-					
-=======
 					//
 					[
                         'label' => 'ข้อมูลผลงานวิจัย',
@@ -95,7 +80,6 @@ use app\components\MenuHelper;
                         ],
                     ],
 					//
->>>>>>> ed490b33218295d7334050837704bb98b9c57555
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
