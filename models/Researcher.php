@@ -132,7 +132,7 @@ class Researcher extends \yii\db\ActiveRecord
 	{
 		return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
 	}
-    public function afterSave($insert)
+    public function afterSave()
     {
         $this->fullname_th = $this->fristname_th." ".$this->lastname_th;
         $this->fullname_en = $this->fristname_en." ".$this->lastname_en;
