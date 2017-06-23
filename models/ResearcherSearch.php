@@ -19,7 +19,7 @@ class ResearcherSearch extends Researcher
     {
         return [
             [['id', 'foreigner', 'institution_id', 'faculty_id', 'gender', 'created_by', 'update_by'], 'integer'],
-            [['pers_id', 'title', 'fristname_th', 'lastname_th', 'fristname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'email', 'telephone', 'update_date', 'created_date'], 'safe'],
+            [['pers_id', 'title', 'firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'email', 'telephone', 'update_date', 'created_date'], 'safe'],
         ];
     }
 
@@ -72,9 +72,9 @@ class ResearcherSearch extends Researcher
 
         $query->andFilterWhere(['like', 'pers_id', $this->pers_id])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'fristname_th', $this->fristname_th])
+            ->andFilterWhere(['like', 'firstname_th', $this->firstname_th])
             ->andFilterWhere(['like', 'lastname_th', $this->lastname_th])
-            ->andFilterWhere(['like', 'fristname_en', $this->fristname_en])
+            ->andFilterWhere(['like', 'firstname_en', $this->firstname_en])
             ->andFilterWhere(['like', 'lastname_en', $this->lastname_en])
             ->andFilterWhere(['like', 'fullname_th', $this->fullname_th])
             ->andFilterWhere(['like', 'fullname_en', $this->fullname_en])
