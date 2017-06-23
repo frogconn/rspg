@@ -51,7 +51,8 @@ $fieldOptions2 = [
         </div>
 
 
-        <?php ActiveForm::end(); ?>
+        <?php A
+		ctiveForm::end(); ?>
 
         <div class="social-auth-links text-center">
             <p>- OR -</p>
