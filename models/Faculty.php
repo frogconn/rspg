@@ -32,7 +32,7 @@ class Faculty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fac_id', 'inst_id', 'created_by', 'update_by'], 'integer'],
+            [['fac_code', 'inst_code', 'created_by', 'update_by'], 'integer'],
             [['update_date', 'created_date'], 'safe'],
             [['fac_name'], 'string', 'max' => 128],
         ];
@@ -45,9 +45,9 @@ class Faculty extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fac_id' => 'รหัสคณะ',
+            'fac_code' => 'รหัสคณะ',
             'fac_name' => 'ชื่อคณะ',
-            'inst_id' => 'รหัสสถาบัน',
+            'inst_code' => 'รหัสสถาบัน',
             'update_date' => 'Update Date',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',

@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 use kartik\widgets\ActiveForm;
 use app\models\Faculty;
 use app\models\Institution;
+use kartik\widgets\DepDrop;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Researcher */
@@ -13,60 +15,63 @@ use app\models\Institution;
 
 <div class="researcher-form">
 
-    <?php $form = ActiveForm::begin(
-	['type' => ActiveForm::TYPE_HORIZONTAL],
-	['options' => ['enctype' => 'multipart/form-data']]
-	); 
+    <?php 
+        $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL],
+            ['options' => ['enctype' => 'multipart/form-data']]); 
 	?>
 
     <div class="box-body">
 
-    <?= $form->field($model, 'foreigner')->textInput() ?>
+    <?php 
+        $list = ['1' => 'Yes', '0' => 'No'];
+        echo $form->field($researcher, 'foreigner')->radioList($list);
+        
+        echo $form->field($instit, 'inst_name')->dropdownList(ArrayHelper::map(Institution::find()->all(),
+            'inst_code','inst_name'), [
+            'id'=>'ddl-institution',
+            'options' => [
+                $instit->inst_code => ['Selected'=>'selected']], 
+                'prompt'=>'เลือกหน่วยงาน']); // id=>inst relation with depends[]
+    
+        echo $form->field($faculty, 'fac_name')->widget(DepDrop::classname(), [
+            'data'=> [],
+            'pluginOptions'=>[
+                'depends'=>['ddl-institution'],
+                'placeholder'=>'เลือกคณะ',
+                'url'=>Url::to(['/researcher/get-faculty'])
+            ]
+        ]);
 
-    <!--?= $form->field($model, 'institution_id')->textInput(['maxlength' => true]) ?-->
+        $list = ['1' => 'Male', '0' => 'Female'];
+        echo $form->field($researcher, 'gender')->radioList($list);
+    ?>
 
-    <!--?= $form->field($model, 'faculty_id')->textInput(['maxlength' => true]) ?-->
+    <?= $form->field($researcher, 'pers_id')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'firstname_th')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'lastname_th')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'firstname_en')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'lastname_en')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($researcher, 'telephone')->textInput(['maxlength' => true]) ?>
 	
-	<?=$form->field($model, 'institution_id')->dropDownList(
-		ArrayHelper::map(Institution::find()->all(), 'id', 'inst_name'), ['prompt' => '-- โปรดเลือก --'])
-	?>
-	
-	<?=$form->field($model, 'faculty_id')->dropDownList(
-		ArrayHelper::map(Faculty::find()->all(), 'id', 'fac_name'), ['prompt' => '-- โปรดเลือก --'])
-	?>
-
-    <?= $form->field($model, 'pers_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'fristname_th')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'lastname_th')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'fristname_en')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'lastname_en')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'fullname_th')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'gender')->textInput() ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
-	
-	<div class="img-responsive center-block">
+	<!--<div class="img-responsive center-block">
 		<div class="col-md-2">
 			<div class="well text-center">
-				<?= Html::img($model->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
+				<?= Html::img($researcher->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
 			</div>
 		</div>
 		<div class="col-md-10">
-			<?= $form->field($model, 'evidence_file')->fileInput() ?>
+			<?= $form->field($researcher, 'evidence_file')->fileInput() ?>
 		</div>
-    </div>
+    </div>-->
 
     <!--?= $form->field($model, 'update_date')->textInput() ?-->
 
@@ -76,15 +81,13 @@ use app\models\Institution;
 
     <!--?= $form->field($model, 'update_by')->textInput() ?-->
 
-	
-
 	</div>
 
 	<div class="box-footer">
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($researcher->isNewRecord ? 'Create' : 'Update', ['class' => $researcher->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
                  <?= Html::a('Cancle',[ 'researcher/'], ['class' => 'btn btn-default']) ?>
 
