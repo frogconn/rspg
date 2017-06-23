@@ -21,7 +21,9 @@ use app\models\Institution;
 
     <div class="box-body">
 
-    <?= $form->field($model, 'foreigner')->textInput() ?>
+    <!--?= $form->field($model, 'foreigner')->textInput() ?-->
+
+    <?= $form->field($model, 'foreigner')->radioList(['1' => 'ใช่ / Yes','2' => 'ไม่ใช่ / No',]); ?>
 
     <!--?= $form->field($model, 'institution_id')->textInput(['maxlength' => true]) ?-->
 
@@ -47,11 +49,13 @@ use app\models\Institution;
 
     <?= $form->field($model, 'lastname_en')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fullname_th')->textInput(['maxlength' => true]) ?>
+    <!--?= $form->field($model, 'fullname_th')->textInput(['maxlength' => true]) ?-->
 
-    <?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?>
+    <!--?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?-->
 
-    <?= $form->field($model, 'gender')->textInput() ?>
+    <!--?= $form->field($model, 'gender')->textInput() ?-->
+    
+    <?= $form->field($model, 'gender')->radioList(['1' => 'Male','2' => 'Female',]); ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
