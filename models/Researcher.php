@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "researcher".
@@ -26,17 +25,12 @@ use yii\web\UploadedFile;
  * @property integer $created_by
  * @property string $created_date
  * @property integer $update_by
- *
- * @property Evidence[] $evidences
  */
 class Researcher extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
-	 
-	public $upload_foler ='uploads\researcher_evidence';
-	 
     public static function tableName()
     {
         return 'researcher';
@@ -53,11 +47,15 @@ class Researcher extends \yii\db\ActiveRecord
             [['pers_id', 'telephone'], 'string', 'max' => 64],
             [['title'], 'string', 'max' => 32],
             [['firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'email'], 'string', 'max' => 128],
+<<<<<<< HEAD
             [['fullname_th', 'fullname_en'], 'string', 'max' => 255],
 			//[['evidence_file'],'required'],
 			[['evidence_file'], 'file',
 			'skipOnEmpty' => true,
 			'extensions' => 'png,jpg'],
+=======
+            [['fullname_th', 'fullname_en', 'evidence_file'], 'string', 'max' => 255],
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
         ];
     }
 
@@ -68,25 +66,35 @@ class Researcher extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'รหัสนักวิจัย',
+<<<<<<< HEAD
             'foreigner' => 'ชาวต่างชาติ(foreigner)',
+=======
+            'foreigner' => 'ชาวต่างชาติ',
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
             'pers_id' => 'หมายเลขบัตรประชาชน/หมายเลขหนังสือเดินทาง',
             'title' => 'คำนำหน้าชื่อ',
             'firstname_th' => 'ชื่อ(ไทย)',
             'lastname_th' => 'นามสกุล(ไทย)',
+<<<<<<< HEAD
             'firstname_en' => 'Firstname(Eng)',
             'lastname_en' => 'Lastname(Eng)',
+=======
+            'firstname_en' => 'ชื่อ(อังกฤษ)',
+            'lastname_en' => 'นามสกุล(อังกฤษ)',
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
             'fullname_th' => 'ชื่อเต็ม(ไทย)',
             'fullname_en' => 'Fullname(Eng)',
             'gender' => 'เพศ',
             'email' => 'อีเมล',
             'telephone' => 'เบอร์โทรศัพท์',
-            'evidence_file' => 'Evidence File',
+            'evidence_file' => 'ไฟล์หลักฐาน',
             'update_date' => 'Update Date',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'update_by' => 'Update By',
         ];
     }
+<<<<<<< HEAD
 
     public function getFullnameTh(){
         return $this->firstname_th. " " .$this->lastname_th;
@@ -136,4 +144,6 @@ class Researcher extends \yii\db\ActiveRecord
 		return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
 	}
     
+=======
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
 }

@@ -18,7 +18,11 @@ class ResearcherSearch extends Researcher
     public function rules()
     {
         return [
+<<<<<<< HEAD
             [['id', 'foreigner', 'gender', 'created_by', 'update_by'], 'integer'],
+=======
+            [['id', 'foreigner', 'institution_id', 'faculty_id', 'gender', 'created_by', 'update_by'], 'integer'],
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
             [['pers_id', 'title', 'firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'email', 'telephone', 'update_date', 'created_date'], 'safe'],
         ];
     }

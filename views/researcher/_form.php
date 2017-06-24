@@ -22,6 +22,7 @@ use yii\helpers\Url;
 
     <div class="box-body">
 
+<<<<<<< HEAD
     <?php 
         $list = ['1' => 'Yes', '0' => 'No'];
         echo $form->field($researcher, 'foreigner')->radioList($list);
@@ -41,6 +42,11 @@ use yii\helpers\Url;
                 'url'=>Url::to(['/researcher/get-faculty'])
             ]
         ]);
+=======
+    <!--?= $form->field($model, 'foreigner')->textInput() ?-->
+
+    <?= $form->field($model, 'foreigner')->radioList(['1' => 'ใช่ / Yes','2' => 'ไม่ใช่ / No',]); ?>
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
 
         $list = ['1' => 'Male', '0' => 'Female'];
         echo $form->field($researcher, 'gender')->radioList($list);
@@ -56,11 +62,25 @@ use yii\helpers\Url;
 
     <?= $form->field($researcher, 'firstname_en')->textInput(['maxlength' => true]) ?>
 
+<<<<<<< HEAD
     <?= $form->field($researcher, 'lastname_en')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($researcher, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($researcher, 'telephone')->textInput(['maxlength' => true]) ?>
+=======
+    <!--?= $form->field($model, 'fullname_th')->textInput(['maxlength' => true]) ?-->
+
+    <!--?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?-->
+
+    <!--?= $form->field($model, 'gender')->textInput() ?-->
+    
+    <?= $form->field($model, 'gender')->radioList(['1' => 'Male','2' => 'Female',]); ?>
+
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
+>>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
 	
 	<!--<div class="img-responsive center-block">
 		<div class="col-md-2">
