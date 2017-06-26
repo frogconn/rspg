@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Update', ['update', 'id' => $model->mic_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->mic_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,19 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'genus',
-            'mic_id',
+            //'mic_id',
             'species',
             'gen_info:ntext',
-            'zone_id',
+            ['attribute'=>'zone_name','value'=>$model->zone->zone_name],
             'banefit:ntext',
-            'img_code',
-            'type_id',
-            'update_date',
-            'created_by',
-            'created_date',
-            'update_by',
+            //'img_code',
+            ['attribute'=>'type_name','value'=>$model->type->type_name],
+            //'update_date',
+            //'created_by',
+            //'created_date',
+            //'update_by',
         ],
     ]) ?>
 

@@ -38,7 +38,7 @@ class MicroController extends \yii\web\Controller
 	public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findMicro($id),
 			 ]);
     }
 		
