@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\ActiveForm;
 use app\Models\Type;
-use app\Models\ResearchZone;
+use app\Models\Zone;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Test */
@@ -30,7 +30,7 @@ use app\Models\ResearchZone;
     <?= $form->field($micro, 'gen_info')->textInput() ?>
 
      <?= $form->field($zone, 'zone_name')->dropdownList(ArrayHelper::map(
-        ResearchZone::find()->all(), 'zone_id', 'zone_name'), [
+        Zone::find()->all(), 'zone_id', 'zone_name'), [
                 'id'=>'ddl-zone',
                 'options' => [
                     $zone->zone_id => ['Selected'=>'selected']],

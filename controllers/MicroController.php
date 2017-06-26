@@ -5,9 +5,10 @@ namespace app\controllers;
 use Yii;
 use app\Models\Micro;
 use app\Models\Type;
-use app\Models\ResearchZone;
+use app\Models\Zone;
 use app\Models\MicroSearch;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 
 class MicroController extends \yii\web\Controller
 {
@@ -45,11 +46,11 @@ class MicroController extends \yii\web\Controller
     {
         $micro = new Micro();
 		$type = new Type();
-		$zone = new ResearchZone ();
+		$zone = new Zone ();
 
         if ($micro->load(Yii::$app->request->post()) && $micro->save(false)) {
             $micro->type_id = $_POST['Type']['type_name'];
-			$micro->zone_id = $_POST['ResearchZone']['zone_name'];
+			$micro->zone_id = $_POST['Zone']['zone_name'];
             $micro->save();
             return $this->redirect(['micro/index']);
             //return $this->redirect(['view', 'id' => $micro->id]);
@@ -64,12 +65,15 @@ class MicroController extends \yii\web\Controller
 	
 	public function actionUpdate($id)
     {
-        $micro = $this->findModel($id);
-		$type = $this->findModel($micro->type_id);
-		$zone = $this->findModel($micro->zone_id);
+        $micro = $this->findMicro($id);
+		$type = $this->findType($micro->type_id);
+		$zone = $this->findZone($micro->zone_id);
 
-        if ($micro->load(Yii::$app->request->post()) && $micro->save()) {
-            return $this->redirect(['view', 'id' => $micro->id]);
+        if ($micro->load(Yii::$app->request->post()) && $micro->save(false)) {
+            $micro->zone_id = $_POST['Zone']['zone_name'];
+            $micro->type_id = $_POST['Type']['type_name'];
+            $micro->save();
+            return $this->redirect(['view', 'id' => $micro->mic_id]);
         } else {
             return $this->render('update', [
                 'micro' => $micro,
@@ -80,17 +84,17 @@ class MicroController extends \yii\web\Controller
     }
 	public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findMicro($id)->delete();
 
         return $this->redirect(['index']);
     }
 		
-	 protected function findModel($id)
+	 protected function findMicro($id)
     {
         if (($model = Micro::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page, micro does not exist.');
         }
     }
 	protected function findZone($id){
@@ -100,7 +104,14 @@ class MicroController extends \yii\web\Controller
             throw new NotFoundHttpException('The requested page, Zone does not exist.');
         }
     }
-	
+	protected function findType($id){
+        if (($model = Type::findOne($id)) != null) {
+            return $model;
+        } else {
+            print_r($model);
+            throw new NotFoundHttpException('The requested page, Type does not exist.');
+        }
+    }
 
 		
 		

@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'mic_id',
             'species',
             //'gen_info:ntext',
-            //'zone_id',
+            'zone_id',
             //'banefit:ntext',
             //'img_code',
             //'type_id',
