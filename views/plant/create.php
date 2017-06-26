@@ -2,27 +2,20 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Test */
 
-$this->title = 'Create Test';
-$this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['index']];
+/* @var $this yii\web\View */
+/* @var $model app\models\Plant */
+
+$this->title = 'Create Plant';
+$this->params['breadcrumbs'][] = ['label' => 'Animals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="test-create">
+<div class="animal-create">
 
-
-<div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'type' => $type,
-		'plant' => $plant,
-		'zone' => $zone
+        'model' => $model,
     ]) ?>
-
-</div>
 
 </div>
