@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 use app\models\Zone;
+use app\models\Type;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Animal */
@@ -14,6 +15,15 @@ use app\models\Zone;
 <div class="animal-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($type, 'type_name')->dropdownList(ArrayHelper::map(
+        Type::find()->where(['type_class' => 'สัตว์และแมลง'])->all() , 'type_id', 'type_name'), [
+                'id'=>'ddl-type',
+                'options' => [
+                    $type->type_id => ['Selected'=>'selected']],
+                'prompt'=>'เลือกประเภทของสัตว์และแมลง'
+            ]); 
+    ?>
 
     <?= $form->field($animal, 'com_name')->textInput(['maxlength' => true]) ?>
 
@@ -28,6 +38,8 @@ use app\models\Zone;
     <?= $form->field($zone, 'zone_name')->dropdownList(ArrayHelper::map(
         Zone::find()->all(), 'zone_id', 'zone_name'), [
                 'id'=>'ddl-zone',
+                'options' => [
+                    $zone->zone_id => ['Selected'=>'selected']],
                 'prompt'=>'เลือกพื้นที่วิจัย'
             ]); 
     ?>
@@ -35,8 +47,6 @@ use app\models\Zone;
     <?= $form->field($animal, 'banefit')->textarea(['rows' => 6]) ?>
 
     <?php //$form->field($model, 'img_code')->textInput() ?>
-
-    <?php //$form->field($model, 'type_id')->textInput() ?>
 
     <?php //$form->field($model, 'update_date')->textInput() ?>
 

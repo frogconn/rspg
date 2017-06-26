@@ -46,9 +46,8 @@ class Type extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'รหัส',
             'type_id' => 'รหัสประเภท',
-            'type_name' => 'ชื่อประเภท',
+            'type_name' => 'ประเภท',
             'type_class' => 'ชนิด',
             'update_date' => 'Update Date',
             'created_by' => 'Created By',

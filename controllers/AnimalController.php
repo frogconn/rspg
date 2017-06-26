@@ -6,6 +6,7 @@ use Yii;
 use app\models\Animal;
 use app\models\AnimalSearch;
 use app\models\Zone;
+use app\models\Type;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -68,16 +69,19 @@ class AnimalController extends Controller
     {
         $animal = new Animal(); 
         $zone = new Zone();
+        $type = new Type();
 
         if ($animal->load(Yii::$app->request->post()) && $animal->save(false)) {
             $animal->zone_id = $_POST['Zone']['zone_name'];
+            $animal->type_id = $_POST['Type']['type_name'];
             $animal->save();
             return $this->redirect(['animal/index']);
             //return $this->redirect(['view', 'id' => $animal->id]);
         } else {
             return $this->render('create', [
                 'animal' => $animal,
-                'zone' => $zone
+                'zone' => $zone,
+                'type' => $type
             ]);
         }
     }
@@ -92,13 +96,18 @@ class AnimalController extends Controller
     {
         $animal = $this->findAnimal($id);
         $zone = $this->findZone($animal->zone_id);
+        $type = $this->findType($animal->type_id);
 
-        if ($animal->load(Yii::$app->request->post()) && $animal->save()) {
-            return $this->redirect(['view', 'id' => $animal->id]);
+        if ($animal->load(Yii::$app->request->post()) && $animal->save(false)) {
+            $animal->zone_id = $_POST['Zone']['zone_name'];
+            $animal->type_id = $_POST['Type']['type_name'];
+            $animal->save();
+            return $this->redirect(['view', 'id' => $animal->animal_id]);
         } else {
             return $this->render('update', [
                 'animal' => $animal,
-                'zone' => $zone
+                'zone' => $zone,
+                'type' => $type
             ]);
         }
     }
@@ -136,6 +145,16 @@ class AnimalController extends Controller
         if (($model = Zone::findOne($id)) != null) {
             return $model;
         } else {
+            print_r($model);
+            throw new NotFoundHttpException('The requested page, Zone does not exist.');
+        }
+    }
+
+    protected function findType($id){
+        if (($model = Type::findOne($id)) != null) {
+            return $model;
+        } else {
+            print_r($model);
             throw new NotFoundHttpException('The requested page, Zone does not exist.');
         }
     }

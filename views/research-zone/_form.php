@@ -23,6 +23,8 @@ use app\models\Province;
     <?= $form->field($province, 'p_name')->dropdownList(ArrayHelper::map(
         Province::find()->all(), 'id', 'p_name'), [
                 'id'=>'ddl-province',
+                'options' => [
+                    $province->id => ['Selected'=>'selected']],
                 'prompt'=>'เลือกจังหวัด'
             ]); 
     ?>
