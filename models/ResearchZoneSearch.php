@@ -12,6 +12,9 @@ use app\models\ResearchZone;
  */
 class ResearchZoneSearch extends ResearchZone
 {
+    public $zone_name;
+    public $d_name;
+    public $a_name;
     public $p_name; // add from province table
     /**
      * @inheritdoc
@@ -20,7 +23,7 @@ class ResearchZoneSearch extends ResearchZone
     {
         return [
             [['zone_id', 'p_id', 'a_id', 'd_id', 'geo_id', 'img_id', 'created_by', 'update_by'], 'integer'],
-            [['gen_info', 'p_name', 'a_name', 'd_name', 'update_date', 'created_date', ], 'safe'], // add p_name
+            [['gen_info', 'zone_name', 'p_name', 'a_name', 'd_name', 'update_date', 'created_date', ], 'safe'], // add p_name
         ];
     }
 
@@ -42,7 +45,11 @@ class ResearchZoneSearch extends ResearchZone
      */
     public function search($params)
     {
-        $query = ResearchZone::find()->joinWith('province')->joinWith('amphur')->joinWith('district');
+        $query = ResearchZone::find()
+            ->joinWith('zone')
+            ->joinWith('province')
+            ->joinWith('amphur')
+            ->joinWith('district');
 
         // add conditions that should always apply here
 
@@ -57,6 +64,11 @@ class ResearchZoneSearch extends ResearchZone
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        $dataProvider->sort->attributes['zone_name']=[
+            'asc'=>['zone.zone_name'=>SORT_ASC],
+            'desc'=>['zone.zone_name'=>SORT_DESC],
+        ];
 
         $dataProvider->sort->attributes['p_name']=[
             'asc'=>['province.p_name'=>SORT_ASC],
@@ -87,7 +99,7 @@ class ResearchZoneSearch extends ResearchZone
             //'update_by' => $this->update_by,
         ]);*/
 
-        $query->andFilterWhere(['like', 'gen_info', $this->gen_info])
+        $query->andFilterWhere(['like', 'zone.zone_name', $this->zone_name])
             ->andFilterWhere(['like', 'district.d_name', $this->d_name])
             ->andFilterWhere(['like', 'amphur.a_name', $this->a_name])
             ->andFilterWhere(['like', 'province.p_name', $this->p_name]);

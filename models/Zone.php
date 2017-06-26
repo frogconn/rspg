@@ -26,7 +26,7 @@ class Zone extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['zone_id'], 'required'],
+            [['zone_id', 'zone_name'], 'required'],
             [['zone_id'], 'integer'],
             [['zone_name'], 'string', 'max' => 128],
         ];

@@ -25,10 +25,15 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <?php
+        echo DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'zone_name'
+            ['attribute'=>'zone_name','value'=>$model->zone->zone_name],
+            ['attribute'=>'d_name','value'=>$model->district->d_name],
+            ['attribute'=>'a_name','value'=>$model->amphur->a_name],
+            ['attribute'=>'p_name','value'=>$model->province->p_name],
+            'gen_info'
         ],
     ]) ?>
 

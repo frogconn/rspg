@@ -59,9 +59,10 @@ class ResearchZoneController extends Controller
      */
     public function actionView($id)
     {
-        $zone = $this->findZone($id);
+        $researchZone = $this->findResearchZone($id);
+
         return $this->render('view', [
-            'model' => $zone
+            'model' => $researchZone
         ]);
     }
 
@@ -116,16 +117,6 @@ class ResearchZoneController extends Controller
      */
     public function actionUpdate($id)
     {
-        /*
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->zone_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }*/
-
         $zone = $this->findZone($id); // Get row that selected id equals pers_id
         $researchZone = $this->findResearchZone($zone->zone_id);
         $province = $this->findProvice($researchZone->p_id);
@@ -171,25 +162,13 @@ class ResearchZoneController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $zone = $this->findZone($id);
+        $researchZone = $this->findResearchZone($zone->zone_id);
+    
+        $researchZone->delete();
+        $zone->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the ResearchZone model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ResearchZone the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = ResearchZone::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 
     protected function findZone($id){

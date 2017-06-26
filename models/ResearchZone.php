@@ -59,10 +59,19 @@ class ResearchZone extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'update_by' => 'Update By',
+            'zone_name' => 'ชื่อพื้นที่วิจัย',
             'p_name' => 'ชื่อจังหวัด', // Add from Province table
             'a_name' => 'ชื่ออำเภอ', // Add from Amphur table
             'd_name' => 'ชื่อตำบล', // Add from District table
         ];
+    }
+
+    public function getZone(){
+        return $this->hasOne(Zone::className(),['zone_id'=>'zone_id']); // province.id => researchZone.p_id
+    }
+
+    public function getZone_name(){ // get attribute: getP_name is function named
+        return $this->zone['zone_name'];
     }
 
     public function getProvince(){
@@ -87,5 +96,5 @@ class ResearchZone extends \yii\db\ActiveRecord
 
     public function getD_name(){ 
         return $this->district['d_name'];
-    } 
+    }
 }
