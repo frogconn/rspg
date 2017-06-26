@@ -66,19 +66,35 @@ use app\components\MenuHelper;
                                     ],*/
                                 ],
                             ],
-							['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => ['#'],],
-							                            [
+							
+				                      
+                                                          
+					                             
+                        ],
+                   ],
+
+                   [
+                        'label' => 'ข้อมูลโครงการวิจัย',
+                        'icon' => 'share',
+                        'url' => '#',
+                        'items' => [
+                           
+                            ['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => '#',],
+                                                        [
                                 'label' => 'พืชอนุรักษ์ยางนา',
                                 'icon' => 'circle-o',
                                 'url' => '#',
                                 'items' => [
                                     ['label' => 'กรอบการเรียนรู้', 'icon' => 'circle-o', 'url' => '#',],
-									['label' => 'กรอบการใช้ประโยชน์', 'icon' => 'circle-o', 'url' => '#',],
-									['label' => 'กรอบการสร้างจิตสำนึก', 'icon' => 'circle-o', 'url' => '#',],
+                                    ['label' => 'กรอบการใช้ประโยชน์', 'icon' => 'circle-o', 'url' => '#',],
+                                    ['label' => 'กรอบการสร้างจิตสำนึก', 'icon' => 'circle-o', 'url' => '#',],
                                 ],
                             ],
                         ],
                     ],
+
+
+
 					//
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
