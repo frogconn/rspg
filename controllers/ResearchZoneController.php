@@ -93,8 +93,8 @@ class ResearchZoneController extends Controller
                 $researchZone->gen_info = $_POST['ResearchZone']['gen_info'];
 
                 $researchZone->save();
-                return $this->redirect(['research-zone/index']);
-                //return $this->redirect(['view', 'id' => $zone->zone_id]);
+                //return $this->redirect(['research-zone/index']);
+                return $this->redirect(['view', 'id' => $zone->zone_id]);
             }
         } else {
             return $this->render('create', [

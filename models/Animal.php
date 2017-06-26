@@ -7,7 +7,6 @@ use Yii;
 /**
  * This is the model class for table "animal".
  *
- * @property integer $id
  * @property integer $animal_id
  * @property string $com_name
  * @property string $loc_name
@@ -53,21 +52,29 @@ class Animal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'animal_id' => 'Animal ID',
-            'com_name' => 'Com Name',
-            'loc_name' => 'Loc Name',
-            'sc_name' => 'Sc Name',
-            'fam_name' => 'Fam Name',
-            'gen_info' => 'Gen Info',
-            'zone_id' => 'Zone ID',
-            'banefit' => 'Banefit',
-            'img_code' => 'Img Code',
-            'type_id' => 'Type ID',
+            'animal_id' => 'รหัสสัตว์',
+            'com_name' => 'ชื่อสามัญ',
+            'loc_name' => 'ชื่อท้องถิ่น',
+            'sc_name' => 'ชื่อวิทยาศาสตร์',
+            'fam_name' => 'ชื่อวงศ์',
+            'gen_info' => 'ข้อมูลทั่วไป',
+            'zone_id' => 'รหัสพื้นที่',
+            'banefit' => 'กรใช้ประโยชน์',
+            'img_code' => 'รหัสภาพ',
+            'type_id' => 'รหัสประเภท',
+            'zone_name' => 'ชื่อพื้นที่วิจัย',
             'update_date' => 'Update Date',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'update_by' => 'Update By',
-        ];
+        ]; 
+    }
+
+    public function getZone(){
+        return $this->hasOne(Zone::className(),['zone_id'=>'zone_id']); // province.id => researchZone.p_id
+    }
+
+    public function getZone_name(){ // get attribute: getP_name is function named
+        return $this->zone['zone_name'];
     }
 }
