@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use kartik\widgets\ActiveForm;
+use app\Models\Type;
+use app\Models\ResearchZone;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Test */
@@ -10,11 +13,15 @@ use kartik\widgets\ActiveForm;
 
 <div class="micro-form">
 
-    <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL]); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
-    <div class="box-body
-	
-   
+ 
+	<?= $form->field($type, 'type_name')->dropdownList(ArrayHelper::map(
+        Type::find()->where(['type_class' => 'จุลินทรีย์'])->all(), 'type_id', 'type_name'), [
+                'id'=>'ddl-type',
+                'prompt'=>'เลือกประเภทของจุลินทรีย์'
+            ]); 
+    ?>
 	
     <?= $form->field($micro, 'genus')->textInput () ?>
 
@@ -22,16 +29,18 @@ use kartik\widgets\ActiveForm;
 
     <?= $form->field($micro, 'gen_info')->textInput() ?>
 
-    <?= $form->field($zone, 'zone_id')->textInput() ?>
-	
+     <?= $form->field($zone, 'zone_name')->dropdownList(ArrayHelper::map(
+        ResearchZone::find()->all(), 'zone_id', 'zone_name'), [
+                'id'=>'ddl-zone',
+                'options' => [
+                    $zone->zone_id => ['Selected'=>'selected']],
+                'prompt'=>'เลือกพื้นที่วิจัย'
+            ]); 
+    ?>
     <?= $form->field($micro, 'banefit')->textInput() ?>
 	
 	
-	
-	
-
-
-	</div>
+</div>
 
 	<div class="box-footer">
 

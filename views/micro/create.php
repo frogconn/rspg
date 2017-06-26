@@ -4,26 +4,20 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Test */
+/* @var $model app\models\Micro */
 
 $this->title = 'Create Micro';
 $this->params['breadcrumbs'][] = ['label' => 'Micro', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="test-create">
+<div class="micro-create">
 
-
-<div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+	<h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'micro' => $micro,
 		'type'  => $type,
-		'zone'  => $zone
+		'zone'  => $zone,
     ]) ?>
-
-</div>
 
 </div>

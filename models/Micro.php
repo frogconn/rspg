@@ -51,9 +51,9 @@ class Micro extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'genus' => 'ชื่อประเภท',
+            'genus' => 'Genus',
             'mic_id' => 'หมายเลขจุลินทรีย์',
-            'species' => 'ชื่อสายพันธุ์',
+            'species' => 'Species',
             'gen_info' => 'ข้อมูลทั่วไป',
             'zone_id' => 'รหัสพื้นที่',
             'banefit' => 'ประโยชน์',
