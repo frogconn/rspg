@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 
+use yii\web\UploadedFile;
+
 /**
  * This is the model class for table "researcher".
  *
@@ -27,6 +29,7 @@ use Yii;
  */
 class Researcher extends \yii\db\ActiveRecord
 {
+	public $upload_foler ='uploads'; //location folder maybe .../web/uploads
     /**
      * @inheritdoc
      */
@@ -48,7 +51,10 @@ class Researcher extends \yii\db\ActiveRecord
             [['pers_id', 'telephone'], 'string', 'max' => 64],
             [['title'], 'string', 'max' => 32],
             [['firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'email'], 'string', 'max' => 128],
-            [['fullname_th', 'fullname_en', 'evidence_file'], 'string', 'max' => 255],
+            [['fullname_th', 'fullname_en'], 'string', 'max' => 255],
+			[['evidence_file'],'file',
+			'skipOnEmpty' => true,
+			'extensions' => 'png,jpg'],
             [['gender'], 'string', 'max' => 6],
         ];
     }
@@ -97,22 +103,21 @@ class Researcher extends \yii\db\ActiveRecord
         return $this->hasMany(Evidence::className(), ['researcher_id' => 'id']);
     }
 	
-	//
-	public function upload($model,$attribute)
-	{
-		$evidence_file  = UploadedFile::getInstance($model, $attribute);
-		$path = $this->getUploadPath();
-		if ($this->validate() && $evidence_file !== null) 
-		{
-			$fileName = md5($evidence_file->baseName.time()) . '.' . $evidence_file->extension;
-			//$fileName = $picture->baseName . '.' . $picture->extension;
-			if($evidence_file->saveAs($path.$fileName))
-			{
-				return $fileName;
-			}
-		}
-		return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
-	}
+	//upload method
+	//this code can create model
+    public function upload($model,$attribute)
+    {
+        $photo  = UploadedFile::getInstance($model, $attribute);
+          $path = $this->getUploadPath();
+        if ($this->validate() && $photo !== null) {
+            $fileName = md5($photo->baseName.time()) . '.' . $photo->extension;
+            //$fileName = $photo->baseName . '.' . $photo->extension;
+            if($photo->saveAs($path.$fileName)){
+              return $fileName;
+            }
+        }
+        return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
+    }
 
 	public function getUploadPath()
 	{
@@ -128,4 +133,5 @@ class Researcher extends \yii\db\ActiveRecord
 	{
 		return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
 	}
+	//upload method
 }
