@@ -7,10 +7,9 @@ use Yii;
 /**
  * This is the model class for table "agency".
  *
- * @property string $id
- * @property integer $pers_id
- * @property integer $fac_id
- * @property integer $inst_id
+ * @property string $pers_id
+ * @property integer $fac_code
+ * @property integer $inst_code
  * @property string $update_date
  * @property integer $created_by
  * @property string $created_date
@@ -32,8 +31,10 @@ class Agency extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pers_id', 'fac_code', 'inst_code', 'created_by', 'update_by'], 'integer'],
+            [['pers_id'], 'required'],
+            [['fac_code', 'inst_code', 'created_by', 'update_by'], 'integer'],
             [['update_date', 'created_date'], 'safe'],
+            [['pers_id'], 'string', 'max' => 64],
         ];
     }
 
@@ -43,7 +44,6 @@ class Agency extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'pers_id' => 'หมายเลขบัตรประชาชน/หมายเลขหนังสือเดินทาง',
             'fac_code' => 'รหัสคณะ',
             'inst_code' => 'รหัสสถาบัน',

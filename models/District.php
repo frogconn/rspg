@@ -8,9 +8,11 @@ use Yii;
  * This is the model class for table "district".
  *
  * @property integer $id
- * @property string $code
- * @property string $name
- * @property integer $amphur_id
+ * @property string $d_code
+ * @property string $d_name
+ * @property integer $a_id
+ * @property integer $p_id
+ * @property integer $geo_id
  */
 class District extends \yii\db\ActiveRecord
 {
@@ -28,9 +30,10 @@ class District extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['amphur_id'], 'integer'],
-            [['code'], 'string', 'max' => 6],
-            [['name'], 'string', 'max' => 150],
+            [['d_name'], 'required'],
+            [['a_id', 'p_id', 'geo_id'], 'integer'],
+            [['d_code'], 'string', 'max' => 6],
+            [['d_name'], 'string', 'max' => 150],
         ];
     }
 
@@ -41,10 +44,11 @@ class District extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Code',
-            'name' => 'Name',
-            'amphur_id' => 'Amphur ID',
+            'd_code' => 'D Code',
+            'd_name' => 'ชื่อตำบล',
+            'a_id' => 'A ID',
+            'p_id' => 'P ID',
+            'geo_id' => 'Geo ID',
         ];
     }
-	//new code here
 }

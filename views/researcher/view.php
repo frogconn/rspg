@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Researcher */
 
-$this->title = $model->title;
+$this->title = $model->fullname_th;
 $this->params['breadcrumbs'][] = ['label' => 'Researchers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Back',[ 'researcher/'], ['class' => 'btn bg-navy']) ?>
 
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Update', ['update', 'id' => $model->pers_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->pers_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -33,36 +33,35 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="box-body">
-
-    <?= DetailView::widget([
+        
+    <?= 
+    //print_r($model);
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'foreigner',
-            'institution_id',
-            'faculty_id',
+            'gender',
             'pers_id',
-            'title',
-            'fristname_th',
-            'lastname_th',
-            'fristname_en',
-            'lastname_en',
+            //'title',
+            //'firstname_th',
+            //'lastname_th',
+            //'firstname_en',
+            //'lastname_en',
             'fullname_th',
             'fullname_en',
-            'gender',
             'email:email',
             'telephone',
 			[
 				'format'=>'raw',
 				'attribute'=>'evidence_file',
-				'value'=>Html::img($model->photoViewer,['class'=>'img-thumbnail','style'=>'width:200px;'])
+                'value'=>Html::img($model->photoViewer,['class'=>'img-thumbnail','style'=>'width:200px;'])
 			],
             'update_date',
             'created_by',
             'created_date',
-            'update_by',
-        ],
-    ]) ?>
+            'update_by'
+        ]
+    ]); ?>
 </div>
 </div>
 </div>

@@ -18,12 +18,8 @@ class ResearcherSearch extends Researcher
     public function rules()
     {
         return [
-<<<<<<< HEAD
-            [['id', 'foreigner', 'gender', 'created_by', 'update_by'], 'integer'],
-=======
-            [['id', 'foreigner', 'institution_id', 'faculty_id', 'gender', 'created_by', 'update_by'], 'integer'],
->>>>>>> be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a
-            [['pers_id', 'title', 'firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'email', 'telephone', 'update_date', 'created_date'], 'safe'],
+            [['created_by', 'update_by'], 'integer'],
+            [['foreigner', 'gender', 'pers_id', 'title', 'firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'email', 'telephone', 'update_date', 'created_date'], 'safe'],
         ];
     }
 
@@ -61,23 +57,19 @@ class ResearcherSearch extends Researcher
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'foreigner' => $this->foreigner,
-            'gender' => $this->gender,
-            'update_date' => $this->update_date,
-            'created_by' => $this->created_by,
-            'created_date' => $this->created_date,
-            'update_by' => $this->update_by,
-        ]);
+        $dataProvider->sort->attributes['fullname']=[
+            'asc'=>['name'=>SORT_ASC,'surname'=>SORT_DESC],
+            'desc'=>['name'=>SORT_DESC,'surname'=>SORT_DESC],
+        ];
 
-        $query->andFilterWhere(['like', 'pers_id', $this->pers_id])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'firstname_th', $this->firstname_th])
-            ->andFilterWhere(['like', 'lastname_th', $this->lastname_th])
-            ->andFilterWhere(['like', 'firstname_en', $this->firstname_en])
-            ->andFilterWhere(['like', 'lastname_en', $this->lastname_en])
+        $query//->andFilterWhere(['like', 'foreigner', $this->foreigner])
+            //->andFilterWhere(['like', 'gender', $this->gender])
+            ->andFilterWhere(['like', 'pers_id', $this->pers_id])
+            //->andFilterWhere(['like', 'title', $this->title])
+            //->andFilterWhere(['like', 'firstname_th', $this->firstname_th])
+            //->andFilterWhere(['like', 'lastname_th', $this->lastname_th])
+            //->andFilterWhere(['like', 'firstname_en', $this->firstname_en])
+            //->andFilterWhere(['like', 'lastname_en', $this->lastname_en])
             ->andFilterWhere(['like', 'fullname_th', $this->fullname_th])
             ->andFilterWhere(['like', 'fullname_en', $this->fullname_en])
             ->andFilterWhere(['like', 'email', $this->email])
@@ -85,4 +77,5 @@ class ResearcherSearch extends Researcher
 
         return $dataProvider;
     }
+
 }

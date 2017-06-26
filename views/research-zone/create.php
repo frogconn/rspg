@@ -12,16 +12,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="research-zone-create">
 
-
-<div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'zone' => $zone,
+        'province' => $province,
+        'amphur' => $amphur,
+        'district' => $district,
+        'researchZone' => $researchZone,
+        'amphur_list' => $amphur_list,
+        'district_list' => $district_list
     ]) ?>
-
-</div>
 
 </div>

@@ -15,23 +15,21 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($zone, 'zone_name') ?>
 
-    <?= $form->field($model, 'zone_id') ?>
+    <?= $form->field($researchZone, 'p_name') ?>
 
-    <?= $form->field($model, 'zone_name') ?>
+    <?php //$form->field($model, 'p_id') ?>
 
-    <?= $form->field($model, 'province_id') ?>
+    <?php //$form->field($model, 'a_id') ?>
 
-    <?= $form->field($model, 'amphur_id') ?>
+    <?php //$form->field($model, 'd_id') ?>
 
-    <?php // echo $form->field($model, 'district_id') ?>
-
-    <?php // echo $form->field($model, 'region_id') ?>
+    <?php //$form->field($model, 'geo_id') ?>
 
     <?php // echo $form->field($model, 'img_id') ?>
 
-    <?php // echo $form->field($model, 'information') ?>
+    <?php // echo $form->field($model, 'gen_info') ?>
 
     <?php // echo $form->field($model, 'update_date') ?>
 

@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ResearchZoneSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -12,48 +12,42 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="research-zone-index">
 
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
+    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Research Zone', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+ 
     <div class="box box-success">
-            <div class="box-header with-border">
+        <div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+        </div>
+    <div class="box-body">
 
-            <div class="box-body">
-
-
-    <?= GridView::widget([
+    <?= //print_r($searchModel);
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
+            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'zone_id',
-            'zone_name',
-            'province_id',
-            'amphur_id',
-            // 'district_id',
-            // 'region_id',
+            //'p_id',
+            //'a_id',
+            //'d_id',
+            'd_name',
+            'a_name',
+            'p_name', 
+            // 'geo_id',
             // 'img_id',
-            // 'information',
+            // 'gen_info',
             // 'update_date',
             // 'created_by',
             // 'created_date',
             // 'update_by',
 
-              [
-                'class' => 'app\widgets\ActionColumn',
-                'options' => ['style' => 'width:100px;text-align:center;'],
-              ],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
-</div>
-</div>
-
+        ]); ?>
 </div>

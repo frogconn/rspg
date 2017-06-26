@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "province".
  *
  * @property integer $id
- * @property string $code
- * @property string $name
+ * @property string $p_code
+ * @property string $p_name
  * @property integer $geo_id
  */
 class Province extends \yii\db\ActiveRecord
@@ -28,9 +28,10 @@ class Province extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['p_name'], 'required'],
             [['geo_id'], 'integer'],
-            [['code'], 'string', 'max' => 7],
-            [['name'], 'string', 'max' => 127],
+            [['p_code'], 'string', 'max' => 2],
+            [['p_name'], 'string', 'max' => 150],
         ];
     }
 
@@ -41,8 +42,8 @@ class Province extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Code',
-            'name' => 'Name',
+            'p_code' => 'P Code',
+            'p_name' => 'ชื่อจังหวัด',
             'geo_id' => 'Geo ID',
         ];
     }

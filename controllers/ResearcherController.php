@@ -3,15 +3,20 @@
 namespace app\controllers;
 
 use Yii;
+
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+
 use app\models\Researcher;
 use app\models\Agency;
 use app\models\Institution;
 use app\models\Faculty;
 use app\models\ResearcherSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\helpers\Json;
+
+
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -55,8 +60,9 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
+        $researcher = $this->findResearcher($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $researcher
         ]);
     }
 
@@ -71,6 +77,7 @@ class ResearcherController extends Controller
         $agency = new Agency();
         $instit = new Institution();
         $faculty = new Faculty();  
+        $faculty_list = [];
 
         if (isset($_POST) && $_POST!=null) {
 			$researcher->gender = $_POST['Researcher']['gender'];
@@ -78,8 +85,8 @@ class ResearcherController extends Controller
             $researcher->pers_id = $_POST['Researcher']['pers_id'];
             $researcher->firstname_th = $_POST['Researcher']['firstname_th'];
             $researcher->lastname_th = $_POST['Researcher']['lastname_th'];
-            $researcher->firstname_en = $_POST['Researcher']['firstname_th'];
-            $researcher->lastname_en = $_POST['Researcher']['lastname_th'];
+            $researcher->firstname_en = $_POST['Researcher']['firstname_en'];
+            $researcher->lastname_en = $_POST['Researcher']['lastname_en'];
             $researcher->fullname_th = $researcher->getFullnameTh();
             $researcher->fullname_en = $researcher->getFullnameEn();
             $researcher->email = $_POST['Researcher']['email'];
@@ -92,16 +99,16 @@ class ResearcherController extends Controller
 
                 $agency->save();
                 return $this->redirect(['researcher/index']);
+                //return $this->redirect(['view', 'id' => $researcher->pers_id]);
             }
         } else {
             return $this->render('create', [
                 'researcher' => $researcher,
                 'instit' => $instit, 
                 'faculty' => $faculty,
+                'faculty_list' => $faculty_list
             ]);
         }
-
-        
     }
 
     /**
@@ -112,15 +119,42 @@ class ResearcherController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $researcher = $this->findResearcher($id); // Get row that selected id equals pers_id
+        $agency = $this->findAgency($researcher->pers_id);
+        $instit = $this->findInstitution($agency->inst_code);
+        $faculty = $this->findFaculty($agency->fac_code);
+        $faculty_list=ArrayHelper::map($this->getFaculty($agency->inst_code), 'id','name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			$model->evidence_file = $model->upload($model,'evidence_file');
-			$model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($researcher->load(Yii::$app->request->post())) {
+            $researcher->gender = $_POST['Researcher']['gender'];
+            $researcher->foreigner = $_POST['Researcher']['foreigner'];
+            $researcher->pers_id = $_POST['Researcher']['pers_id'];
+            $researcher->firstname_th = $_POST['Researcher']['firstname_th'];
+            $researcher->lastname_th = $_POST['Researcher']['lastname_th'];
+            $researcher->firstname_en = $_POST['Researcher']['firstname_en'];
+            $researcher->lastname_en = $_POST['Researcher']['lastname_en'];
+            $researcher->fullname_th = $researcher->getFullnameTh();
+            $researcher->fullname_en = $researcher->getFullnameEn();
+            $researcher->email = $_POST['Researcher']['email'];
+            $researcher->telephone = $_POST['Researcher']['telephone'];
+
+            $isValid = $researcher->validate();
+           if($isValid){
+                $researcher->save(false);
+                $agency->pers_id = $researcher->pers_id;
+                $agency->fac_code = $_POST['Faculty']['fac_name'];
+                $agency->inst_code = $_POST['Institution']['inst_name'];
+
+                $agency->save();
+                return $this->redirect(['view', 'id' => $researcher->pers_id]);
+                //return $this->redirect(['researcher/index']);
+            }
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'researcher'=>$researcher,
+                'instit'=>$instit,
+                'faculty'=>$faculty,
+                'faculty_list'=>$faculty_list
             ]);
         }
     }
@@ -133,7 +167,11 @@ class ResearcherController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $researcher = $this->findResearcher($id);
+        $agency = $this->findAgency($researcher->pers_id);
+    
+        $agency->delete();
+        $researcher->delete();
 
         return $this->redirect(['index']);
     }
@@ -145,12 +183,36 @@ class ResearcherController extends Controller
      * @return Researcher the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findResearcher($id)
     {
         if (($model = Researcher::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findAgency($id){
+        if (($model = Agency::findOne($id)) != null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, agency does not exist.');
+        }
+    }
+
+    protected function findInstitution($id){
+        if (($model = Institution::findOne(['inst_code'=>$id])) != null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, instiution does not exist.');
+        }
+    }
+
+    protected function findFaculty($id){
+        if (($model = Faculty::findOne(['fac_code'=>$id])) != null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, faculty does not exist.');
         }
     }
 
