@@ -52,9 +52,9 @@ use app\components\MenuHelper;
                                 'icon' => 'circle-o',
                                 'url' => '#',
                                 'items' => [
-                                    ['label' => 'พืช', 'icon' => 'circle-o', 'url' => '#',],
-									['label' => 'สัตว์และแมลง', 'icon' => 'circle-o', 'url' => '#',],
-									['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => '#',],
+                                    ['label' => 'พืช', 'icon' => 'circle-o', 'url' => ['/plant'],],
+									['label' => 'สัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/animal'],],
+									['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/micro'],],
                                     /*[
                                         'label' => 'Level Two',
                                         'icon' => 'circle-o',
@@ -66,7 +66,7 @@ use app\components\MenuHelper;
                                     ],*/
                                 ],
                             ],
-							['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => ['/debug'],],
+							['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => ['#'],],
 							                            [
                                 'label' => 'พืชอนุรักษ์ยางนา',
                                 'icon' => 'circle-o',
