@@ -5,8 +5,11 @@ namespace app\controllers;
 use Yii;
 use app\models\Animal;
 use app\models\AnimalSearch;
+use app\models\Zone;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+
 use yii\filters\VerbFilter;
 
 /**
@@ -52,7 +55,7 @@ class AnimalController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findAnimal($id),
         ]);
     }
 
@@ -63,13 +66,18 @@ class AnimalController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Animal();
+        $animal = new Animal(); 
+        $zone = new Zone();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($animal->load(Yii::$app->request->post()) && $animal->save(false)) {
+            $animal->zone_id = $_POST['Zone']['zone_name'];
+            $animal->save();
+            return $this->redirect(['animal/index']);
+            //return $this->redirect(['view', 'id' => $animal->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'animal' => $animal,
+                'zone' => $zone
             ]);
         }
     }
@@ -82,13 +90,15 @@ class AnimalController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $animal = $this->findAnimal($id);
+        $zone = $this->findZone($animal->zone_id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($animal->load(Yii::$app->request->post()) && $animal->save()) {
+            return $this->redirect(['view', 'id' => $animal->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'animal' => $animal,
+                'zone' => $zone
             ]);
         }
     }
@@ -101,7 +111,7 @@ class AnimalController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findAnimal($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -113,12 +123,20 @@ class AnimalController extends Controller
      * @return Animal the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findAnimal($id)
     {
         if (($model = Animal::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page, animal does not exist.');
+        }
+    }
+
+    protected function findZone($id){
+        if (($model = Zone::findOne($id)) != null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, Zone does not exist.');
         }
     }
 }
