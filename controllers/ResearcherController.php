@@ -144,14 +144,16 @@ class ResearcherController extends Controller
             $researcher->email = $_POST['Researcher']['email'];
             $researcher->telephone = $_POST['Researcher']['telephone'];
 			
-			if($researcher->validate())// check that file is validate
+			/*if($researcher->validate())// check that file is validate
 			{
 				$researcher->evidence_file = $researcher->upload($researcher,'evidence_file');
 				$researcher->save();
-			}
+			}*/
 
             $isValid = $researcher->validate();
            if($isValid){
+                $researcher->evidence_file = $researcher->upload($researcher,'evidence_file');
+				$researcher->save();
                 $researcher->save(false);
                 $agency->pers_id = $researcher->pers_id;
                 $agency->fac_code = $_POST['Faculty']['fac_name'];
