@@ -35,7 +35,7 @@ use app\components\MenuHelper;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     [
-                      'label' => 'ลงทะเบียนนักวิจัย',
+                      'label' => 'ข้อมูลนักวิจัย',
                       'icon' => 'file-car',
                       'url' => ['/researcher'],
                       'active' => MenuHelper::Active('researcher')
