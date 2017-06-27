@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Update Micro: ' . $micro->mic_id;
 $this->params['breadcrumbs'][] = ['label' => 'Micros', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $micro->mic_id, 'url' => ['view', 'id' => $micro->mic_id]];
+$this->params['breadcrumbs'][] = ['label' => $micro->id, 'url' => ['view', 'id' => $micro->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="micro-update">
