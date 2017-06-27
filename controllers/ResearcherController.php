@@ -199,7 +199,7 @@ class ResearcherController extends Controller
      */
     protected function findResearcher($id)
     {
-        if (($model = Researcher::findOne(['pers_id'=>$id])) !== null) {
+        if (($model = Researcher::findOne([$id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page, researcher does not exist.');
