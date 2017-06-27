@@ -98,8 +98,8 @@ class ResearcherController extends Controller
                 $agency->inst_code = $_POST['Institution']['inst_name'];
 
                 $agency->save();
-                return $this->redirect(['researcher/index']);
-                //return $this->redirect(['view', 'id' => $researcher->pers_id]);
+                //return $this->redirect(['researcher/index']);
+                return $this->redirect(['view', 'id' => $researcher->pers_id]);
             }
         } else {
             return $this->render('create', [
@@ -185,10 +185,10 @@ class ResearcherController extends Controller
      */
     protected function findResearcher($id)
     {
-        if (($model = Researcher::findOne($id)) !== null) {
+        if (($model = Researcher::findOne(['pers_id'=>$id])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page, researcher does not exist.');
         }
     }
 

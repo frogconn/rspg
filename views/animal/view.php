@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?= Html::a('Back',[ 'animal/'], ['class' => 'btn bg-navy']) ?>
         <?= Html::a('Update', ['update', 'id' => $model->animal_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->animal_id], [
             'class' => 'btn btn-danger',
@@ -29,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'animal_id',
+            ['attribute'=>'type_name','value'=>$model->type->type_name],
             'com_name',
             'loc_name',
             'sc_name',

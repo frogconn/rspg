@@ -62,6 +62,7 @@ class Animal extends \yii\db\ActiveRecord
             'banefit' => 'กรใช้ประโยชน์',
             'img_code' => 'รหัสภาพ',
             'type_id' => 'รหัสประเภท',
+            'type_name' => 'ประเภท',
             'zone_name' => 'ชื่อพื้นที่วิจัย',
             'update_date' => 'Update Date',
             'created_by' => 'Created By',
@@ -76,5 +77,13 @@ class Animal extends \yii\db\ActiveRecord
 
     public function getZone_name(){ // get attribute: getP_name is function named
         return $this->zone['zone_name'];
+    }
+
+    public function getType(){
+        return $this->hasOne(Type::className(),['type_id'=>'type_id']); // province.id => researchZone.p_id
+    }
+
+    public function getType_name(){ // get attribute: getP_name is function named
+        return $this->type['type_name'];
     }
 }
