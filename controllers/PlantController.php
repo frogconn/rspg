@@ -3,13 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Type;
-use app\models\ResearchZone;
+
 use app\models\Plant;
 use app\models\PlantSearch;
+use app\models\Type;
+use app\models\Zone;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+
 use yii\filters\VerbFilter;
+
 
 /**
  * AnimalController implements the CRUD actions for Animal model.
@@ -56,28 +60,23 @@ class PlantController extends Controller
 	
 	
 	
-    //public function actionCreate()
-    //{
-	//$plant = new Plant();
-	//$type = new Type();
-	//$zone = new ResearchZone();
-	
-	//return $this->render('create', [
-	//'plant' => $plant,
-	//'type' => $type,
-	//'zone' => $zone
-	//]);
-
-	
 	public function actionCreate()
     {
         $model = new Plant();
+		$zone = new Zone();
+		$type = new Type();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            $model->zone_id = $_POST['Zone']['zone_name'];
+            $model->type_id = $_POST['Type']['type_name'];
+            $model->save();
+            return $this->redirect(['plant/index']);
+            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+				'zone' => $zone,
+				'type' => $type
             ]);
         }
     }
@@ -86,12 +85,19 @@ class PlantController extends Controller
 	public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $zone = $this->findZone($model->zone_id);
+        $type = $this->findType($model->type_id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            $model->zone_id = $_POST['Zone']['zone_name'];
+            $model->type_id = $_POST['Type']['type_name'];
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->plant_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'zone' => $zone,
+                'type' => $type,
             ]);
         }
     }
@@ -114,6 +120,22 @@ class PlantController extends Controller
         }
     }
 	
-	}
+	protected function findZone($id){
+        if (($model = Zone::findOne($id)) != null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, Zone does not exist.');
+        }
+    }
 
+    protected function findType($id){
+        if (($model = Type::findOne($id)) != null) {
+            return $model;
+        } else {
+            print_r($model);
+            throw new NotFoundHttpException('The requested page, Zone does not exist.');
+        }
+    }
+}
 
+	

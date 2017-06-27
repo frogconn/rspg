@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
              //'fam_name',
              //'gen_info',
             //'zone_id',
+			//'zone_name',
             // 'banefit',
             //'img_code',
             //'type_id',
