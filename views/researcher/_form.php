@@ -62,7 +62,7 @@ use yii\helpers\Url;
 
     <?= $form->field($researcher, 'telephone')->textInput(['maxlength' => true]) ?>
 	
-	<!--<div class="img-responsive center-block">
+	<div class="img-responsive center-block">
 		<div class="col-md-2">
 			<div class="well text-center">
 				<?= Html::img($researcher->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
@@ -71,7 +71,7 @@ use yii\helpers\Url;
 		<div class="col-md-10">
 			<?= $form->field($researcher, 'evidence_file')->fileInput() ?>
 		</div>
-    </div>-->
+    </div>
 
 	</div>
 

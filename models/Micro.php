@@ -65,4 +65,20 @@ class Micro extends \yii\db\ActiveRecord
             'update_by' => 'Update By',
         ];
     }
+	public function getZone(){
+        return $this->hasOne(Zone::className(),['zone_id'=>'zone_id']); // province.id => researchZone.p_id
+    }
+
+    public function getZone_name(){ // get attribute: getP_name is function named
+        return $this->zone['zone_name'];
+    }
+	public function getType(){
+        return $this->hasOne(Type::className(),['type_id'=>'type_id']); 
+    }
+
+    public function getType_name(){ // get attribute: getP_name is function named
+        return $this->type['type_name'];
+    }
 }
+
+ 

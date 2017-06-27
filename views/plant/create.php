@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Plant */
 
 $this->title = 'Create Plant';
-$this->params['breadcrumbs'][] = ['label' => 'Animals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Plant', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="animal-create">
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+		'zone' => $zone,
+		'type' => $type
     ]) ?>
 
 </div>
