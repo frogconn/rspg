@@ -18,8 +18,8 @@ class ResearcherSearch extends Researcher
     public function rules()
     {
         return [
-            [['created_by', 'update_by'], 'integer'],
-            [['foreigner', 'gender', 'pers_id', 'title', 'firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'email', 'telephone', 'update_date', 'created_date'], 'safe'],
+            [['id', 'created_by', 'updated_by'], 'integer'],
+            [['personal_code', 'is_foreigner', 'title', 'firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'fullname_th', 'fullname_en', 'gender', 'email', 'telephone', 'evidence_file', 'created_date', 'updated_date'], 'safe'],
         ];
     }
 
@@ -57,25 +57,29 @@ class ResearcherSearch extends Researcher
             return $dataProvider;
         }
 
-        $dataProvider->sort->attributes['fullname']=[
-            'asc'=>['name'=>SORT_ASC,'surname'=>SORT_DESC],
-            'desc'=>['name'=>SORT_DESC,'surname'=>SORT_DESC],
-        ];
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'created_date' => $this->created_date,
+            'created_by' => $this->created_by,
+            'updated_date' => $this->updated_date,
+            'updated_by' => $this->updated_by,
+        ]);
 
-        $query//->andFilterWhere(['like', 'foreigner', $this->foreigner])
-            //->andFilterWhere(['like', 'gender', $this->gender])
-            ->andFilterWhere(['like', 'pers_id', $this->pers_id])
-            //->andFilterWhere(['like', 'title', $this->title])
-            //->andFilterWhere(['like', 'firstname_th', $this->firstname_th])
-            //->andFilterWhere(['like', 'lastname_th', $this->lastname_th])
-            //->andFilterWhere(['like', 'firstname_en', $this->firstname_en])
-            //->andFilterWhere(['like', 'lastname_en', $this->lastname_en])
+        $query->andFilterWhere(['like', 'personal_code', $this->personal_code])
+            ->andFilterWhere(['like', 'is_foreigner', $this->is_foreigner])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'firstname_th', $this->firstname_th])
+            ->andFilterWhere(['like', 'lastname_th', $this->lastname_th])
+            ->andFilterWhere(['like', 'firstname_en', $this->firstname_en])
+            ->andFilterWhere(['like', 'lastname_en', $this->lastname_en])
             ->andFilterWhere(['like', 'fullname_th', $this->fullname_th])
             ->andFilterWhere(['like', 'fullname_en', $this->fullname_en])
+            ->andFilterWhere(['like', 'gender', $this->gender])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'telephone', $this->telephone]);
+            ->andFilterWhere(['like', 'telephone', $this->telephone])
+            ->andFilterWhere(['like', 'evidence_file', $this->evidence_file]);
 
         return $dataProvider;
     }
-
 }

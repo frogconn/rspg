@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Researcher */
+/* @var $model app\models\ResearchAreaInformation */
 
-$this->title = 'Update Researcher: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Researchers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
+$this->title = 'Update Research Area Information: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Research Area Informations', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="researcher-update">
+<div class="research-area-information-update">
 
     <div class="box box-success">
             <div class="box-header with-border">

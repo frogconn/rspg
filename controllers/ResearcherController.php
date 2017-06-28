@@ -3,20 +3,11 @@
 namespace app\controllers;
 
 use Yii;
-
-use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
+use app\models\Researcher;
+use app\models\ResearcherSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
-use app\models\Researcher;
-use app\models\Agency;
-use app\models\Institution;
-use app\models\Faculty;
-use app\models\ResearcherSearch;
-
-
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -60,9 +51,8 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
-        $researcher = $this->findResearcher($id);
         return $this->render('view', [
-            'model' => $researcher
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -73,46 +63,13 @@ class ResearcherController extends Controller
      */
     public function actionCreate()
     {
-        $researcher = new Researcher();
-        $agency = new Agency();
-        $instit = new Institution();
-        $faculty = new Faculty();  
-        $faculty_list = [];
+        $model = new Researcher();
 
-        if (isset($_POST) && $_POST!=null) {
-			$researcher->gender = $_POST['Researcher']['gender'];
-            $researcher->foreigner = $_POST['Researcher']['foreigner'];
-            $researcher->pers_id = $_POST['Researcher']['pers_id'];
-            $researcher->firstname_th = $_POST['Researcher']['firstname_th'];
-            $researcher->lastname_th = $_POST['Researcher']['lastname_th'];
-            $researcher->firstname_en = $_POST['Researcher']['firstname_en'];
-            $researcher->lastname_en = $_POST['Researcher']['lastname_en'];
-            $researcher->fullname_th = $researcher->getFullnameTh();
-            $researcher->fullname_en = $researcher->getFullnameEn();
-            $researcher->email = $_POST['Researcher']['email'];
-            $researcher->telephone = $_POST['Researcher']['telephone'];
-			
-			if($researcher->validate())// check that file is validate
-			{
-				$researcher->evidence_file = $researcher->upload($researcher,'evidence_file');
-				$researcher->save();
-			}
-
-            if($researcher->save()){
-                $agency->pers_id = $researcher->pers_id;
-                $agency->fac_code = $_POST['Faculty']['fac_name'];
-                $agency->inst_code = $_POST['Institution']['inst_name'];
-
-                $agency->save();
-                //return $this->redirect(['researcher/index']);
-                return $this->redirect(['view', 'id' => $researcher->pers_id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'researcher' => $researcher,
-                'instit' => $instit, 
-                'faculty' => $faculty,
-                'faculty_list' => $faculty_list
+                'model' => $model,
             ]);
         }
     }
@@ -125,50 +82,13 @@ class ResearcherController extends Controller
      */
     public function actionUpdate($id)
     {
-        $researcher = $this->findResearcher($id); // Get row that selected id equals pers_id
-        $agency = $this->findAgency($researcher->pers_id);
-        $instit = $this->findInstitution($agency->inst_code);
-        $faculty = $this->findFaculty($agency->fac_code);
-        $faculty_list=ArrayHelper::map($this->getFaculty($agency->inst_code), 'id','name');
+        $model = $this->findModel($id);
 
-        if ($researcher->load(Yii::$app->request->post())) {
-            $researcher->gender = $_POST['Researcher']['gender'];
-            $researcher->foreigner = $_POST['Researcher']['foreigner'];
-            $researcher->pers_id = $_POST['Researcher']['pers_id'];
-            $researcher->firstname_th = $_POST['Researcher']['firstname_th'];
-            $researcher->lastname_th = $_POST['Researcher']['lastname_th'];
-            $researcher->firstname_en = $_POST['Researcher']['firstname_en'];
-            $researcher->lastname_en = $_POST['Researcher']['lastname_en'];
-            $researcher->fullname_th = $researcher->getFullnameTh();
-            $researcher->fullname_en = $researcher->getFullnameEn();
-            $researcher->email = $_POST['Researcher']['email'];
-            $researcher->telephone = $_POST['Researcher']['telephone'];
-			
-			/*if($researcher->validate())// check that file is validate
-			{
-				$researcher->evidence_file = $researcher->upload($researcher,'evidence_file');
-				$researcher->save();
-			}*/
-
-            $isValid = $researcher->validate();
-           if($isValid){
-                $researcher->evidence_file = $researcher->upload($researcher,'evidence_file');
-				$researcher->save();
-                $researcher->save(false);
-                $agency->pers_id = $researcher->pers_id;
-                $agency->fac_code = $_POST['Faculty']['fac_name'];
-                $agency->inst_code = $_POST['Institution']['inst_name'];
-
-                $agency->save();
-                return $this->redirect(['view', 'id' => $researcher->pers_id]);
-                //return $this->redirect(['researcher/index']);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'researcher'=>$researcher,
-                'instit'=>$instit,
-                'faculty'=>$faculty,
-                'faculty_list'=>$faculty_list
+                'model' => $model,
             ]);
         }
     }
@@ -181,11 +101,7 @@ class ResearcherController extends Controller
      */
     public function actionDelete($id)
     {
-        $researcher = $this->findResearcher($id);
-        $agency = $this->findAgency($researcher->pers_id);
-    
-        $agency->delete();
-        $researcher->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -197,63 +113,12 @@ class ResearcherController extends Controller
      * @return Researcher the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findResearcher($id)
+    protected function findModel($id)
     {
-        if (($model = Researcher::findOne([$id])) !== null) {
+        if (($model = Researcher::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page, researcher does not exist.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    protected function findAgency($id){
-        if (($model = Agency::findOne($id)) != null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page, agency does not exist.');
-        }
-    }
-
-    protected function findInstitution($id){
-        if (($model = Institution::findOne(['inst_code'=>$id])) != null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page, instiution does not exist.');
-        }
-    }
-
-    protected function findFaculty($id){
-        if (($model = Faculty::findOne(['fac_code'=>$id])) != null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page, faculty does not exist.');
-        }
-    }
-
-    public function actionGetFaculty() {
-        $out = [];
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-            if ($parents != null) {
-                $inst_code = $parents[0];
-                $out = $this->getFaculty($inst_code);
-                echo Json::encode(['output'=>$out, 'selected'=>'']);
-                return;
-            }
-        }
-        echo Json::encode(['output'=>'', 'selected'=>'']);
-    }
-
-    public function getFaculty($id){
-        $datas = Faculty::find()->where(['inst_code'=>$id])->all();
-        return $this->mapData($datas,'fac_code','fac_name');
-    }
-
-    protected function mapData($datas, $code, $name){
-        $obj = [];
-        foreach ($datas as $key => $value) {
-            array_push($obj, ['id'=>$value->{$code}, 'name'=>$value->{$name}]);
-        }
-        return $obj;
     }
 }

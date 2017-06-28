@@ -15,37 +15,41 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?php echo $form->field($researcher, 'foreigner') ?>
+    <?= $form->field($model, 'id') ?>
 
-    <?php echo $form->field($researcher, 'gender') ?>
+    <?= $form->field($model, 'personal_code') ?>
 
-    <?php echo $form->field($researcher, 'pers_id') ?>
+    <?= $form->field($model, 'is_foreigner') ?>
 
-    <?php echo $form->field($researcher, 'title') ?>
+    <?= $form->field($model, 'title') ?>
 
-    <?php echo $form->field($researcher, 'fristname_th') ?>
+    <?= $form->field($model, 'firstname_th') ?>
 
-    <?php echo $form->field($researcher, 'lastname_th') ?>
+    <?php // echo $form->field($model, 'lastname_th') ?>
 
-    <?php echo $form->field($researcher, 'fristname_en') ?>
+    <?php // echo $form->field($model, 'firstname_en') ?>
 
-    <?php echo $form->field($researcher, 'lastname_en') ?>
+    <?php // echo $form->field($model, 'lastname_en') ?>
 
-    <?php echo $form->field($researcher, 'fullname_th') ?>
+    <?php // echo $form->field($model, 'fullname_th') ?>
 
-    <?php echo $form->field($researcher, 'fullname_en') ?>
+    <?php // echo $form->field($model, 'fullname_en') ?>
 
-    <?php echo $form->field($researcher, 'email') ?>
+    <?php // echo $form->field($model, 'gender') ?>
 
-    <?php echo $form->field($researcher, 'telephone') ?>
+    <?php // echo $form->field($model, 'email') ?>
 
-    <?php echo $form->field($researcher, 'update_date') ?>
+    <?php // echo $form->field($model, 'telephone') ?>
 
-    <?php echo $form->field($researcher, 'created_by') ?>
+    <?php // echo $form->field($model, 'evidence_file') ?>
 
-    <?php echo $form->field($researcher, 'created_date') ?>
+    <?php // echo $form->field($model, 'created_date') ?>
 
-    <?php echo $form->field($researcher, 'update_by') ?>
+    <?php // echo $form->field($model, 'created_by') ?>
+
+    <?php // echo $form->field($model, 'updated_date') ?>
+
+    <?php // echo $form->field($model, 'updated_by') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
