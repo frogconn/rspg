@@ -93,7 +93,25 @@ use app\components\MenuHelper;
                         ],
                     ],
 
-
+                    [
+              				'label' => 'ตั้งค่าผู้ใช้งาน',
+              				'icon' => 'fa fa-users',
+              				'url' => '#',
+              				'items' => [
+                        [
+              						'label' => 'จัดการสิทธิ์',
+              						'icon' => 'fa fa-users',
+              						'url' => '#',
+              						'items' => [
+              							['label' => 'Assignments', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/assignment']],
+              							['label' => 'Role', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/role']],
+              							['label' => 'Permission', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/permission']],
+              							['label' => 'Route', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/route']],
+              							['label' => 'Rule', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/rule']],
+              						],
+              					],
+              				],
+              			],
 
 					//
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
