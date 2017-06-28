@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Researcher */
+/* @var $model app\models\ResearchAreaInformation */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Researchers', 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Research Area Informations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="researcher-view">
+<div class="research-area-information-view">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Back',[ 'researcher/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('Back',[ 'research-area-information/'], ['class' => 'btn bg-navy']) ?>
 
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -38,19 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'personal_code',
-            'is_foreigner',
-            'title',
-            'firstname_th',
-            'lastname_th',
-            'firstname_en',
-            'lastname_en',
-            'fullname_th',
-            'fullname_en',
-            'gender',
-            'email:email',
-            'telephone',
-            'evidence_file',
+            'province_id',
+            'amphur_id',
+            'district_id',
+            'region_id',
+            'image_id',
+            'information:ntext',
             'created_date',
             'created_by',
             'updated_date',

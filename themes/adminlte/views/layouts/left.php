@@ -35,7 +35,7 @@ use app\components\MenuHelper;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     [
-                      'label' => 'ลงทะเบียนนักวิจัย',
+                      'label' => 'ข้อมูลนักวิจัย',
                       'icon' => 'file-car',
                       'url' => ['/researcher'],
                       'active' => MenuHelper::Active('researcher')
@@ -46,7 +46,7 @@ use app\components\MenuHelper;
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'ข้อมูลพื้นที่วิจัย', 'icon' => 'file-code-o', 'url' => ['/research-zone'],],
+                            ['label' => 'ข้อมูลพื้นที่วิจัย', 'icon' => 'file-code-o', 'url' => ['/research-area-information'],],
                             [
                                 'label' => 'ข้อมูลทรัพยากร',
                                 'icon' => 'circle-o',
