@@ -92,7 +92,7 @@ $config = [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
           //'site/login',
-          'admin/assignment',
+          '*',
         ],
     ],
     'params' => $params,

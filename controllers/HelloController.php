@@ -10,30 +10,14 @@ use app\models\PermissionHelpers;
 
 use yii\helpers\Console;
 
-class RbacController extends \yii\console\Controller {
+class HelloController extends Controller {
     // first function inside the class
-public function behaviors()
-{
-    return [
-        'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['privateaction1', 'privateaction2'],
-            'rules' => [
-                [
-                    'actions' => ['privateaction1', 'privateaction2'],
-                    'allow' => true,
-                    'roles' => ['@'],
-                    'matchCallback' => function($rule, $action) {
-                            return PermissionHelpers::requireAdmin();
-                        }
-                ],
-            ],
-        ],
-}
+
 
   public function actionInit(){
      Console::output('Yii 2 Learning.');
   }
 
 }
+
 ?>
