@@ -59,6 +59,7 @@ class Micro extends \yii\db\ActiveRecord
             'banefit' => 'ประโยชน์',
             'img_code' => 'รหัสรูปภาพ',
             'type_id' => 'รหัสประเภท',
+			'zone_name' => 'ชื่อพื้นที่วิจัย',
             'update_date' => 'Update Date',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',

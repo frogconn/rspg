@@ -9,6 +9,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+		    'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'view' => [
           'theme' => [
             'basePath' => '@app/themes/adminlte',
@@ -33,7 +36,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\User',
+			'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -69,6 +73,27 @@ $config = [
     				'<module:\w+[-\w]*>/<controller:\w+[-\w]*>/<action:\w+[-\w]*>' => '<module>/<controller>/<action>',
     			],
     		],
+    ],
+	'modules' => [
+  
+  'admin' => [
+            'class' => 'mdm\admin\Module',
+        ],
+		'user' => [
+			'class' => 'dektrium\user\Module',
+			'enableUnconfirmedLogin' => true,
+			'confirmWithin' => 21600,
+			'cost' => 12,
+			'admins' => ['admin'],
+      ],
+		],
+
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+          //'site/login',
+          'admin/assignment',
+        ],
     ],
     'params' => $params,
 ];

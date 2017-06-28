@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute'=>'zone_name','value'=>$model->zone->zone_name],
             'banefit:ntext',
             //'img_code',
-            ['attribute'=>'type_name','value'=>$model->type->type_name],
+            //['attribute'=>'type_name','value'=>$model->type->type_name],
             //'update_date',
             //'created_by',
             //'created_date',
