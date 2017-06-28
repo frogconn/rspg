@@ -51,8 +51,8 @@ $fieldOptions2 = [
         </div>
 
 
-        <?php A
-		ctiveForm::end(); ?>
+        <?php 
+		ActiveForm::end(); ?>
 
         <div class="social-auth-links text-center">
             <p>- OR -</p>
@@ -64,7 +64,7 @@ $fieldOptions2 = [
         <!-- /.social-auth-links -->
 
         <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="register.php" class="text-center">Register a new membership</a>
 
     </div>
     <!-- /.login-box-body -->
