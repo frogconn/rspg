@@ -1,0 +1,295 @@
+[33mcommit 8ca388cc74f1db4f66dffe98acf975b9c6806255[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: articleza <art.surageat.thephenom@gmail.com>
+Date:   Mon Jun 26 15:49:33 2017 +0700
+
+    add menu
+
+[33mcommit 6ad3aa772dcc22d0d632b0af84314b48836f07d0[m
+Author: mewmallika <mewmallika0410@gmail.com>
+Date:   Mon Jun 26 15:06:40 2017 +0700
+
+    micro
+
+[33mcommit 08e4d5ddcfdb45d1a73f04edda9cda3f9c558c96[m
+Merge: 180bb42 cb1affd
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Mon Jun 26 15:02:01 2017 -0700
+
+    edit update of animal and research zone
+
+[33mcommit 180bb42ac99963fb3531cba06d59e6eab7296e0e[m
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Mon Jun 26 14:58:09 2017 -0700
+
+    edit error in update of animal and researchzone
+
+[33mcommit cef25c4865806553dd151224ab18ff42e6d7056d[m
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Mon Jun 26 14:00:33 2017 -0700
+
+    CRUD of Animal model
+
+[33mcommit 23e711e60eaf2904a8f79ff2d372d1ddc3c353a0[m
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Mon Jun 26 11:57:46 2017 -0700
+
+    view of ResearchZone
+
+[33mcommit cb1affd08c495f82c047b35b8142ce0cc7f958d0[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 915e6d7 cef25c4
+Author: kanyarat <mutmee.kyd@gmail.com>
+Date:   Mon Jun 26 14:07:46 2017 +0700
+
+    plant
+
+[33mcommit 915e6d75c5312d35901c800da6cc3bd2955dc664[m
+Author: kanyarat <mutmee.kyd@gmail.com>
+Date:   Mon Jun 26 14:04:36 2017 +0700
+
+    plant
+
+[33mcommit 663885af909eb92a8a04d3931766be21b4a3d706[m
+Author: articleza <art.surageat.thephenom@gmail.com>
+Date:   Mon Jun 26 11:23:50 2017 +0700
+
+    edit file left connect link
+
+[33mcommit 135e1f2801f1311a44fbd5a95fe0e1a255606ef5[m
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Mon Jun 26 07:50:46 2017 -0700
+
+    researcher and researchzone
+
+[33mcommit 2ee25524fc7b1c059e272e6d61bc4d410ac66460[m
+Merge: a4f72db be2e5ec
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Sat Jun 24 15:04:19 2017 -0700
+
+    create function of researcher
+
+[33mcommit a4f72dbbb64a85ffe4fa175c13f6b71baee425b3[m
+Author: Viewz <chanyanood.c@kkumail.com>
+Date:   Fri Jun 23 16:33:56 2017 -0700
+
+    create function of researcher page
+
+[33mcommit be2e5ecc3a5c9535a3d14977c4a9c4200b54f69a[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 16:32:47 2017 +0700
+
+    update
+
+[33mcommit fe58d40f40c6f55e79043388f07748b8776501a9[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 16:15:49 2017 +0700
+
+    delete aftersave
+    
+    error on other computer
+
+[33mcommit b4d3f05f11a4f788f0a9157a70602142fb7aedf9[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 16:13:57 2017 +0700
+
+    test2
+
+[33mcommit e0303f39f58cf7c01e3fa821834b01700074170a[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 16:12:19 2017 +0700
+
+    aftersave() edit
+
+[33mcommit 429cdcdc7ae7750284ef2cdd72ba2fcc004a27af[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 15:59:01 2017 +0700
+
+    เพิ่ม ฟังชั่นเพิ่มวันที่สร้าง วันที่อัพเดทครับ
+
+[33mcommit b98135be11d8a4f8708d345ce70f4af4bab4922e[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 15:24:25 2017 +0700
+
+    เพิ่ม ฟังชั่น อัฟเตอเซฟนะจะ
+
+[33mcommit 744099e734e65e10d11b89a6511bde9987d5bb0b[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 15:10:41 2017 +0700
+
+    fix research-zone model
+
+[33mcommit 398e06198c8c3527f0ef57c93b7d7d2a3e551e5e[m
+Merge: f096222 978d96c
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 15:06:31 2017 +0700
+
+    Merge branch 'master' of https://github.com/frogconn/rspg
+
+[33mcommit f096222220d8aa1658f1052fb1ae41e3f67111c2[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 15:06:28 2017 +0700
+
+    left
+
+[33mcommit 50acefe6914061967a621e3997a0435cc17f0887[m
+Author: ballapilak <ball.apilak13@gmail.com>
+Date:   Fri Jun 23 15:04:05 2017 +0700
+
+    researcher radio
+
+[33mcommit 978d96c221c7970212bf86d1ecffd4990e99a855[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 14:43:53 2017 +0700
+
+    add research-zone
+
+[33mcommit 31fa3feb460196fdc2fa3fdba6981f832a8f404c[m
+Merge: b9a16e5 ed490b3
+Author: kanyarat <mutmee.kyd@gmail.com>
+Date:   Fri Jun 23 14:29:28 2017 +0700
+
+    plant page
+
+[33mcommit b9a16e5f41d0294155b695f27530a7bbbcf47253[m
+Author: kanyarat <mutmee.kyd@gmail.com>
+Date:   Fri Jun 23 14:21:39 2017 +0700
+
+    plant page
+
+[33mcommit ed490b33218295d7334050837704bb98b9c57555[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 13:51:41 2017 +0700
+
+    fix gii
+
+[33mcommit c2cdc2433a0dce24d844427c3ba25f3590d49e27[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 13:47:36 2017 +0700
+
+    fix gii
+
+[33mcommit a36e2663ea20c56c6b80ce664eb5d5b180cbda3c[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 13:25:58 2017 +0700
+
+    add researcher [view not done]
+    
+    ball and nimit continuous
+    in this i add left.php new againt
+    please do not delete it
+
+[33mcommit fa105a87b20be30bd79d69d97b0f27af770680f3[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 13:21:37 2017 +0700
+
+    add models\reseach-zone
+
+[33mcommit 591de1d1d02be5c1a27f0a9c9e082aa8a545512d[m
+Merge: 295cb74 608cd92
+Author: mewmallika <mewmallika0410@gmail.com>
+Date:   Fri Jun 23 11:39:32 2017 +0700
+
+    micro page
+
+[33mcommit 295cb748cd9f2dbe16eb231a954d397258f43953[m
+Author: mewmallika <mewmallika0410@gmail.com>
+Date:   Fri Jun 23 11:34:32 2017 +0700
+
+    micro page
+
+[33mcommit 608cd925849e0ce2c869800a16abffc19b69c287[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Fri Jun 23 09:33:33 2017 +0700
+
+    edit left.php
+
+[33mcommit bfbd6631cdeba6091b026ece6683e55065b8c338[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Mon Jun 19 14:58:46 2017 +0700
+
+    test commit delete --hard
+
+[33mcommit 4dc368d42259c84b1acfcf79db623d8aa3a60b72[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Mon Jun 19 14:51:50 2017 +0700
+
+    fixed untracked files
+
+[33mcommit 297eb1a7e97714cbb750e0823bd2a83419bc8a65[m
+Merge: 1e59975 268cad8
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Mon Jun 19 14:39:13 2017 +0700
+
+    Merge branch 'master' of github.com:frogconn/rspg
+    
+    # Conflicts:
+    #       config/db.php
+
+[33mcommit 1e5997569ccab2ff54280d517ea360ad5e4d9983[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Mon Jun 19 14:38:41 2017 +0700
+
+    no message
+
+[33mcommit ced2298087f8498606d609c241ffd11bb0e89a40[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Mon Jun 19 14:31:47 2017 +0700
+
+    no message
+
+[33mcommit c980402ba8fa5bdb9aed2a49a3d0de62751c65df[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Mon Jun 19 14:30:05 2017 +0700
+
+    no message
+
+[33mcommit 268cad828b6f47575b6f155df70878eb4f29b946[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Mon Jun 19 14:01:44 2017 +0700
+
+    edit config/db.php
+
+[33mcommit e26e32adccb2c9e662eda0c7a9ed0a8ff570904f[m
+Author: AniamK <kathris@hotmail.co.th>
+Date:   Mon Jun 19 11:55:01 2017 +0700
+
+    add sqlfiles
+
+[33mcommit b84f974516c4a8724989b58cacca85c5977e3fa7[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Fri Jun 16 16:09:06 2017 +0700
+
+    add sweet alert override older promt
+
+[33mcommit af1c6a06e962d7c7a081eadbe76f87981b54106d[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Fri Jun 16 16:02:00 2017 +0700
+
+    update gii template
+
+[33mcommit cb191e192d303a0ea30746621ba8b34d7409b786[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Fri Jun 16 15:59:18 2017 +0700
+
+    update skin theme
+
+[33mcommit 2cc89da299ffaad16a787d3de244bd430db8ff8f[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Fri Jun 16 15:42:09 2017 +0700
+
+    add Test gii generator
+
+[33mcommit 648ed0ea1c774ae86f9fa1a51c278b268d8bc116[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Fri Jun 16 15:22:14 2017 +0700
+
+    update login page
+
+[33mcommit 7bea5e03283437aeaad2c2cabc33ecc7757b2dea[m
+Author: rnd-pai <ksorn@kku.ac.th>
+Date:   Fri Jun 16 15:14:26 2017 +0700
+
+    add theme adn composer update
+
+[33mcommit 90b4559ac9e66e14cb01112b2fea2cb76aabd064[m
+Author: frogconn <frogconn@gmail.com>
+Date:   Fri Jun 16 13:52:55 20
