@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'researcher' => $researcher,
         'institution' => $institution, 
         'faculty' => $faculty,
-        'faculty_list' => $faculty_list
+        //'faculty_list' => $faculty_list
         
     ]) ?>
 

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ResearcherSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Researchers';
+$this->title = 'ข้อมูลนักวิจัย';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="researcher-index">

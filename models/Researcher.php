@@ -95,7 +95,7 @@ class Researcher extends \yii\db\ActiveRecord
     {
         return $this->firstname_th. " " .$this->lastname_th;
     }
-     public function getFullnameEn()
+    public function getFullnameEn()
     {
         return $this->firstname_en. " " .$this->lastname_en;
     }

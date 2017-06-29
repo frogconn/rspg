@@ -3,16 +3,21 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Researcher;
-use app\models\ResearcherSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+
+use app\models\Researcher;
+use app\models\ResearcherSearch;
 use app\models\ResearcherAgency;
 use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
+
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -72,7 +77,7 @@ class ResearcherController extends Controller
         $agency = new ResearcherAgency();
         $institution = new ResearcherInstitution();
         $faculty = new ResearcherFaculty();  
-        $faculty_list = [];
+        //$faculty_list = [];
 
         if (isset($_POST) && $_POST!=null) {
 			$researcher->gender = $_POST['Researcher']['gender'];
@@ -95,8 +100,8 @@ class ResearcherController extends Controller
 
             if($researcher->save()){
                 $agency->personal_code = $researcher->personal_code;
-                $agency->faculty_id = $_POST['Faculty']['name'];
-                $agency->institution_id = $_POST['Institution']['name'];
+                $agency->faculty_id = $_POST['ResearcherFaculty']['name'];
+                $agency->institution_id = $_POST['ResearcherInstitution']['name'];
 
                 $agency->save();
                 return $this->redirect(['researcher/index']);
@@ -107,7 +112,7 @@ class ResearcherController extends Controller
                 'researcher' => $researcher,
                 'institution' => $institution, 
                 'faculty' => $faculty,
-                'faculty_list' => $faculty_list
+                //'faculty_list' => $faculty_list
             ]);
         }
     }
@@ -121,15 +126,15 @@ class ResearcherController extends Controller
     public function actionUpdate($id)
     {
         $researcher = $this->findResearcher($id); // Get row that selected id equals pers_id
-        $agency = $this->findAgency($researcher->pers_id);
-        $instit = $this->findInstitution($agency->inst_code);
-        $faculty = $this->findFaculty($agency->fac_code);
-        $faculty_list=ArrayHelper::map($this->getFaculty($agency->inst_code), 'id','name');
+        $agency = $this->findAgency($researcher->personal_code);
+        $institution = $this->findInstitution($agency->institution_id);
+        $faculty = $this->findFaculty($agency->faculty_id);
+        //$faculty_list=ArrayHelper::map($this->getFaculty($agency->institution), 'id','name');
 
         if ($researcher->load(Yii::$app->request->post())) {
             $researcher->gender = $_POST['Researcher']['gender'];
-            $researcher->foreigner = $_POST['Researcher']['foreigner'];
-            $researcher->pers_id = $_POST['Researcher']['pers_id'];
+            $researcher->is_foreigner = $_POST['Researcher']['is_foreigner'];
+            $researcher->personal_code = $_POST['Researcher']['personal_code'];
             $researcher->firstname_th = $_POST['Researcher']['firstname_th'];
             $researcher->lastname_th = $_POST['Researcher']['lastname_th'];
             $researcher->firstname_en = $_POST['Researcher']['firstname_en'];
@@ -146,22 +151,22 @@ class ResearcherController extends Controller
 			}
 
             $isValid = $researcher->validate();
-           if($isValid){
+            if($isValid){
                 $researcher->save(false);
-                $agency->pers_id = $researcher->pers_id;
-                $agency->fac_code = $_POST['ResearcherFaculty']['fac_name'];
-                $agency->inst_code = $_POST['ResearcherInstitution']['inst_name'];
+                $agency->personal_code = $researcher->personal_code;
+                $agency->faculty_id = $_POST['ResearcherFaculty']['name'];
+                $agency->institution_id = $_POST['ResearcherInstitution']['name'];
 
                 $agency->save();
-                return $this->redirect(['view', 'id' => $researcher->pers_id]);
+                return $this->redirect(['view', 'id' => $researcher->personal_code]);
                 //return $this->redirect(['researcher/index']);
             }
         } else {
             return $this->render('update', [
-                'researcher'=>$researcher,
-                'instit'=>$instit,
-                'faculty'=>$faculty,
-                'faculty_list'=>$faculty_list
+                'researcher' => $researcher,
+                'institution' => $institution, 
+                'faculty' => $faculty,
+                'faculty_list' => $faculty_list
             ]);
         }
     }
@@ -189,10 +194,35 @@ class ResearcherController extends Controller
      */
     protected function findresearcher($id)
     {
-        if (($researcher = Researcher::findOne($id)) !== null) {
-            return $researcher;
+        if (($model = Researcher::findOne($id)) !== null) {
+            return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    // code here
+    public function actionGetFaculty() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id = $parents[0];
+                $out = $this->getFaculty($id);
+                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+    protected function getFaculty($id){
+     $datas = ResearcherFaculty::find()->where(['institution_id'=>$id])->all();
+     return $this->MapData($datas,'id','name');
+    }
+     protected function MapData($datas,$fieldId,$fieldName){
+     $obj = [];
+     foreach ($datas as $key => $value) {
+         array_push($obj, ['id'=>$value->{$fieldId},'name'=>$value->{$fieldName}]);
+     }
+     return $obj;
+ }
 }

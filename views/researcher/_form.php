@@ -3,6 +3,10 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
+use yii\filters\VerbFilter;
 use kartik\widgets\ActiveForm;
 use kartik\widgets\Depdrop;
 use app\models\ResearcherFaculty;
@@ -25,22 +29,25 @@ use app\models\ResearcherInstitution;
 
         $list = ['Y' => 'Yes', 'N' => 'No'];
         echo $form->field($researcher, 'is_foreigner')->radioList($list);
-        
-        echo $form->field($institution, 'name')->dropdownList(ArrayHelper::map(ResearcherInstitution::find()->all(),
-            'id','name'), [
-            'id'=>'ddl-institution',
-            'options' => [
-            $institution->id => ['Selected'=>'selected']], 
-            'prompt'=>'เลือกหน่วยงาน']); // id=>inst relation with depends[]
-    
+
+        echo $form->field($institution, 'name')->dropdownList(
+            ArrayHelper::map(ResearcherInstitution::find()->all(),
+            'id',
+            'name'),
+            [
+                'id'=>'ddl-ResearcherInstitution',
+                'prompt'=>'selected'
+            ]); 
         echo $form->field($faculty, 'name')->widget(DepDrop::classname(), [
-            'data'=> $faculty_list,
+            'options'=>['id'=>'ddl-ResearcherFaculty'],
+            'data'=> [],
             'pluginOptions'=>[
-            'depends'=>['ddl-institution'],
-            'placeholder'=>'เลือกคณะ',
-            'url'=>Url::to(['/researcher/get-faculty'])
+                'depends'=>['ddl-ResearcherInstitution'],
+                'placeholder'=>'เลือกคณะ',
+                'url'=>Url::to(['/researcher/get-faculty'])
             ]
         ]);
+
 
         $list = ['M' => 'Male', 'F' => 'Female'];
         echo $form->field($researcher, 'gender')->radioList($list);
