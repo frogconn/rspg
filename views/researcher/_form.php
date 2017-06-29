@@ -20,32 +20,55 @@ use app\models\ResearcherInstitution;
     <div class="box-body">
 
     <!--?= $form->field($model, 'is_foreigner')->textInput(['maxlength' => true]) ?-->
-	<?= $form->field($model, 'is_foreigner')->radioList(['Y' => 'ใช่ / Yes','N' => 'ไม่ใช่ / No',]); ?>
+
+    <?php
+
+        $list = ['Y' => 'Yes', 'N' => 'No'];
+        echo $form->field($researcher, 'is_foreigner')->radioList($list);
+        
+        echo $form->field($institution, 'name')->dropdownList(ArrayHelper::map(ResearcherInstitution::find()->all(),
+            'id','name'), [
+            'id'=>'ddl-institution',
+            'options' => [
+            $institution->id => ['Selected'=>'selected']], 
+            'prompt'=>'เลือกหน่วยงาน']); // id=>inst relation with depends[]
+    
+        echo $form->field($faculty, 'name')->widget(DepDrop::classname(), [
+            'data'=> $faculty_list,
+            'pluginOptions'=>[
+            'depends'=>['ddl-institution'],
+            'placeholder'=>'เลือกคณะ',
+            'url'=>Url::to(['/researcher/get-faculty'])
+            ]
+        ]);
+
+        $list = ['M' => 'Male', 'F' => 'Female'];
+        echo $form->field($researcher, 'gender')->radioList($list);
+    ?>
 	
-	<?= $form->field($model, 'personal_code')->textInput(['maxlength' => true]) ?>
+	<?= $form->field($researcher, 'personal_code')->textInput(['maxlength' => true]) ?>
 	
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'firstname_th')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'firstname_th')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'lastname_th')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'lastname_th')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'firstname_en')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'firstname_en')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'lastname_en')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'lastname_en')->textInput(['maxlength' => true]) ?>
 
     <!--?= $form->field($model, 'fullname_th')->textInput(['maxlength' => true]) ?-->
 
     <!--?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?-->
 
     <!--?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?-->
-	<?= $form->field($model, 'gender')->radioList(['M' => 'Male','F' => 'Female',]); ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'telephone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'evidence_file')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'evidence_file')->textInput(['maxlength' => true]) ?>
 
     <!--?= $form->field($model, 'created_date')->textInput() ?-->
 
@@ -62,7 +85,7 @@ use app\models\ResearcherInstitution;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($researcher->isNewRecord ? 'Create' : 'Update', ['class' => $researcher->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
                  <?= Html::a('Cancle',[ 'researcher/'], ['class' => 'btn btn-default']) ?>
 

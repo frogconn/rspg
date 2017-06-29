@@ -78,4 +78,25 @@ class Researcher extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) 
+        {
+            if($this->isNewRecord)
+            {
+                $this->created_date = new \yii\db\Expression('NOW()');
+            }
+             $this->update_date = new \yii\db\Expression('NOW()');
+            return true;
+        }
+        return false;
+    }
+    public function getFullnameTh()
+    {
+        return $this->firstname_th. " " .$this->lastname_th;
+    }
+     public function getFullnameEn()
+    {
+        return $this->firstname_en. " " .$this->lastname_en;
+    }
 }
