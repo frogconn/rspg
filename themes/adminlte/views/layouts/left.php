@@ -54,7 +54,7 @@ use app\components\MenuHelper;
                                 'items' => [
                                     ['label' => 'พืช', 'icon' => 'circle-o', 'url' => ['/plant'],],
 									['label' => 'สัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/animal'],],
-									['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/micro'],],
+									['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology'],],
                                     /*[
                                         'label' => 'Level Two',
                                         'icon' => 'circle-o',
