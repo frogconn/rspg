@@ -74,6 +74,7 @@ class ResearcherController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if($model->save()){
+                $agency->researcher_id=$model->id;
                 $agency->personal_code = $_POST['Researcher']['personal_code'];
                 $agency->faculty_id = $_POST['ResearcherFaculty']['name'];
                 $agency->institution_id = $_POST['ResearcherInstitution']['name'];
@@ -98,7 +99,7 @@ class ResearcherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $agency = $this->findAgency($model->personal_code);
+        $agency = $this->findAgency($model->id);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
 
@@ -169,7 +170,7 @@ class ResearcherController extends Controller
     // new findmodel
     protected function findAgency($id)
     {
-        if (($agency = ResearcherAgency::findOne($id)) !== null) {
+        if (($agency = ResearcherAgency::findOne(['researcher_id'=>$id])) !== null) {
             return $agency;
         } else {
             throw new NotFoundHttpException('[agency]The requested page does not exist.');
