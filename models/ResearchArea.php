@@ -51,4 +51,18 @@ class ResearchArea extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    public function beforeSave($insert)
+{
+    if (parent::beforeSave($insert)) {
+        if(){
+            
+        }
+        $this->created_date = new \yii\db\Expression('NOW()');
+        return true;
+    }
+
+    // ...custom code here...
+    return false;
+}
 }

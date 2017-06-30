@@ -6,10 +6,19 @@ use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
 use app\models\Researcher;
+use app\models\ProjectPartitions;
+
+use yii\widgets\ActiveForm;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+
 use yii\filters\VerbFilter;
+
+use yii\helpers\ArrayHelper;
+
+use app\base\Model;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -67,15 +76,17 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $researcher = new Researcher();
+        $partitions = [new ProjectPartitions()];
 
-        if ($project->load(Yii::$app->request->post()) && $project->save()) {
-            return $this->redirect(['view', 'id' => $project->id]);
-        } else {
+        
+                    
+        //return $this->redirect(['view', 'id' => $project->id]);
             return $this->render('create', [
                 'project' => $project,
                 'researcher' => $researcher,
+                'partitions' => (empty($partitions)) ? [new ProjectPartitions] : $partitions
             ]);
-        }
+        
     }
 
     /**

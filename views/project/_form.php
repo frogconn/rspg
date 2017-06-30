@@ -3,12 +3,15 @@
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Project */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="project-form">
+
 
     <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL]); ?>
 
@@ -19,6 +22,7 @@ use kartik\widgets\ActiveForm;
     <?= $form->field($project, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($researcher, 'fullname_th')->label('หัวหน้าโครงการ') ?>
+
 
     <?= $form->field($project, 'budget')->textInput() ?>
 
@@ -50,6 +54,8 @@ use kartik\widgets\ActiveForm;
         ]
     ]); ?>
 
+
+
     <!--<?php// $form->field($model, 'created_date')->textInput() ?>
 
     <?php// $form->field($model, 'created_by')->textInput() ?>
@@ -72,6 +78,7 @@ use kartik\widgets\ActiveForm;
                 </div>
             </div>
     </div>
+
 
     <?php ActiveForm::end(); ?>
 
