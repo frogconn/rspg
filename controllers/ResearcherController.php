@@ -56,10 +56,10 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
-        $foreigner_value = $model->getCode($model->is_foreigner);
+        //$foreigner_value = $model->getCode($model->is_foreigner);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'foreigner_value'=>$foreigner_value,
+            //'foreigner_value'=>$foreigner_value,
 
         ]);
     }
