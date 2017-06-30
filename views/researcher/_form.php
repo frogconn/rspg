@@ -26,19 +26,20 @@ use yii\helpers\Url;
 
     <!--?= $form->field($model, 'is_foreigner')->textInput(['maxlength' => true]) ?-->
 
-    <?= $form->field($instit, 'name')->dropdownList(
+    <?= $form->field($agency, 'institution_id')->dropdownList(
         ArrayHelper::map(ResearcherInstitution::find()->all(),
             'id',
             'name'),
             [
+                //'data'=> $instit_list,
                 'id'=>'ddl-institution',
                 'prompt'=>'Select'
             ]); 
     ?>
 
-    <?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
+    <?= $form->field($agency, 'faculty_id')->widget(DepDrop::classname(), [
             'options'=>['id'=>'ddl-faculty'],
-            'data'=> [],
+            'data'=> $faculty_list,
             'pluginOptions'=>[
                 'depends'=>['ddl-institution'],
                 'placeholder'=>'Select',

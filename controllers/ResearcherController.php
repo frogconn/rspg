@@ -12,6 +12,7 @@ use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
 use yii\helpers\Json;
 use app\models\ResearcherAgency;
+use yii\helpers\ArrayHelper;
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -71,6 +72,7 @@ class ResearcherController extends Controller
         $instit = new ResearcherInstitution();// institution
         $faculty = new ResearcherFaculty();
         $agency = new ResearcherAgency();
+        $faculty_list = [];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if($model->save()){
@@ -86,6 +88,8 @@ class ResearcherController extends Controller
                 'model' => $model,
                 'instit' => $instit,
                 'faculty' => $faculty,
+                'agency' => $agency,
+                'faculty_list' => $faculty_list,
             ]);
         }
     }
@@ -102,6 +106,7 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->id);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
+        $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -110,6 +115,8 @@ class ResearcherController extends Controller
                 'model' => $model,
                 'instit' => $instit,
                 'faculty' => $faculty,
+                'agency'=>$agency,
+                'faculty_list' => $faculty_list,
             ]);
         }
     }

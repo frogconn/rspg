@@ -77,7 +77,7 @@ class ResourceAnimal extends \yii\db\ActiveRecord
     }
 
     public function getResearchArea(){
-        return $this->hasOne(ResearchArea::className(),['id'=>'zone_id']);
+        return $this->hasOne(ResearchArea::className(),['id'=>'zone_id']); // `resource_animal`.`zone_id` = `research_area`.`id`
     }
 
 }
