@@ -27,17 +27,31 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box-body">
 
 
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
+<?php echo $this->render('_search', ['model' => $searchModel]); ?>
+<br>
+    <?= GridView::widget([
+        'id' => 'grid-user',
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-bordered table-striped table-hover',
+            ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-            'id',
+             [
+
+                 'attribute' => 'type_name',
+                 'label' => 'ประเภท',
+                 'value' => 'resourceType.name'
+ 
+            ],
+            //'id',
             'genus',
             'species',
-            'information:ntext',
-            'zone_id',
+            //'information:ntext',
+            //'zone_id',
             [
 
                  'attribute' => 'zone_name',
@@ -45,6 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  'value' => 'researchArea.name'
  
             ],
+            
             // 'benefit:ntext',
             // 'image_id',
             // 'type_id',
@@ -56,10 +71,11 @@ $this->params['breadcrumbs'][] = $this->title;
               [
                 'class' => 'app\widgets\ActionColumn',
                 'options' => ['style' => 'width:100px;text-align:center;'],
+              
               ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php yii\widgets\Pjax::end(); ?></div>
 </div>
 
 </div>

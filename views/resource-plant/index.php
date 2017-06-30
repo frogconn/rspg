@@ -27,12 +27,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box-body">
 
 
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
+<?php echo $this->render('_search', ['model' => $searchModel]); ?>
+<br>
+<?php Pjax::begin(); ?>   
+ <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-bordered table-striped table-hover',
+            ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
-            'id',
+            //'id',
+            [
+
+                 'attribute' => 'type_name',
+                 'label' => 'ประเภท',
+                 'value' => 'resourceType.name'
+ 
+            ],
             'common_name',
             'location_name',
             'science_name',
@@ -59,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
               ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php yii\widgets\Pjax::end(); ?></div>
 </div>
 
 </div>

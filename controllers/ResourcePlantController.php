@@ -77,19 +77,19 @@ class ResourcePlantController extends Controller
             
 
             if($plant->load(Yii::$app->request->post()) && $plant->save(false)){
-                $plant ->id = $plant -> id;
+                $plant -> id;
                 $plant->common_name = $_POST['ResourcePlant']['common_name'];
                 $plant->location_name = $_POST['ResourcePlant']['location_name'];
                 $plant->science_name = $_POST['ResourcePlant']['science_name'];
                 $plant->family_name = $_POST['ResourcePlant']['family_name'];
                 $plant->information = $_POST['ResourcePlant']['information'];
                 $plant->zone_id = $_POST['ResearchArea']['name'];
+                $plant->type_id = $_POST['ResourceType']['name'];
                 $plant->benefit = $_POST['ResourcePlant']['benefit'];
 
 
                 $plant->save(false);
-                return $this->redirect(['resource-plant/']);
-                //return $this->redirect(['view', 'id' => $researchArea->id]);
+                return $this->redirect(['view', 'id' => $researchArea->id]);
             }
         } else {
             return $this->render('create', [
@@ -108,13 +108,28 @@ class ResourcePlantController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $plant = $this->findModel($id);
+        $researchArea = $this->findArea($plant->zone_id ); 
+        $type = $this->findType($plant->type_id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+        if ($plant->load(Yii::$app->request->post()) && $plant->save(false)) {
+                $plant->common_name = $_POST['ResourcePlant']['common_name'];
+                $plant->location_name = $_POST['ResourcePlant']['location_name'];
+                $plant->science_name = $_POST['ResourcePlant']['science_name'];
+                $plant->family_name = $_POST['ResourcePlant']['family_name'];
+                $plant->information = $_POST['ResourcePlant']['information'];
+                $plant->zone_id = $_POST['ResearchArea']['name'];
+                $plant->type_id = $_POST['ResourceType']['name'];
+                $plant->benefit = $_POST['ResourcePlant']['benefit'];
+
+                $plant->save();
+            return $this->redirect(['view', 'id' => $plant->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'plant' => $plant,
+                'type'  => $type,
+                'researchArea' => $researchArea
             ]);
         }
     }
@@ -144,7 +159,25 @@ class ResourcePlantController extends Controller
         if (($model = ResourcePlant::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page, plant does not exist.');
+        }
+    }
+ protected function findArea($id)
+    {
+        if (($model = ResearchArea::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, area does not exist.');
+        }
+    }
+
+    protected function findType($id)
+    {
+        if (($model = ResourceType::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, type does not exist.');
         }
     }
 }
+

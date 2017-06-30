@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ResourcePlant */
 
-$this->title = 'Update Resource Plant: ' . $model->id;
+$this->title = 'Update Resource Plant: ' . $plant->common_name;
 $this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $plant->id, 'url' => ['view', 'id' => $plant->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="resource-plant-update">
@@ -18,8 +18,11 @@ $this->params['breadcrumbs'][] = 'Update';
             </div>
 
     <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+        'plant' => $plant,
+        'type'  => $type,
+        'researchArea' => $researchArea
+            ]);
+     ?>
 
 </div>
 </div>

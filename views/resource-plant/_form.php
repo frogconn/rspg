@@ -21,9 +21,9 @@ use app\models\ResearchArea;
 
   <div class="box-body">
 
-  <?= $form->field($type, 'class')->dropdownList(ArrayHelper::map(
+  <?= $form->field($type, 'name')->dropdownList(ArrayHelper::map(
         ResourceType::find()->where(['class' => 'พืช']) ->all(), 'id', 'name'), [
-                'id'=>'',
+                'id'=>'ddl-type',
                 'options' => [
                     $type->id => ['Selected'=>'selected']],
                 'prompt'=>'เลือกชนิดของพืช'
