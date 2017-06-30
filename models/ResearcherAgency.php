@@ -9,6 +9,7 @@ use Yii;
  *
  * @property string $id
  * @property string $personal_code
+ * @property integer $researcher_id
  * @property string $faculty_id
  * @property string $institution_id
  * @property string $created_date
@@ -33,7 +34,7 @@ class ResearcherAgency extends \yii\db\ActiveRecord
     {
         return [
             [['personal_code'], 'required'],
-            [['faculty_id', 'institution_id', 'created_by', 'updated_by'], 'integer'],
+            [['researcher_id','faculty_id', 'institution_id', 'created_by', 'updated_by'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
             [['personal_code'], 'string', 'max' => 63],
         ];
@@ -47,6 +48,7 @@ class ResearcherAgency extends \yii\db\ActiveRecord
         return [
             'id' => 'ลำดับหน่วยงาน',
             'personal_code' => 'หมายเลขบัตรประชาชน/หมายเลขหนังสือเดินทาง',
+            'researcher_id' => 'researcher_id',
             'faculty_id' => 'ลำดับคณะ',
             'institution_id' => 'ลำดับสถาบัน',
             'created_date' => 'Created Date',
