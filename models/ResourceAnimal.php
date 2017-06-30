@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 
+use app\models\ResourceType;
+
 /**
  * This is the model class for table "resource_animal".
  *
@@ -62,6 +64,7 @@ class ResourceAnimal extends \yii\db\ActiveRecord
             'benefit' => 'ประโยชน์',
             'image_id' => 'รหัสรูปภาพ',
             'type_id' => 'รหัสประเภท',
+            'name' => 'ประเภท',
             'created_date' => 'Created Date',
             'created_by' => 'Created By',
             'updated_date' => 'Updated Date',
@@ -69,19 +72,12 @@ class ResourceAnimal extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getResourceType (){
-        return $this->hasOne (ResourceType::className(),['id'=>'type_id']);
+    public function getResourceType(){
+        return $this->hasOne(ResourceType::className(),['id'=>'type_id']);
     }
 
-    public function getName (){
-        return $this->resourceType['name'];
+    public function getResearchArea(){
+        return $this->hasOne(ResearchArea::className(),['id'=>'zone_id']);
     }
 
-    public function getResearchArea (){
-        return $this->hasOne (ResearchArea::className(),['id'=>'zone_id']);
-    }
-
-    public function getAreaName (){
-        return $this->researchArea['name'];
-    }
 }
