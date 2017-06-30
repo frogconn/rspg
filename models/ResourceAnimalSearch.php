@@ -12,6 +12,7 @@ use app\models\ResourceAnimal;
  */
 class ResourceAnimalSearch extends ResourceAnimal
 {
+    public $zone_name;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class ResourceAnimalSearch extends ResourceAnimal
     {
         return [
             [['id', 'zone_id', 'image_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['common_name', 'location_name', 'science_name', 'family_name', 'information', 'benefit', 'created_date', 'updated_date'], 'safe'],
+            [['zone_name', 'common_name', 'location_name', 'science_name', 'family_name', 'information', 'benefit', 'created_date', 'updated_date'], 'safe'],
         ];
     }
 
@@ -41,7 +42,7 @@ class ResourceAnimalSearch extends ResourceAnimal
      */
     public function search($params)
     {
-        $query = ResourceAnimal::find();
+        $query = ResourceAnimal::find()->joinWith('researchArea');
 
         // add conditions that should always apply here
 
@@ -56,6 +57,11 @@ class ResourceAnimalSearch extends ResourceAnimal
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        $dataProvider->sort->attributes['zone_name'] = [
+            'asc' => ['research_area.name' => SORT_ASC],
+            'desc' => ['research_area.name'=> SORT_DESC], 
+        ]; 
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -74,6 +80,7 @@ class ResourceAnimalSearch extends ResourceAnimal
             ->andFilterWhere(['like', 'science_name', $this->science_name])
             ->andFilterWhere(['like', 'family_name', $this->family_name])
             ->andFilterWhere(['like', 'information', $this->information])
+            ->andFilterWhere(['like', 'research_area.name', $this->zone_name])
             ->andFilterWhere(['like', 'benefit', $this->benefit]);
 
         return $dataProvider;
