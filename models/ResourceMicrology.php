@@ -69,15 +69,7 @@ class ResourceMicrology extends \yii\db\ActiveRecord
         return $this->hasOne (ResourceType::className(),['id'=>'type_id']);
     }
 
-    public function getName (){
-        return $this->resourceType['name'];
-    }
-
     public function getResearchArea (){
         return $this->hasOne (ResearchArea::className(),['id'=>'zone_id']);
-    }
-
-    public function getAreaName (){
-        return $this->researchArea['name'];
     }
 }
