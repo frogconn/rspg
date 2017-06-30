@@ -75,11 +75,16 @@ class ResearcherController extends Controller
         $faculty_list = [];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate())
+            {
+                $model->evidence_file = $model->upload($model,'evidence_file');
+                $model->save();
+            }
             if($model->save()){
                 $agency->researcher_id=$model->id;
                 $agency->personal_code = $_POST['Researcher']['personal_code'];
-                $agency->faculty_id = $_POST['ResearcherFaculty']['name'];
-                $agency->institution_id = $_POST['ResearcherInstitution']['name'];
+                $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];
+                $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
                 $agency->save();
             }
             return $this->redirect(['view', 'id' => $model->id]);
@@ -109,6 +114,11 @@ class ResearcherController extends Controller
         $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate())
+            {
+                $model->evidence_file = $model->upload($model,'evidence_file');
+                $model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

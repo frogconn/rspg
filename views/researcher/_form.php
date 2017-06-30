@@ -15,7 +15,9 @@ use yii\helpers\Url;
 
 <div class="researcher-form">
 
-    <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL]); ?>
+    <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL],
+    ['options' => ['enctype' => 'multipart/form-data']
+    ]); ?>
 
     <div class="box-body">
 
@@ -70,7 +72,16 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'evidence_file')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-2">
+        <div class="well text-center">
+            <?= Html::img($model->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
+        </div>
+        </div>
+        <div class="col-md-10">
+            <?= $form->field($model, 'evidence_file')->fileInput() ?>
+        </div>
+    </div>
 
     <!--?= $form->field($model, 'created_date')->textInput() ?-->
 

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use \yii\web\UploadedFile;
 
 /**
  * This is the model class for table "researcher".
@@ -28,6 +29,7 @@ use Yii;
  */
 class Researcher extends \yii\db\ActiveRecord
 {
+    public $upload_foler ='uploads\evidence_file';
     /**
      * @inheritdoc
      */
@@ -48,7 +50,8 @@ class Researcher extends \yii\db\ActiveRecord
             [['personal_code', 'title', 'telephone'], 'string', 'max' => 63],
             [['is_foreigner', 'gender'], 'string', 'max' => 1],
             [['firstname_th', 'lastname_th', 'firstname_en', 'lastname_en', 'email'], 'string', 'max' => 127],
-            [['fullname_th', 'fullname_en', 'evidence_file'], 'string', 'max' => 255],
+            [['fullname_th', 'fullname_en'], 'string', 'max' => 255],
+            [['evidence_file'], 'file', 'skipOnEmpty' => false,'extensions' => 'png,jpg'],
         ];
     }
 
@@ -92,5 +95,36 @@ class Researcher extends \yii\db\ActiveRecord
             return true;
         }
         return false;
+    }
+    // new code here
+    public function upload($model,$attribute)
+    {
+        $evidence_file = UploadedFile::getInstance($model, $attribute);
+        $path = $this->getUploadPath();
+        if ($this->validate() && $evidence_file !== null) 
+        {
+            $fileName = md5($evidence_file->baseName.time()) . '.' . $evidence_file->extension;
+            //$fileName = $photo->baseName . '.' . $photo->extension;
+            if($evidence_file->saveAs($path.$fileName))
+            {
+                return $fileName;
+            }
+        }
+        return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
+    }
+
+    public function getUploadPath()
+    {
+        return Yii::getAlias('@webroot').'/'.$this->upload_foler.'/';
+    }
+    
+    public function getUploadUrl()
+    {
+        return Yii::getAlias('@web').'/'.$this->upload_foler.'/';
+    }
+
+    public function getPhotoViewer()
+    {
+        return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
     }
 }

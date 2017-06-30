@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Researcher */
 
-$this->title = $model->title;
+$this->title = $model->title.$model->firstname_th." ".$model->lastname_th;
 $this->params['breadcrumbs'][] = ['label' => 'Researchers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -50,7 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'gender',
             'email:email',
             'telephone',
-            'evidence_file',
+           [
+            'format'=>'raw',
+            'attribute'=>'evidence_file',
+            'value'=>Html::img($model->photoViewer,['class'=>'img-thumbnail','style'=>'width:200px;'])
+            ],
             'created_date',
             'created_by',
             'updated_date',
