@@ -16,8 +16,9 @@ use yii\helpers\Url;
 <div class="researcher-form">
 
     <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL],
-    ['options' => ['enctype' => 'multipart/form-data']
-    ]); ?>
+	[
+    'options' => ['enctype' => 'multipart/form-data']
+	]); ?>
 
     <div class="box-body">
 
