@@ -38,7 +38,7 @@ use yii\helpers\Url;
 
     <?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
             'options'=>['id'=>'ddl-faculty'],
-            'data'=> [],
+            'data'=> $faculty_list,
             'pluginOptions'=>[
                 'depends'=>['ddl-institution'],
                 'placeholder'=>'Select',

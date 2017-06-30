@@ -68,4 +68,12 @@ class ResourcePlant extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    public function getResourceType (){
+        return $this->hasOne (ResourceType::className(),['id'=>'type_id']);
+    }
+
+    public function getResearchArea (){
+        return $this->hasOne (ResearchArea::className(),['id'=>'zone_id']);
+    }
 }

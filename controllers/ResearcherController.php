@@ -12,6 +12,7 @@ use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
 use yii\helpers\Json;
 use app\models\ResearcherAgency;
+use yii\helpers\ArrayHelper;
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -71,9 +72,11 @@ class ResearcherController extends Controller
         $instit = new ResearcherInstitution();// institution
         $faculty = new ResearcherFaculty();
         $agency = new ResearcherAgency();
+        $faculty_list = [];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if($model->save()){
+                $agency->researcher_id=$model->id;
                 $agency->personal_code = $_POST['Researcher']['personal_code'];
                 $agency->faculty_id = $_POST['ResearcherFaculty']['name'];
                 $agency->institution_id = $_POST['ResearcherInstitution']['name'];
@@ -85,6 +88,7 @@ class ResearcherController extends Controller
                 'model' => $model,
                 'instit' => $instit,
                 'faculty' => $faculty,
+                'faculty_list' =>$faculty_list,
             ]);
         }
     }
@@ -98,9 +102,11 @@ class ResearcherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $agency = $this->findAgency($model->personal_code);
+        $agency = $this->findAgency($model->id);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
+        $faculty_list = ArrayHelper::map($this->getFaculty($agency->institution_id),'id','name');
+        //$district = ArrayHelper::map($this->getDistrict($model->amphur),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -109,6 +115,7 @@ class ResearcherController extends Controller
                 'model' => $model,
                 'instit' => $instit,
                 'faculty' => $faculty,
+                'faculty_list' => $faculty_list,
             ]);
         }
     }
@@ -169,7 +176,7 @@ class ResearcherController extends Controller
     // new findmodel
     protected function findAgency($id)
     {
-        if (($agency = ResearcherAgency::findOne($id)) !== null) {
+        if (($agency = ResearcherAgency::findOne(['researcher_id'=>$id])) !== null) {
             return $agency;
         } else {
             throw new NotFoundHttpException('[agency]The requested page does not exist.');
