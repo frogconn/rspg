@@ -15,11 +15,12 @@ class ResourceMicrologySearch extends ResourceMicrology
     /**
      * @inheritdoc
      */
+    public $zone_name;
     public function rules()
     {
         return [
             [['id', 'zone_id', 'image_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['genus', 'species', 'information', 'benefit', 'created_date', 'updated_date'], 'safe'],
+            [['genus', 'species', 'information', 'benefit', 'created_date', 'updated_date','zone_name'], 'safe'],
         ];
     }
 
@@ -57,6 +58,11 @@ class ResourceMicrologySearch extends ResourceMicrology
             return $dataProvider;
         }
 
+        $dataProvider->sort->attributes['zone_name']=[
+            'asc'=>['research_area.name'=>SORT_ASC],
+            'desc'=>['research_area.name'=>SORT_DESC],
+        ];
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -70,6 +76,7 @@ class ResourceMicrologySearch extends ResourceMicrology
         ]);
 
         $query->andFilterWhere(['like', 'genus', $this->genus])
+            ->andFilterWhere(['like', 'research_area.name', $this->zone_name])
             ->andFilterWhere(['like', 'species', $this->species])
             ->andFilterWhere(['like', 'information', $this->information])
             ->andFilterWhere(['like', 'benefit', $this->benefit]);

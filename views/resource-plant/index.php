@@ -32,12 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
-
             'id',
             'common_name',
             'location_name',
             'science_name',
             'family_name',
+             [
+                'attribute' => 'zone_name',
+                'label' => 'ชื่อพื้นที่วิจัย',
+                'value' => 'researchArea.name'
+             ],
+
             // 'information:ntext',
             // 'zone_id',
             // 'benefit:ntext',

@@ -38,6 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'species',
             'information:ntext',
             'zone_id',
+            [
+
+                 'attribute' => 'zone_name',
+                 'label' => 'ข้อมูลพื้นที่วิจัย',
+                 'value' => 'researchArea.name'
+ 
+            ],
             // 'benefit:ntext',
             // 'image_id',
             // 'type_id',
