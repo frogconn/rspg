@@ -88,7 +88,8 @@ class ResearcherController extends Controller
                 'model' => $model,
                 'instit' => $instit,
                 'faculty' => $faculty,
-                'faculty_list' =>$faculty_list,
+                'agency' => $agency,
+                'faculty_list' => $faculty_list,
             ]);
         }
     }
@@ -105,8 +106,7 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->id);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
-        $faculty_list = ArrayHelper::map($this->getFaculty($agency->institution_id),'id','name');
-        //$district = ArrayHelper::map($this->getDistrict($model->amphur),'id','name');
+        $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -115,6 +115,7 @@ class ResearcherController extends Controller
                 'model' => $model,
                 'instit' => $instit,
                 'faculty' => $faculty,
+                'agency'=>$agency,
                 'faculty_list' => $faculty_list,
             ]);
         }
