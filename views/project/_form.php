@@ -14,27 +14,49 @@ use kartik\widgets\ActiveForm;
 
     <div class="box-body">
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($project, 'year')->dropDownList(range(2549, date('Y') + 544)); ?>
 
-    <?= $form->field($model, 'personal_code')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($project, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'department_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($researcher, 'fullname_th')->label('หัวหน้าโครงการ') ?>
 
-    <?= $form->field($model, 'year')->textInput() ?>
+    <?= $form->field($project, 'budget')->textInput() ?>
 
-    <?= $form->field($model, 'budget')->textInput() ?>
+    <?php echo $form->field($project, 'start')->widget('trntv\yii\datetime\DateTimeWidget', [
+        'phpDatetimeFormat' => 'yyyy-MM-dd',
+        'clientOptions' => [
+            'minDate' => new \yii\web\JsExpression('new Date("2015-01-01")'),
+            'allowInputToggle' => false,
+            'sideBySide' => true,
+            'locale' => 'th-th',
+            'widgetPositioning' => [
+               'horizontal' => 'auto',
+               'vertical' => 'auto'
+            ]
+        ]
+    ]); ?>
 
-    <?= $form->field($model, 'start')->textInput() ?>
+    <?php echo $form->field($project, 'stop')->widget('trntv\yii\datetime\DateTimeWidget', [
+        'phpDatetimeFormat' => 'yyyy-MM-dd',
+        'clientOptions' => [
+            'minDate' => new \yii\web\JsExpression('new Date("2015-01-01")'),
+            'allowInputToggle' => false,
+            'sideBySide' => true,
+            'locale' => 'th-th',
+            'widgetPositioning' => [
+               'horizontal' => 'auto',
+               'vertical' => 'auto'
+            ]
+        ]
+    ]); ?>
 
-    <?= $form->field($model, 'stop')->textInput() ?>
+    <!--<?php// $form->field($model, 'created_date')->textInput() ?>
 
-    <?= $form->field($model, 'created_date')->textInput() ?>
+    <?php// $form->field($model, 'created_by')->textInput() ?>
 
-    <?= $form->field($model, 'created_by')->textInput() ?>
+    <?php// $form->field($model, 'updated_date')->textInput() ?>
 
-    <?= $form->field($model, 'updated_date')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
+    <?php// $form->field($model, 'updated_by')->textInput() ?>-->
 
 
 	</div>
@@ -43,14 +65,12 @@ use kartik\widgets\ActiveForm;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($project->isNewRecord ? 'Create' : 'Update', ['class' => $project->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
                  <?= Html::a('Cancle',[ 'project/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>
-
-
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
+use app\models\Researcher;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -63,13 +65,15 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Project();
+        $project = new Project();
+        $researcher = new Researcher();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($project->load(Yii::$app->request->post()) && $project->save()) {
+            return $this->redirect(['view', 'id' => $project->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'project' => $project,
+                'researcher' => $researcher,
             ]);
         }
     }
