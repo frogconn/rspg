@@ -57,37 +57,11 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
-<<<<<<< HEAD
-        $model = $this->findModel($id);
-        // $foreigner_value = $model->getCode($model->is_foreigner);
-=======
-		$model = $this->findModel($id);
->>>>>>> 2156c5a49f58f8e6d9e4d8f28d5f449dc32a4649
         return $this->render('view', [
-            //'model' => $this->findModel($id),
 			'model' => $model,
         ]);
     }
-<<<<<<< HEAD
-    public function getCode($id){
-        if($id=='Y')
-        {
-            return 'ใช่';
-        }
-        elseif($id=='N')
-        {
-            return 'ไม่ใช่';
-        }
-        elseif($id=='M')
-        {
-            return 'ชาย';
-        }
-        else{
-            return 'หญิง';
-        }
-    }
-=======
->>>>>>> 2156c5a49f58f8e6d9e4d8f28d5f449dc32a4649
+
 
     /**
      * Creates a new Researcher model.
