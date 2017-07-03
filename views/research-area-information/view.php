@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResearchAreaInformation */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Research Area Informations', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ข้อมูลพื้นที่วิจัย', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="research-area-information-view">

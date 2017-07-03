@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ResearchAreaInformation */
 
-$this->title = 'Create Research Area Information';
+$this->title = 'Create';
 $this->params['breadcrumbs'][] = ['label' => 'ข้อมูลพื้นที่วิจัย', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
