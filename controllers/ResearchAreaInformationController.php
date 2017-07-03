@@ -64,8 +64,11 @@ class ResearchAreaInformationController extends Controller
      */
     public function actionView($id)
     {
+		$model = $this->findModel($id);
+		$area_name = $this->findArea($model->area_id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+			'area_name' => $area_name,
         ]);
     }
 
@@ -82,6 +85,8 @@ class ResearchAreaInformationController extends Controller
         $districtid = new AddressDistrict();
         //$regionid   = new AddressRegion();
         $information = new ResearchAreaInformation();
+		$amphur_list=[];
+		$district_list=[];
 
          if (isset($_POST) && $_POST!=null) {
            
@@ -107,6 +112,8 @@ class ResearchAreaInformationController extends Controller
             'districtid'    => $districtid,
             //'regionid'      => $regionid,
             'information'   => $information,
+			'amphur_list' => $amphur_list,
+			'district_list' => $district_list,
            ]);
      
         }
@@ -122,13 +129,25 @@ class ResearchAreaInformationController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $information = $this->findModel($id);
+		$researchArea = $this->findArea($information->area_id);
+		$provinceid = $this->findProvince($information->province_id);
+        $amphurid   = $this->findAmphur($provinceid->id);
+        $districtid = $this->findDistrict($amphurid->id);
+		$amphur_list = ArrayHelper::map($this->getAmphur($provinceid->id),'id','name');
+		$district_list = ArrayHelper::map($this->getDistrict($amphurid->id),'id','name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($information->load(Yii::$app->request->post()) && $information->save()) {
+            return $this->redirect(['view', 'id' => $information->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'information' => $information,
+				'researchArea' => $researchArea,
+				'provinceid' => $provinceid,
+				'amphurid' => $amphurid,
+				'districtid' => $districtid,
+				'amphur_list' => $amphur_list,
+				'district_list' => $district_list,
             ]);
         }
     }
@@ -153,14 +172,54 @@ class ResearchAreaInformationController extends Controller
      * @return ResearchAreaInformation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+	 
+	 // find method
     protected function findModel($id)
     {
         if (($model = ResearchAreaInformation::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('[researcher area information]The requested page does not exist.');
         }
     }
+	
+	protected function findArea($id)
+    {
+        if (($model = ResearchArea::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher area]The requested page does not exist.');
+        }
+    }
+	
+	protected function findProvince($id)
+    {
+        if (($model = AddressProvince::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[province]The requested page does not exist.');
+        }
+    }
+	
+	protected function findAmphur($id)
+    {
+        if (($model = AddressAmphur::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[amphur]The requested page does not exist.');
+        }
+    }
+	
+	protected function findDistrict($id)
+    {
+        if (($model = AddressDistrict::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[district]The requested page does not exist.');
+        }
+    }
+	
+	//find method 
     public function actionGetAmphur() 
     {
         $out = [];
