@@ -84,11 +84,6 @@ use app\components\MenuHelper;
                                 'label' => 'พืชอนุรักษ์ยางนา',
                                 'icon' => 'circle-o',
                                 'url' => '#',
-                                'items' => [
-                                    ['label' => 'กรอบการเรียนรู้', 'icon' => 'circle-o', 'url' => '#',],
-                                    ['label' => 'กรอบการใช้ประโยชน์', 'icon' => 'circle-o', 'url' => '#',],
-                                    ['label' => 'กรอบการสร้างจิตสำนึก', 'icon' => 'circle-o', 'url' => '#',],
-                                ],
                             ],
                         ],
                     ],
