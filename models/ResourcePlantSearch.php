@@ -47,7 +47,7 @@ class ResourcePlantSearch extends ResourcePlant
      */
     public function search($params)
     {
-        $query = ResourcePlant::find()->joinWith('researchArea', 'resourceType');
+        $query = ResourcePlant::find()->joinWith('researchArea')->joinWith('resourceType');
 
         // add conditions that should always apply here
 

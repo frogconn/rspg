@@ -45,7 +45,7 @@ class ResourceAnimalSearch extends ResourceAnimal
      */
     public function search($params)
     {
-        $query = ResourceAnimal::find()->joinWith('researchArea', 'resourceType');
+        $query = ResourceAnimal::find()->joinWith('researchArea')->joinWith('resourceType');
 
         // add conditions that should always apply here
 

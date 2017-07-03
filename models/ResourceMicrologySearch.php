@@ -45,7 +45,7 @@ class ResourceMicrologySearch extends ResourceMicrology
      */
     public function search($params)
     {
-        $query = ResourceMicrology::find()->joinWith('researchArea', 'resourceType');
+        $query = ResourceMicrology::find()->joinWith('researchArea')->joinWith('resourceType');
 
         // add conditions that should always apply here
 

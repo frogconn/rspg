@@ -58,6 +58,8 @@ class ResourceMicrology extends \yii\db\ActiveRecord
             'benefit' => 'ประโยชน์',
             'image_id' => 'รหัสรูปภาพ',
             'type_id' => 'รหัสประเภท',
+            'zone_name' => 'ชื่อพื้นที่วิจัย',
+            'type_name' => 'ประเภทจุลินทรีย์',
             'created_date' => 'Created Date',
             'created_by' => 'Created By',
             'updated_date' => 'Updated Date',
