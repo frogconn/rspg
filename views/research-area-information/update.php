@@ -13,9 +13,9 @@ $this->params['breadcrumbs'][] = 'Update';
 <div class="research-area-information-update">
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
     <?= $this->render('_form', [
         'model' => $model,
