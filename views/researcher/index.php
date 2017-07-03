@@ -20,9 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 
@@ -33,17 +33,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-            'id',
+            //'id',
             'personal_code',
             'is_foreigner',
-            'title',
-            'firstname_th',
-            // 'lastname_th',
+            //'title',
+            //'firstname_th',
+            //'lastname_th',
             // 'firstname_en',
             // 'lastname_en',
-            // 'fullname_th',
+             'fullname_th',
             // 'fullname_en',
-            // 'gender',
+             'gender',
             // 'email:email',
             // 'telephone',
             // 'evidence_file',

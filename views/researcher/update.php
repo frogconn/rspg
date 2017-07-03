@@ -5,17 +5,17 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Researcher */
 
-$this->title = 'Update: ' . $model->title = $model->title.$model->firstname_th." ".$model->lastname_th;
+$this->title = $model->title.$model->firstname_th." ".$model->lastname_th;
 $this->params['breadcrumbs'][] = ['label' => 'ข้อมูลนักวิจัย', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="researcher-update">
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
     <?= $this->render('_form', [
         'model' => $model,
