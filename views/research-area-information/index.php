@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ResearchAreaInformationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Research Area Informations';
+$this->title = 'ข้อมูลพื้นที่วิจัย';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="research-area-information-index">
@@ -20,9 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-            'id',
+            //'id',
             'province_id',
             'amphur_id',
             'district_id',

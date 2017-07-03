@@ -7,16 +7,16 @@ use yii\helpers\Html;
 /* @var $model app\models\ResearchAreaInformation */
 
 $this->title = 'Create Research Area Information';
-$this->params['breadcrumbs'][] = ['label' => 'Research Area Informations', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ข้อมูลพื้นที่วิจัย', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="research-area-information-create">
 
 
 <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
     <?= $this->render('_form', [
     		'researchArea'	=> $researchArea,
