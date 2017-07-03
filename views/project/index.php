@@ -33,10 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-            'id',
+            //'id',
             'name',
-            'personal_code',
-            'department_id',
+            [
+                 'attribute' => 'header_name',
+                 'label' => 'หัวหน้าโครงการ',
+                 'value' => 'researcher.fullname_th'
+            ],
+            //'department_id',
             'year',
             // 'budget',
             // 'start',

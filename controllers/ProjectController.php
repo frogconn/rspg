@@ -5,8 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
-use app\models\Researcher;
 use app\models\ProjectPartitions;
+use app\models\Researcher;
 
 use yii\widgets\ActiveForm;
 
@@ -63,7 +63,7 @@ class ProjectController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findProject($id),
         ]);
     }
 
@@ -75,18 +75,41 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $project = new Project();
-        $researcher = new Researcher();
-        $partitions = [new ProjectPartitions()];
+    
+        if($project->load(Yii::$app->request->post()))
+        {
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $project->save(false);
+                $items = Yii::$app->request->post();
 
-        
-                    
-        //return $this->redirect(['view', 'id' => $project->id]);
+                // Loop to save each partition detail
+                foreach($items['Project']['schedule'] as $key => $val){
+                    /*if(($partitions = ProjectPartitions::findOne(['telephone'=>$val['telephone']])) == null) {
+                        
+                    }*/
+                    $partitions = new ProjectPartitions();
+                    $partitions->project_id = $project->id;
+                    $partitions->fullname = $val['fullname'];
+                    $partitions->position = $val['position'];
+                    $partitions->telephone = $val['telephone'];
+                    $partitions->email = $val['email'];
+                    $partitions->save();
+                }
+
+                $transaction->commit();
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+                return $this->redirect(['view', 'id' => $project->id]);
+            } catch (Exception $e){
+                $transaction->rollBack();
+                Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
+                return $this->redirect(['view', 'id' => $project->id]);
+            }
+        } else {
             return $this->render('create', [
                 'project' => $project,
-                'researcher' => $researcher,
-                'partitions' => (empty($partitions)) ? [new ProjectPartitions] : $partitions
             ]);
-        
+        }     
     }
 
     /**
@@ -97,13 +120,41 @@ class ProjectController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $project = Project::findOne($id);
+        $project->schedule = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
+        if (isset($_POST) && $_POST!=null) 
+        {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+                $project->save();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+                $partition = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
+                foreach ($partition as $model) {
+                    $model->delete(); // Delete each row partition
+                }
+
+                $items = Yii::$app->request->post();
+                foreach($items['Project']['schedule'] as $key => $val){
+                    $partitions = new ProjectPartitions();
+                    $partitions->project_id = $project->id;
+                    $partitions->fullname = $val['fullname'];
+                    $partitions->position = $val['position'];
+                    $partitions->telephone = $val['telephone'];
+                    $partitions->email = $val['email'];
+                    $partitions->save();
+                }
+                $transaction->commit();
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+                return $this->redirect(['view', 'id' => $project->id]);
+            } catch (Exception $e){
+                $transaction->rollBack();
+                Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
+                return $this->redirect(['view', 'id' => $project->id]);
+            }
+
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'project' => $project,
             ]);
         }
     }
@@ -116,8 +167,12 @@ class ProjectController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $project = $this->findProject($id);
+        $partitions = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
+        foreach ($partitions as $model) {
+            $model->delete(); // Delete each row partition
+        }
+        $project->delete();
         return $this->redirect(['index']);
     }
 
@@ -128,7 +183,7 @@ class ProjectController extends Controller
      * @return Project the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findProject($id)
     {
         if (($model = Project::findOne($id)) !== null) {
             return $model;
@@ -136,4 +191,5 @@ class ProjectController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

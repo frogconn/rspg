@@ -12,6 +12,7 @@ use app\models\Project;
  */
 class ProjectSearch extends Project
 {
+    public $header_name;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class ProjectSearch extends Project
     {
         return [
             [['id', 'department_id', 'year', 'budget', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'personal_code', 'start', 'stop', 'created_date', 'updated_date'], 'safe'],
+            [['name', 'header_name', 'personal_code', 'start', 'stop', 'created_date', 'updated_date'], 'safe'],
         ];
     }
 
@@ -41,7 +42,7 @@ class ProjectSearch extends Project
      */
     public function search($params)
     {
-        $query = Project::find();
+        $query = Project::find()->joinWith('researcher');
 
         // add conditions that should always apply here
 
@@ -57,6 +58,11 @@ class ProjectSearch extends Project
             return $dataProvider;
         }
 
+        $dataProvider->sort->attributes['header_name'] = [
+            'asc' => ['researcher.fullname_th' => SORT_ASC],
+            'desc' => ['researcher.fullname_th'=> SORT_DESC], 
+        ]; 
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -65,15 +71,15 @@ class ProjectSearch extends Project
             'budget' => $this->budget,
             'start' => $this->start,
             'stop' => $this->stop,
-            'created_date' => $this->created_date,
-            'created_by' => $this->created_by,
-            'updated_date' => $this->updated_date,
-            'updated_by' => $this->updated_by,
+            //'created_date' => $this->created_date,
+            //'created_by' => $this->created_by,
+            //'updated_date' => $this->updated_date,
+            //'updated_by' => $this->updated_by,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'personal_code', $this->personal_code]);
-
+            ->andFilterWhere(['like', 'personal_code', $this->personal_code])
+            ->andFilterWhere(['like', 'researcher.fullname_th', $this->header_name]);
         return $dataProvider;
     }
 }
