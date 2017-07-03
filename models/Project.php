@@ -22,12 +22,20 @@ use Yii;
  */
 class Project extends \yii\db\ActiveRecord
 {
+    public $schedule;
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'project';
+    }
+
+    public function init()
+    {
+        parent::init();
+
+        $this->schedule = [];
     }
 
     /**
@@ -38,6 +46,7 @@ class Project extends \yii\db\ActiveRecord
         return [
             [['name', 'personal_code', 'department_id', 'year', 'budget', 'start', 'stop'], 'required'],
             [['department_id', 'year', 'budget', 'created_by', 'updated_by'], 'integer'],
+            [['summary'], 'string'],
             [['start', 'stop', 'created_date', 'updated_date'], 'safe'],
             [['name'], 'string', 'max' => 127],
             [['personal_code'], 'string', 'max' => 63],
@@ -52,10 +61,12 @@ class Project extends \yii\db\ActiveRecord
         return [
             'id' => 'ลำดับโครงการ',
             'name' => 'ชื่อโครงการ',
-            'personal_code' => 'หมายเลขบัตรประชาชน',
+            'personal_code' => 'ชื่อหัวหน้าโครงการ', // Save in personal_code form
             'department_id' => 'ลำดับแผนก',
+            'schedule' => 'ผู้เข้าร่วมโครงการ', // partition
             'year' => 'ปีงบประมาณ',
             'budget' => 'งบประมาณ',
+            'summary' => 'สรุปผลงานวิจัยหรือบทคัดย่อ',
             'start' => 'วันเริ่มต้นโครงการ',
             'stop' => 'วันสิ้นสุดโครงการ',
             'created_date' => 'Created Date',
@@ -63,5 +74,15 @@ class Project extends \yii\db\ActiveRecord
             'updated_date' => 'Updated Date',
             'updated_by' => 'Updated By',
         ];
+    }
+
+    public function getResearcher ()
+    {
+        return $this->hasOne (Researcher::className(),['personal_code'=>'personal_code']);
+    }
+
+    public function getPartitions()
+    {
+        return $this->hasMany(ProjectPartitions::className(), ['project_id' => 'id']);
     }
 }

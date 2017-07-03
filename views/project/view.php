@@ -1,7 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+
 use yii\widgets\DetailView;
+use yii\base\Controller;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project */
@@ -37,20 +41,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
-            'personal_code',
-            'department_id',
+            'researcher.fullname_th', // Wrong label
             'year',
+
+            [
+                'label'=>'ผู้ร่วมโครงการ',
+                'format'=>'raw',
+                'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
+            ],
+
             'budget',
             'start',
             'stop',
-            'created_date',
-            'created_by',
-            'updated_date',
-            'updated_by',
+            //'created_date',
+            //'created_by',
+            //'updated_date',
+            //'updated_by',
         ],
     ]) ?>
+
+    
 </div>
 </div>
 </div>

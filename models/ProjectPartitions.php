@@ -30,9 +30,9 @@ class ProjectPartitions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['telephone', 'project_id'], 'integer'],
+            [['project_id'], 'integer'],
             [['fullname', 'email'], 'string', 'max' => 255],
-            [['position'], 'string', 'max' => 128],
+            [['telephone', 'position'], 'string', 'max' => 128],
         ];
     }
 
@@ -50,4 +50,5 @@ class ProjectPartitions extends \yii\db\ActiveRecord
             'project_id' => 'รหัสโครงการ',
         ];
     }
+
 }

@@ -72,7 +72,7 @@ class Researcher extends \yii\db\ActiveRecord
             'lastname_th' => 'นามสกุล',
             'firstname_en' => 'Firstname',
             'lastname_en' => 'Lastname',
-            'fullname_th' => 'ชื่อเต็ม',
+            'fullname_th' => 'ชื่อ-นามสกุล',
             'fullname_en' => 'Fullname',
             'gender' => 'เพศ',
             'email' => 'อีเมล',

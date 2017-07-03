@@ -40,11 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
             
             //'id',
             [
-
                  'attribute' => 'type_name',
                  'label' => 'ประเภท',
                  'value' => 'resourceType.name'
- 
             ],
             'common_name',
             'location_name',
