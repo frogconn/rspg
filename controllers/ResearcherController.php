@@ -13,6 +13,7 @@ use app\models\ResearcherFaculty;
 use yii\helpers\Json;
 use app\models\ResearcherAgency;
 use yii\helpers\ArrayHelper;
+//use yii\db\ActiveRecord;
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -56,27 +57,11 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
-        //$foreigner_value = $model->getCode($model->is_foreigner);
+		$model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            //'foreigner_value'=>$foreigner_value,
-
+            //'model' => $this->findModel($id),
+			'model' => $model,
         ]);
-    }
-    protected static function getCode($id){
-        if($id=='Y')
-        {
-            return 'ใช่';
-        }elseif($id=='N') {
-            return 'ไม่ใช่';
-        }
-        elseif($id=='M')
-        {
-            return 'ชาย';
-        }
-        else{
-            return 'หญิง';
-        }
     }
 
     /**
@@ -126,7 +111,7 @@ class ResearcherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $agency = $this->findAgency($model->id);
+        $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
         $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
@@ -174,7 +159,7 @@ class ResearcherController extends Controller
         if (($model = Researcher::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
         }
     }
     // new code
@@ -205,7 +190,7 @@ class ResearcherController extends Controller
     // new findmodel
     protected function findAgency($id)
     {
-        if (($agency = ResearcherAgency::findOne(['researcher_id'=>$id])) !== null) {
+        if (($agency = ResearcherAgency::findOne(['personal_code'=>$id])) !== null) {
             return $agency;
         } else {
             throw new NotFoundHttpException('[agency]The requested page does not exist.');
