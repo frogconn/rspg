@@ -82,7 +82,8 @@ class Researcher extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_date' => 'Updated Date',
             'updated_by' => 'Updated By',
-            'isForeigner' => 'ชาวต่างชาติ'
+            'isForeigner' => 'ชาวต่างชาติ',
+			'gGender' => 'เพศ',
         ];
     }
     public function beforeSave($insert)
@@ -134,5 +135,9 @@ class Researcher extends \yii\db\ActiveRecord
 
     public function getIsForeigner() {
         return $this->is_foreigner === 'Y' ? 'ใช่' : 'ไม่ใช่';
+    }
+	
+	public function getGGender() {
+        return $this->gender === 'M' ? 'ชาย' : 'หญิง';
     }
 }
