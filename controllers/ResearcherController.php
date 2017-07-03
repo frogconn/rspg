@@ -58,7 +58,7 @@ class ResearcherController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-			'model' => $model,
+			'model' => $this->findModel($id),
         ]);
     }
 
