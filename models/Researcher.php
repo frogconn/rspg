@@ -82,6 +82,7 @@ class Researcher extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_date' => 'Updated Date',
             'updated_by' => 'Updated By',
+            'isForeigner' => 'ชาวต่างชาติ'
         ];
     }
     public function beforeSave($insert)
@@ -130,4 +131,8 @@ class Researcher extends \yii\db\ActiveRecord
 	{
 		return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
 	}
+
+    public function getIsForeigner() {
+        return $this->is_foreigner === 'Y' ? 'ใช่' : 'ไม่ใช่';
+    }
 }

@@ -56,18 +56,21 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
-        //$foreigner_value = $model->getCode($model->is_foreigner);
+        $model = $this->findModel($id);
+        // $foreigner_value = $model->getCode($model->is_foreigner);
         return $this->render('view', [
             'model' => $this->findModel($id),
             //'foreigner_value'=>$foreigner_value,
 
         ]);
     }
-    protected static function getCode($id){
+    public function getCode($id){
         if($id=='Y')
         {
             return 'ใช่';
-        }elseif($id=='N') {
+        }
+        elseif($id=='N')
+        {
             return 'ไม่ใช่';
         }
         elseif($id=='M')

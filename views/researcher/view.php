@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Researcher */
 
 $this->title = $model->title.$model->firstname_th." ".$model->lastname_th;
-$this->params['breadcrumbs'][] = ['label' => 'Researchers', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ข้อมูลนักวิจัย', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="researcher-view">
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'personal_code',
-            'is_foreigner',
+            'isForeigner',
             'title',
             'firstname_th',
             'lastname_th',
