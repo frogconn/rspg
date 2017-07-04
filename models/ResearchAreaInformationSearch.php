@@ -12,6 +12,7 @@ use app\models\ResearchAreaInformation;
  */
 class ResearchAreaInformationSearch extends ResearchAreaInformation
 {
+
     /**
      * @inheritdoc
      */

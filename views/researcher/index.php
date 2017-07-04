@@ -26,7 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="box-body">
 
-
+    <?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+<br>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
