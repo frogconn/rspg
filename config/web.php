@@ -8,6 +8,7 @@ $config = [
     'name' => 'RSPG System',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'th',
     'components' => [
 		    'authManager' => [
             'class' => 'yii\rbac\DbManager',
