@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'gGender',
             'email:email',
             'telephone',
-           [
+            [
             'format'=>'raw',
             'attribute'=>'evidence_file',
             'value'=>Html::img($model->photoViewer,['class'=>'img-thumbnail','style'=>'width:200px;'])
