@@ -14,7 +14,7 @@ use app\components\MenuHelper;
             <div class="pull-left info">
                 <p>Alexander Pierce</p>
 
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> offline</a>
             </div>
         </div>
 
@@ -34,6 +34,7 @@ use app\components\MenuHelper;
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
+                ['label' => 'หน้าหลัก', 'icon' => 'home', 'url' => 'view',],
                     [
                       'label' => 'ข้อมูลนักวิจัย',
                       'icon' => 'file-car',
