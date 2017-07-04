@@ -83,7 +83,7 @@ use app\components\MenuHelper;
                                                         [
                                 'label' => 'พืชอนุรักษ์ยางนา',
                                 'icon' => 'circle-o',
-                                'url' => '#',
+                                'url' => ['/project-garjan'],
                             ],
                         ],
                     ],

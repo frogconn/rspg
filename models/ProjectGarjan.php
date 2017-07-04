@@ -19,9 +19,12 @@ use Yii;
  * @property string $created_date
  * @property string $update_by
  * @property string $update_date
+ * @property string $start
+ * @property string $stop
  */
 class ProjectGarjan extends \yii\db\ActiveRecord
 {
+    public $schedule = [];
     /**
      * @inheritdoc
      */
@@ -36,8 +39,8 @@ class ProjectGarjan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['year', 'created_date', 'update_date'], 'safe'],
-            [['faculty_id', 'project_type_id'], 'integer'],
+            [['created_date', 'update_date', 'start', 'stop'], 'safe'],
+            [['year', 'faculty_id', 'project_type_id'], 'integer'],
             [['budget'], 'number'],
             [['summary'], 'string'],
             [['name', 'created_by', 'update_by'], 'string', 'max' => 255],
@@ -63,6 +66,19 @@ class ProjectGarjan extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'update_by' => 'Update By',
             'update_date' => 'Update Date',
+            'start' => 'วันเริ่มต้นโครงการ',
+            'stop' => 'วันสิ้นสุดโครงการ',
+            'schedule' => 'ผู้เข้าร่วมโครงการ'
         ];
+    }
+
+     public function getResearcher ()
+    {
+        return $this->hasOne (Researcher::className(),['personal_code'=>'personal_code']);
+    }
+
+    public function getPartitions()
+    {
+        return $this->hasMany(ProjectPartitions::className(), ['project_id' => 'id']);
     }
 }
