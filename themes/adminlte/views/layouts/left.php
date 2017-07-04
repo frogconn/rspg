@@ -37,7 +37,7 @@ use app\components\MenuHelper;
                 ['label' => 'หน้าหลัก', 'icon' => 'home', 'url' => 'view',],
                     [
                       'label' => 'ข้อมูลนักวิจัย',
-                      'icon' => 'file-car',
+                      'icon' => 'user',
                       'url' => ['/researcher'],
                       'active' => MenuHelper::Active('researcher')
                     ],

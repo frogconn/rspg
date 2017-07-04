@@ -7,9 +7,10 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
-$this->title = 'หน้าหลัก';
+$this->title = ' ';
 ?>
 <div class="site-index">
+
     <h1><center>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ</center><br>
     <center>สมเด็จพระเทพรัตนราชสุดาฯ สยามบรมราชกุมารี(อพ.สธ.)</center><br></h1>
     <center><?= Html::img('img\book.png',['class'=>'img-thumbnail','style'=>'width:150px;']);?></center>
