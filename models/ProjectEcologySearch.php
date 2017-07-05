@@ -22,7 +22,11 @@ class ProjectEcologySearch extends ProjectEcology
     {
         return [
             [['id', 'faculty_id', 'type_id'], 'integer'],
+<<<<<<< HEAD:models/ProjectEcologySearch.php
             [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'updated_by', 'updated_date', 'type', 'searchAll', 'fullname_th'], 'safe'],
+=======
+            [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'update_by', 'update_date'], 'safe'],
+>>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:models/ProjectGarjanSearch.php
             [['budget'], 'number'],
         ];
     }

@@ -35,37 +35,47 @@ use app\components\MenuHelper;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                 ['label' => 'หน้าหลัก', 'icon' => 'home', 'url' => 'view',],
-                    [
-                      'label' => 'ข้อมูลนักวิจัย',
-                      'icon' => 'user',
-                      'url' => ['/researcher'],
-                      'active' => MenuHelper::Active('researcher')
-                    ],
-					//
-					[
-                        'label' => 'ข้อมูลผลงานวิจัย',
-                        'icon' => 'share',
+                [
+                  'label' => 'ข้อมูลนักวิจัย',
+                  'icon' => 'user',
+                  'url' => ['/researcher'],
+                  'active' => MenuHelper::Active('researcher')
+                ],
+					      /*[
+                  'label' => 'ข้อมูลผลงานวิจัย',
+                  'icon' => 'share',
+                  'url' => '#',
+                  'items' => [
+                      [
+                        'label' => 'ข้อมูลพื้นที่วิจัย',
+                        'icon' => 'file-code-o',
+                        'url' => ['/research-area-information'],
+                        'active' => MenuHelper::Active('research-area-information')
+                      ],
+                      [
+                        'label' => 'ข้อมูลทรัพยากร',
+                        'icon' => 'circle-o',
                         'url' => '#',
-                        'items' => [
-                            ['label' => 'ข้อมูลพื้นที่วิจัย', 'icon' => 'file-code-o', 'url' => ['/research-area-information'],],
-                            [
-                                'label' => 'ข้อมูลทรัพยากร',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'พืช', 'icon' => 'circle-o', 'url' => ['/resource-plant'],],
-									['label' => 'สัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal'],],
-									['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology'],],
-                                    /*[
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],*/
+                            'items' => [
+                                [
+                                  'label' => 'พืช',
+                                  'icon' => 'circle-o',
+                                  'url' => ['/resource-plant'],
+                                  'active' => MenuHelper::Active('resource-plant')
                                 ],
+							                  [
+                                  'label' => 'สัตว์และแมลง',
+                                  'icon' => 'circle-o',
+                                  'url' => ['/resource-animal'],
+                                  'active' => MenuHelper::Active('resource-animal')
+                                ],
+							                  [
+                                  'label' => 'จุลินทรีย์',
+                                  'icon' => 'circle-o',
+                                  'url' => ['/resource-micrology'],
+                                  'active' => MenuHelper::Active('resource-micrology')
+                                ],
+<<<<<<< HEAD
                             ],
 
 
@@ -88,26 +98,50 @@ use app\components\MenuHelper;
                             ],
                         ],
                     ],
+=======
+>>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497
 
-                    [
-              				'label' => 'ตั้งค่าผู้ใช้งาน',
-              				'icon' => 'fa fa-users',
-              				'url' => '#',
-              				'items' => [
-                        [
-              						'label' => 'จัดการสิทธิ์',
-              						'icon' => 'fa fa-users',
-              						'url' => '#',
-              						'items' => [
-              							['label' => 'Assignments', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/assignment']],
-              							['label' => 'Role', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/role']],
-              							['label' => 'Permission', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/permission']],
-              							['label' => 'Route', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/route']],
-              							['label' => 'Rule', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/rule']],
-              						],
-              					],
-              				],
-              			],
+                              ],
+                          ],
+
+
+                      ],
+                 ],
+
+                 [
+                      'label' => 'ข้อมูลโครงการวิจัย',
+                      'icon' => 'share',
+                      'url' => '#',
+                      'items' => [
+
+                          ['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => '#',],
+                                                      [
+                              'label' => 'พืชอนุรักษ์ยางนา',
+                              'icon' => 'circle-o',
+                              'url' => ['/project-garjan'],
+                          ],
+                      ],
+                  ],*/
+
+                  [
+            				'label' => 'ตั้งค่าผู้ใช้งาน',
+            				'icon' => 'cog',
+            				'url' => '#',
+            				'items' => [
+                      [
+            						'label' => 'จัดการสิทธิ์',
+            						'icon' => 'share',
+            						'url' => '#',
+            						'items' => [
+            							['label' => 'Assignments', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/assignment']],
+            							['label' => 'Role', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/role']],
+            							['label' => 'Permission', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/permission']],
+            							['label' => 'Route', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/route']],
+            							['label' => 'Rule', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/rule']],
+            						],
+            					],
+            				],
+            			],
 
 					//
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],

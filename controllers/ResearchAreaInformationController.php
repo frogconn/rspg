@@ -116,9 +116,7 @@ class ResearchAreaInformationController extends Controller
 			'district_list' => $district_list,
            ]);
      
-        }
-
-        
+        }        
     }
 
     /**

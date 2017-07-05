@@ -37,8 +37,13 @@ class ProjectEcology extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+<<<<<<< HEAD:models/ProjectEcology.php
             [['year', 'created_date', 'updated_date'], 'safe'],
             [['faculty_id', 'type_id'], 'integer'],
+=======
+            [['created_date', 'update_date', 'start', 'stop'], 'safe'],
+            [['year', 'faculty_id', 'type_id'], 'integer'],
+>>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:models/ProjectGarjan.php
             [['budget'], 'number'],
             [['summary'], 'string'],
             [['name', 'created_by', 'updated_by'], 'string', 'max' => 255],
@@ -58,6 +63,10 @@ class ProjectEcology extends \yii\db\ActiveRecord
             'personal_code' => 'หัวหน้าโครงการวิจัย',
             'faculty_id' => 'คณะ',
             'budget' => 'งบประมาณ',
+<<<<<<< HEAD:models/ProjectEcology.php
+=======
+            'type_id' => 'รหัสประเภทของโครงการ',
+>>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:models/ProjectGarjan.php
             'summary' => 'สรุปผลงานวิจัย',
             'type_id' => 'รหัสด้าน',
             'created_by' => 'สร้างโดย',

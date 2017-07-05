@@ -20,24 +20,47 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <div class="box box-success">
-            <!--div class="box-header with-border">
+            <div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div-->
+            </div>
 
             <div class="box-body">
 
 
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
+<?php echo $this->render('_search', ['model' => $searchModel]); ?>
+<br>
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
             //'id',
-            'province_id',
-            'amphur_id',
-            'district_id',
-            'region_id',
+            //'province_id',
+            [
+                 'attribute' => 'province_name',
+                 'label' => 'จังหวัด',
+                 'value' => 'addressProvince.name'
+            ],
+            [
+                 'attribute' => 'amphur_name',
+                 'label' => 'อำเภอ',
+                 'value' => 'addressAmphur.name'
+            ],
+             [
+                 'attribute' => 'district_name',
+                 'label' => 'ตำบล',
+                 'value' => 'addressDistrict.name'
+            ],
+            [
+                 'attribute' => 'region_name',
+                 'label' => 'ภูมิภาค',
+                 'value' => 'addressRegion.name'
+            ],
+            //'amphur_id',
+           // 'district_id',
+            //'region_id',
             // 'image_id',
             // 'information:ntext',
             // 'created_date',
@@ -51,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
               ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php yii\widgets\Pjax::end(); ?></div>
 </div>
 
 </div>

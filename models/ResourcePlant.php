@@ -32,6 +32,14 @@ class ResourcePlant extends \yii\db\ActiveRecord
         return 'resource_plant';
     }
 
+    public function behaviors()
+    {
+        return [
+            'fileBehavior' => [
+                'class' => \app\components\UploadBehavior::className()
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */

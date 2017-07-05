@@ -51,6 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
             ],
             'budget',
+<<<<<<< HEAD:views/project-ecology/view.php
+=======
+            'type_id',
+>>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:views/project-garjan/view.php
             'summary:ntext',
             'start',
             'stop',

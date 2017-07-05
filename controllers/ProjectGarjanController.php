@@ -78,13 +78,14 @@ class ProjectGarjanController extends Controller
     {
         $project = new ProjectGarjan();
         $type = new ProjectType();
+        $type_list = [];
 
         if($project->load(Yii::$app->request->post()))
         {
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                /*$post = Yii::$app->request->post();
-                $project->project_type_id = $post['ProjectType']['topic'];*/
+                $post = Yii::$app->request->post();
+                $project->type_id = $post['ProjectType']['type'];
 
                 $project->save(false);
                 $items = Yii::$app->request->post();
@@ -114,7 +115,8 @@ class ProjectGarjanController extends Controller
         } else {
             return $this->render('create', [
                 'project' => $project,
-                'type' => $type
+                'type' => $type,
+                'type_list' => $type_list,
             ]); 
         }   
          
@@ -129,13 +131,16 @@ class ProjectGarjanController extends Controller
     public function actionUpdate($id)
     {
         $project = ProjectGarjan::findOne($id);
-        $type = ProjectType::findOne($project->project_type_id);
+        $type = ProjectType::findOne($project->type_id);
+        $type_list = ArrayHelper::map($this->getType($type->sub_topic), 'id', 'type');
         $project->schedule = ProjectPartitions::find()->andWhere(['project_id'=>$project->id])
                                                       ->andWhere(['group'=>'garjan'])->all();
         if (isset($_POST) && $_POST!=null) 
         {
             $transaction = Yii::$app->db->beginTransaction();
             try{
+                $post = Yii::$app->request->post();
+                $project->type_id = $post['ProjectType']['type'];
                 $project->save();
 
                 $partition = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
@@ -165,7 +170,8 @@ class ProjectGarjanController extends Controller
         } else {
             return $this->render('update', [
                 'project' => $project,
-                'type' => $type
+                'type' => $type,
+                'type_list' => $type_list,
             ]);
         }
     }

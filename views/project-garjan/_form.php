@@ -46,7 +46,7 @@ use yii\helpers\Url;
     ?>
 
     <?= $form->field($type, 'type')->widget(DepDrop::classname(), [
-            'data'=> [],
+            'data'=> $type_list,
             'pluginOptions'=>[
                 'depends'=>['ddl-sub_topic'],
                 'placeholder'=>'เลือกด้าน',
@@ -62,10 +62,9 @@ use yii\helpers\Url;
         ]);
     ?>
 
-
     <?= $form->field($project, 'name')->textInput(['maxlength' => true]) ?>
 
-     <?php echo $form->field($project, 'personal_code')->widget(Select2::classname(), [
+    <?php echo $form->field($project, 'personal_code')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(Researcher::find()->all(), 'personal_code', 'fullname_th'),
             'language' => 'th',
             'options' => ['placeholder' => 'เลือกหัวหน้าโครงการ'],
@@ -121,9 +120,6 @@ use yii\helpers\Url;
         ]);
     ?>
 
-
-
-
     <?= $form->field($project, 'budget')->textInput() ?>
 
     <?= $form->field($project, 'summary')->textarea(['rows' => 6]) ?>
@@ -155,7 +151,6 @@ use yii\helpers\Url;
             ]
         ]
     ]); ?>
-    
 
 	</div>
 
@@ -163,9 +158,9 @@ use yii\helpers\Url;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($project->isNewRecord ? 'Create' : 'Update', ['class' => $project->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	            <?= Html::submitButton($project->isNewRecord ? 'Create' : 'Update', ['class' => $project->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('Cancle',[ 'project-garjan/'], ['class' => 'btn btn-default']) ?>
+                <?= Html::a('Cancle',[ 'project-garjan/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>
@@ -176,3 +171,7 @@ use yii\helpers\Url;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    document.getElementById('projecttype-type').value="<?php echo $type->id; ?>";
+</script>

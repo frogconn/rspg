@@ -70,7 +70,7 @@ class ResearcherSearch extends Researcher
             'updated_by' => $this->updated_by,
         ]);*/
 
-        $query
+        $query->orFilterWhere(['like', 'personal_code', $this->searchAll])
             ->orFilterWhere(['like', 'is_foreigner', $this->searchAll])
             ->orFilterWhere(['like', 'title', $this->searchAll])
             ->orFilterWhere(['like', 'firstname_th', $this->searchAll])

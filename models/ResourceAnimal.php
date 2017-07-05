@@ -34,6 +34,15 @@ class ResourceAnimal extends \yii\db\ActiveRecord
         return 'resource_animal';
     }
 
+    public function behaviors()
+    {
+        return [
+            'fileBehavior' => [
+                'class' => \app\components\UploadBehavior::className()
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */

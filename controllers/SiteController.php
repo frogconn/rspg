@@ -66,7 +66,7 @@ class SiteController extends Controller
 
     public function actionView()
     {
-        return $this->render('view');
+        return $this->render('index');
     }
 
     /**
