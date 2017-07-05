@@ -18,7 +18,7 @@ class ProjectGarjanSearch extends ProjectGarjan
     public function rules()
     {
         return [
-            [['id', 'faculty_id', 'project_type_id'], 'integer'],
+            [['id', 'faculty_id', 'type_id'], 'integer'],
             [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'update_by', 'update_date'], 'safe'],
             [['budget'], 'number'],
         ];
@@ -64,7 +64,7 @@ class ProjectGarjanSearch extends ProjectGarjan
             'year' => $this->year,
             'faculty_id' => $this->faculty_id,
             'budget' => $this->budget,
-            'project_type_id' => $this->project_type_id,
+            'type_id' => $this->type_id,
             'created_date' => $this->created_date,
             'update_date' => $this->update_date,
         ]);
