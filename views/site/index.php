@@ -23,6 +23,8 @@ $this->title = ' ';
 	</h2>
 	</p></center>
 	</div>
+
+
 	<div class="col-md-4 col-sm-6 col-xs-12">
 	<div class="x_panel">
 	<div class="box box-primary">
@@ -84,4 +86,7 @@ $this->title = ' ';
 		</di-->
 		<!-- /.box-footer -->
 	</div></div></div>
+
+<div class="clearfix"></div>
+
 </div>
