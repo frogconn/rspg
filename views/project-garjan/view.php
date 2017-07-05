@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
             ],
             'budget',
-            'project_type_id',
+            'type_id',
             'summary:ntext',
             'created_by',
             'created_date',

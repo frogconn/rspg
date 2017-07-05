@@ -40,7 +40,7 @@ class ProjectGarjan extends \yii\db\ActiveRecord
     {
         return [
             [['created_date', 'update_date', 'start', 'stop'], 'safe'],
-            [['year', 'faculty_id', 'project_type_id'], 'integer'],
+            [['year', 'faculty_id', 'type_id'], 'integer'],
             [['budget'], 'number'],
             [['summary'], 'string'],
             [['name', 'created_by', 'update_by'], 'string', 'max' => 255],
@@ -60,7 +60,7 @@ class ProjectGarjan extends \yii\db\ActiveRecord
             'personal_code' => 'หัวหน้าโครงการวิจัย',
             'faculty_id' => 'รหัสคณะ',
             'budget' => 'งบประมาณ',
-            'project_type_id' => 'Project Type ID',
+            'type_id' => 'รหัสประเภทของโครงการ',
             'summary' => 'สรุปผลงานวิจัย',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
