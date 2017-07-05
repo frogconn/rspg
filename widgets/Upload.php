@@ -33,7 +33,7 @@ class Upload extends \yii\base\Widget {
               </div>
 
               <div class="col-md-9">
-                <button id="photo-upload" class="btn btn-success" type="button">
+                <button id="photo-upload" class="btn btn-info" type="button">
                   <i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;เลือกไฟล์..
                 </button>';
 

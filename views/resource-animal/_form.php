@@ -28,7 +28,7 @@ use app\models\ResearchArea;
                             'prompt'=>'เลือกประเภทของสัตว์และแมลง'
                         ]);
     ?>
-    
+
     <?= $form->field($animal, 'common_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($animal, 'location_name')->textInput(['maxlength' => true]) ?>
@@ -49,7 +49,12 @@ use app\models\ResearchArea;
     ?>
 
     <?= $form->field($animal, 'benefit')->textarea(['rows' => 6]) ?>
-        
+
+
+    <?php
+        echo app\widgets\Upload::widget(['model' => $animal,'required' => false]);
+    ?>
+
 
 
 	</div>

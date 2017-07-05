@@ -43,11 +43,13 @@ use app\models\ResearchArea;
                 'prompt'=>'เลือกพื้นที่วิจัย'
         ]);
     ?>
-    
+
     <?= $form->field($micro, 'benefit')->textarea(['rows' => 6]) ?>
 
-    
-    
+
+    <?php
+        echo app\widgets\Upload::widget(['model' => $micro,'required' => false]);
+    ?>
 
 	</div>
 
