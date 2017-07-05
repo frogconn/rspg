@@ -129,7 +129,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('งานด้านนิเวศวิทยาและชุมชน', [''], ['class' => 'profile-link']) ?>
+						<?= Html::a('งานด้านนิเวศวิทยาและชุมชน', null) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
@@ -139,7 +139,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('พืชอนุรักษ์ยางนา', ['/project-garjan'], ['class' => 'profile-link']) ?>
+						<?= Html::a('พืชอนุรักษ์ยางนา', ['/project-garjan']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
