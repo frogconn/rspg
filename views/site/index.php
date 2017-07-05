@@ -7,7 +7,7 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
-$this->title = ' ';
+$this->title = '';
 ?>
 <div class="site-view">
 	<div>
@@ -139,7 +139,7 @@ $this->title = ' ';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('พืชอนุรักษ์ยางนา', [''], ['class' => 'profile-link']) ?>
+						<?= Html::a('พืชอนุรักษ์ยางนา', ['/project-garjan'], ['class' => 'profile-link']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
