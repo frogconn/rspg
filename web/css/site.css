@@ -36,6 +36,12 @@ body {
     font-style: italic;
 }
 
+div.required label.control-label:after {
+    content: ' * ';
+    color: red;
+    font-weight: bold;
+}
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
@@ -112,4 +118,11 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.upload-progress{
+  margin-top: 10px;
+}
+.upload-progress .progress{
+  margin-bottom: 5px;
 }

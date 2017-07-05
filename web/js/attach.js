@@ -119,7 +119,7 @@ $(function(){
 
     function clearButtonUpload(){
       uploadButton.removeClass('disabled');
-      uploadButton.html('<i class="glyphicon glyphicon-folder-open"></i>&nbsp;เลือกไฟล์..');
+      uploadButton.html('<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;เลือกไฟล์..');
     }
 
     function clearProgressUpload(){

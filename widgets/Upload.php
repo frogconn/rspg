@@ -26,15 +26,15 @@ class Upload extends \yii\base\Widget {
       $required = $this->required == true ? 'required' : '';
 
       echo '<div class="form-group upload-files '.$required.'">
-              <div class="col-md-3 text-right">
-                <label class="control-label" for="testfile-name">ไฟล์แนบ</label>
+              <div class="col-md-2 text-right">
+                <label class="control-label" for="testfile-name">ไฟล์แนบ/รูปภาพ</label>
                 <div class="clearfix"></div>
-                <span class="text-muted"><small>(นามสกุลไฟล์ pdf)</small></span>
+                <span class="text-muted"><small>(นามสกุลไฟล์ pdf,png,jpg)</small></span>
               </div>
 
               <div class="col-md-9">
                 <button id="photo-upload" class="btn btn-primary" type="button">
-                  <i class="glyphicon glyphicon-folder-open"></i>&nbsp;เลือกไฟล์..
+                  <i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;เลือกไฟล์..
                 </button>';
 
       echo '<div class="upload-progress"></div>';

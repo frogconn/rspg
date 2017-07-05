@@ -27,7 +27,7 @@ use app\models\ResearchArea;
                 'options' => [
                     $type->id => ['Selected'=>'selected']],
                 'prompt'=>'เลือกชนิดของพืช'
-            ]); 
+            ]);
   ?>
   <?= $form->field($plant, 'common_name')->textInput(['maxlength' => true]) ?>
   <?= $form->field($plant, 'location_name')->textInput(['maxlength' => true]) ?>
@@ -41,13 +41,15 @@ use app\models\ResearchArea;
                 'options' => [
                     $researchArea->id => ['Selected'=>'selected']],
                 'prompt'=>'เลือกพื้นที่วิจัยที่พบ'
-            ]); 
+            ]);
   ?>
-   
+
    <?= $form->field($plant, 'benefit')->textarea(['rows' => '4']) ?>
 
-    
 
+   <?php
+       echo app\widgets\Upload::widget(['model' => $plant,'required' => false]);
+   ?>
 
 
 	</div>
