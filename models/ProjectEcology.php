@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "project_garjan".
+ * This is the model class for table "project_ecology".
  *
  * @property integer $id
  * @property string $year
@@ -13,16 +13,14 @@ use Yii;
  * @property string $personal_code
  * @property integer $faculty_id
  * @property double $budget
- * @property integer $project_type_id
  * @property string $summary
+ * @property integer $type_id
  * @property string $created_by
  * @property string $created_date
- * @property string $update_by
- * @property string $update_date
- * @property string $start
- * @property string $stop
+ * @property string $updated_by
+ * @property string $updated_date
  */
-class ProjectGarjan extends \yii\db\ActiveRecord
+class ProjectEcology extends \yii\db\ActiveRecord
 {
     public $schedule = [];
     /**
@@ -30,7 +28,7 @@ class ProjectGarjan extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'project_garjan';
+        return 'project_ecology';
     }
 
     /**
@@ -39,13 +37,13 @@ class ProjectGarjan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_date', 'update_date', 'start', 'stop'], 'safe'],
-            [['year', 'faculty_id', 'project_type_id'], 'integer'],
+            [['year', 'created_date', 'updated_date'], 'safe'],
+            [['faculty_id', 'type_id'], 'integer'],
             [['budget'], 'number'],
             [['summary'], 'string'],
-            [['name', 'created_by', 'update_by'], 'string', 'max' => 255],
-            [['personal_code'], 'string', 'max' => 64],
-        ];
+            [['name', 'created_by', 'updated_by'], 'string', 'max' => 255],
+            [['personal_code'], 'string', 'max' => 64   ],
+            ];
     }
 
     /**
@@ -58,21 +56,22 @@ class ProjectGarjan extends \yii\db\ActiveRecord
             'year' => 'ปีงบประมาณ',
             'name' => 'ชื่อโครงการวิจัย',
             'personal_code' => 'หัวหน้าโครงการวิจัย',
-            'faculty_id' => 'รหัสคณะ',
+            'faculty_id' => 'คณะ',
             'budget' => 'งบประมาณ',
-            'project_type_id' => 'Project Type ID',
             'summary' => 'สรุปผลงานวิจัย',
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'update_by' => 'Update By',
-            'update_date' => 'Update Date',
+            'type_id' => 'รหัสด้าน',
+            'created_by' => 'สร้างโดย',
+            'created_date' => 'สร้างเมื่อ',
+            'updated_by' => 'อัพเดตโดย',
+            'updated_date' => 'อัพเดตเมื่อ',
+            'schedule' => 'ผู้เข้าร่วมโครงการ',
             'start' => 'วันเริ่มต้นโครงการ',
-            'stop' => 'วันสิ้นสุดโครงการ',
-            'schedule' => 'ผู้เข้าร่วมโครงการ'
+            'stop' => 'วันสิ้นสุดโครงการ'
+
         ];
     }
 
-     public function getResearcher ()
+    public function getResearcher ()
     {
         return $this->hasOne (Researcher::className(),['personal_code'=>'personal_code']);
     }
@@ -80,5 +79,9 @@ class ProjectGarjan extends \yii\db\ActiveRecord
     public function getPartitions()
     {
         return $this->hasMany(ProjectPartitions::className(), ['project_id' => 'id']);
+    }
+
+    public function getProjectType(){
+        return $this->hasOne(ProjectType::className(),['id'=>'type_id']);
     }
 }

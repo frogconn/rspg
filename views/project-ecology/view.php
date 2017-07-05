@@ -8,18 +8,18 @@ use yii\widgets\DetailView;
 use yii\base\Controller;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProjectGarjan */
+/* @var $model app\models\ProjectEcology */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Project Garjans', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Project Ecologies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="project-garjan-view">
+<div class="project-ecology-view">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Back',[ 'project-garjan/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('Back',[ 'project-ecology/'], ['class' => 'btn bg-navy']) ?>
 
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -32,16 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
       <div class="box box-success">
-            <div class="box-header with-border">
+            <!-- class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
+            'projectType.type',
             'year',
             'name',
             [
@@ -50,12 +51,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
             ],
             'budget',
-            'project_type_id',
             'summary:ntext',
-            'created_by',
-            'created_date',
-            'update_by',
-            'update_date',
+            'start',
+            'stop',
+
+            //'type_id',
+            //'created_by',
+            //'created_date',
+            //'updated_by',
+            //'updated_date',
         ],
     ]) ?>
 </div>

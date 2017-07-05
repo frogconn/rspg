@@ -80,7 +80,7 @@ use app\components\MenuHelper;
                         'url' => '#',
                         'items' => [
 
-                            ['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => '#',],
+                            ['label' => 'งานด้านนิเวศวิทยาและชุมชน', 'icon' => 'dashboard', 'url' => '\project-ecology'],
                                                         [
                                 'label' => 'พืชอนุรักษ์ยางนา',
                                 'icon' => 'circle-o',

@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProjectGarjan */
+/* @var $model app\models\ProjectEcology */
 
-$this->title = 'Create Project Garjan';
-$this->params['breadcrumbs'][] = ['label' => 'Project Garjans', 'url' => ['index']];
+$this->title = 'Create Project Ecology';
+$this->params['breadcrumbs'][] = ['label' => 'Project Ecologies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="project-garjan-create">
+<div class="project-ecology-create">
 
 
 <div class="box box-success">
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'project' => $project,
         'type' => $type
     ]) ?>
-    
+
 </div>
 
 </div>
