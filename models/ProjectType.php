@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $topic
+ * @property string $sub_topic
  * @property string $type
  */
 class ProjectType extends \yii\db\ActiveRecord
@@ -27,7 +28,7 @@ class ProjectType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['topic', 'type'], 'string', 'max' => 128],
+            [['topic', 'sub_topic', 'type'], 'string', 'max' => 128],
         ];
     }
 
@@ -38,7 +39,8 @@ class ProjectType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ลำดับด้าน',
-            'topic' => 'หัวข้อ',
+            'topic' => 'กลุ่ม', // หัวข้อใหญ่
+            'sub_topic' => 'กรอบกิจกรรม', // หัวข้อย่อย
             'type' => 'ประเภท',
         ];
     }

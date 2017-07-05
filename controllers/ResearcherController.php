@@ -2,18 +2,21 @@
 
 namespace app\controllers;
 
+
 use Yii;
 use app\models\Researcher;
 use app\models\ResearcherSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
-use yii\helpers\Json;
 use app\models\ResearcherAgency;
+
+use yii\filters\VerbFilter;
+
+use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
-//use yii\db\ActiveRecord;
+
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.

@@ -18,6 +18,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 use app\base\Model;
 
@@ -64,7 +65,7 @@ class ProjectGarjanController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findProject($id),
         ]);
     }
 
@@ -77,19 +78,20 @@ class ProjectGarjanController extends Controller
     {
         $project = new ProjectGarjan();
         $type = new ProjectType();
-    
+
         if($project->load(Yii::$app->request->post()))
         {
             $transaction = Yii::$app->db->beginTransaction();
             try {
+                /*$post = Yii::$app->request->post();
+                $project->project_type_id = $post['ProjectType']['topic'];*/
+
                 $project->save(false);
                 $items = Yii::$app->request->post();
 
                 // Loop to save each partition detail
                 foreach($items['ProjectGarjan']['schedule'] as $key => $val){
-                    /*if(($partitions = ProjectPartitions::findOne(['telephone'=>$val['telephone']])) == null) {
-                        
-                    }*/
+                    /*if(($partitions = ProjectPartitions::findOne(['telephone'=>$val['telephone']])) == null) {}*/
                     $partitions = new ProjectPartitions();
                     $partitions->project_id = $project->id;
                     $partitions->fullname = $val['fullname'];
@@ -113,8 +115,9 @@ class ProjectGarjanController extends Controller
             return $this->render('create', [
                 'project' => $project,
                 'type' => $type
-            ]);
-        }     
+            ]); 
+        }   
+         
     }
 
     /**
@@ -175,7 +178,12 @@ class ProjectGarjanController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $project = $this->findProject($id);
+        $partitions = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
+        foreach ($partitions as $model) {
+            $model->delete(); // Delete each row partition
+        }
+        $project->delete();
 
         return $this->redirect(['index']);
     }
@@ -187,12 +195,39 @@ class ProjectGarjanController extends Controller
      * @return ProjectGarjan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findProject($id)
     {
         if (($model = ProjectGarjan::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionGetType() {
+     $out = [];
+     if (isset($_POST['depdrop_parents'])) {
+         $parents = $_POST['depdrop_parents'];
+         if ($parents != null) {
+             $sub_topic = $parents[0];
+             $out = $this->getType($sub_topic);
+             echo Json::encode(['output'=>$out, 'selected'=>'']);
+             return;
+         }
+     }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    protected function getType($sub_topic){
+        $datas = ProjectType::find()->where(['sub_topic'=>$sub_topic])->all();
+        return $this->MapData($datas, 'id', 'type');
+    }
+
+    protected function MapData($datas, $fieldId, $fieldName){
+        $obj = [];
+        foreach ($datas as $key => $value) {
+            array_push($obj, ['id'=>$value->{$fieldId}, 'name'=>$value->{$fieldName}]);
+        }
+        return $obj;
     }
 }

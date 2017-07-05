@@ -1,16 +1,18 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
+use app\models\Researcher;
+use app\models\ProjectType;
 
-use kartik\widgets\ActiveForm;
 use kartik\select2\Select2;
+use kartik\widgets\ActiveForm;
+use kartik\widgets\DepDrop;
 
 use unclead\multipleinput\MultipleInput;
 use unclead\multipleinput\examples\models\ExampleModel;
 
-use app\models\Researcher;
-use app\models\ProjectType;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectGarjan */
@@ -31,18 +33,27 @@ use app\models\ProjectType;
 
     <div class="box-body">
 
-    <?= $form->field($type, 'topic')->dropdownList(
-        ArrayHelper::map(ProjectType::find()->all(),
-            'id',
-            'name'),
+    <?= $form->field($type, 'sub_topic')->dropdownList(ArrayHelper::map(
+            ProjectType::find()->where(['topic' => 'ยางนา'])->groupBy('sub_topic')
+            ->orderBy('id ASC')->all(), 'sub_topic', 'sub_topic'),
             [
-                //'data'=> $instit_list,
-                'id'=>'ddl-type',
-                'prompt'=>'Select'
-            ]); 
+                'id'=>'ddl-sub_topic',
+                'options'=>[
+                    $type -> id => ['Selected' => 'selected']],
+                'prompt'=>'เลือกกรอบกิจกรรม'
+            ]
+        ); 
     ?>
 
-    
+    <?= $form->field($type, 'type')->widget(DepDrop::classname(), [
+            'data'=> [],
+            'pluginOptions'=>[
+                'depends'=>['ddl-sub_topic'],
+                'placeholder'=>'เลือกด้าน',
+                'url'=>Url::to(['/project-garjan/get-type'])
+            ]
+        ]); 
+    ?>
 
     <?php echo $form->field($project, 'year')->widget(etsoft\widgets\YearSelectbox::classname(), [
             'yearStart' => 2549,

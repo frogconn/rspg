@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 
 use kartik\widgets\ActiveForm;
 use kartik\widgets\DepDrop;
+use kartik\select2\Select2;
 
 use app\models\AddressProvince;
 
