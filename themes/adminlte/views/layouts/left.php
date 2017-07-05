@@ -41,7 +41,7 @@ use app\components\MenuHelper;
                   'url' => ['/researcher'],
                   'active' => MenuHelper::Active('researcher')
                 ],
-					      [
+					      /*[
                   'label' => 'ข้อมูลผลงานวิจัย',
                   'icon' => 'share',
                   'url' => '#',
@@ -96,16 +96,16 @@ use app\components\MenuHelper;
                               'url' => ['/project-garjan'],
                           ],
                       ],
-                  ],
+                  ],*/
 
                   [
             				'label' => 'ตั้งค่าผู้ใช้งาน',
-            				'icon' => 'fa fa-users',
+            				'icon' => 'cog',
             				'url' => '#',
             				'items' => [
                       [
             						'label' => 'จัดการสิทธิ์',
-            						'icon' => 'fa fa-users',
+            						'icon' => 'share',
             						'url' => '#',
             						'items' => [
             							['label' => 'Assignments', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/assignment']],
