@@ -109,11 +109,8 @@ class UploadBehavior extends Behavior
                  'value' => function ($model) {
 
                    $delete = Html::a('<i class="fa fa-trash"></i>', 'javascript::void(0)', [
-                           'title' => Yii::t('yii', 'Delete'),
-                           'aria-label' => Yii::t('yii', 'Delete'),
                            'data-pjax' => '0',
                            'class' => 'btn btn-danger btn-xs btn-delete-file',
-                           'data-toggle' => 'tooltip',
                            'data-id' => $model->id,
                            'data-url' => Url::to(['/upload/delete-file']),
                          ]);
