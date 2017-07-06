@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ResourcePlantSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Resource Plants';
+$this->title = 'ข้อมูลทรัพยากรพืช';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-plant-index">
@@ -16,13 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Resource Plant', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 

@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ResourceAnimalSearch */
+/* @var $searchModel app\models\ProjectEcologySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'ข้อมูลทรัพยากรสัตว์และแมลง';
+$this->title = 'ข้อมูลด้านนิเวศวิทยาและชุมชน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resource-animal-index">
+<div class="project-ecology-index">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -20,11 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <div class="box box-success">
-            <!--div class="box-header with-border">
+            <!-- class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
             </div-->
 
             <div class="box-body">
+
 
 <?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
 <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,36 +33,30 @@ $this->params['breadcrumbs'][] = $this->title;
  <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
-        'tableOptions' => [
-            'class' => 'table table-bordered table-striped table-hover',
-            ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
-            
+
             //'id',
             [
-                 'attribute' => 'type_name',
-                 'label' => 'ประเภท',
-                 'value' => 'resourceType.name'
+                 'attribute' => 'type',
+                 'label' => 'หมวดหมู่',
+                 'value' => 'projectType.type'
             ],
-            'common_name',
-            'location_name',
-            'science_name',
-            'family_name',
-            [  
-                'attribute' => 'zone_name',  // !!! important to matches the name attribute
-                'label'=>'ชื่อพื้นที่วิจัย',
-                'value'=> 'researchArea.name', 
-            ], 
-            // 'information:ntext',
-            //'zone_id',
-            // 'benefit:ntext',
-            // 'image_id',
+            'year',
+            'name',
+            [
+                 'attribute' => 'fullname_th',
+                 'label' => 'หัวหน้าโครงการ',
+                 'value' => 'researcher.fullname_th'
+            ],
+            'faculty_id',
+            // 'budget',
+            // 'summary:ntext',
             // 'type_id',
-            // 'created_date',
             // 'created_by',
-            // 'updated_date',
+            // 'created_date',
             // 'updated_by',
+            // 'updated_date',
 
               [
                 'class' => 'app\widgets\ActionColumn',

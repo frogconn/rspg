@@ -4,17 +4,18 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ResearchAreaInformationSearch */
+/* @var $model app\models\ProjectEcologySearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="research-area-information-search">
+<div class="project-ecology-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-         'options' => ['data-pjax' => true]
+        'options' => ['data-pjax' => true]
     ]); ?>
+
 
      <div class="input-group">
       <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
@@ -23,7 +24,7 @@ use yii\widgets\ActiveForm;
        
       </span>
     </div>
+
     <?php ActiveForm::end(); ?>
 
 </div>
-

@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ResourceMicrologySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Resource Micrologies';
+$this->title = 'ข้อมูลทรัพยากรจุลินทรีย์';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-micrology-index">
@@ -16,13 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Resource Micrology', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 

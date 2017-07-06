@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\ResourcePlant */
 
-$this->title = $model->id;
+$this->title = $model->common_name;
 $this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
       <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 

@@ -25,4 +25,3 @@ foreach ($model->partitions as $model): ?>
         ]);
     ?>
 <?php endforeach; ?>
-    

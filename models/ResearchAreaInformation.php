@@ -77,4 +77,24 @@ class ResearchAreaInformation extends \yii\db\ActiveRecord
         }
         return false;
     }
+
+    
+
+    public function getAddressProvince(){
+        return $this->hasOne(AddressProvince::className(),['id'=>'province_id']); 
+    }
+
+    public function getAddressAmphur(){
+        return $this->hasOne(AddressAmphur::className(),['id'=>'amphur_id']); 
+    }
+    public function getAddressDistrict(){
+        return $this->hasOne(AddressDistrict::className(),['id'=>'district_id']); 
+    }
+    public function getAddressRegion(){
+        return $this->hasOne(AddressRegion::className(),['id'=>'region_id']); 
+    }
+
+     
+
+
 }
