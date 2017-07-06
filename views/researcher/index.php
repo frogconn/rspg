@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'personal_code',
-            'is_foreigner',
+            'is_foreigner:boolean',
             //'title',
             //'firstname_th',
             //'lastname_th',

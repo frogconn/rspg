@@ -8,10 +8,14 @@ use app\models\ProjectGarjanSearch;
 use app\models\ProjectType;
 use app\models\ProjectPartitions;
 use app\models\Researcher;
+use app\models\ResearcherAgency;
+use app\models\ResearcherInstitution;
+use app\models\ResearcherFaculty;
 
 use yii\widgets\ActiveForm;
 
 use yii\web\Controller;
+use yii\web\JsonParser;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -78,7 +82,9 @@ class ProjectGarjanController extends Controller
     {
         $project = new ProjectGarjan();
         $type = new ProjectType();
+        $faculty = new ResearcherFaculty();
         $type_list = [];
+        $faculty_list = [];
 
         if($project->load(Yii::$app->request->post()))
         {
@@ -86,8 +92,12 @@ class ProjectGarjanController extends Controller
             try {
                 $post = Yii::$app->request->post();
                 $project->type_id = $post['ProjectType']['type'];
-
                 $project->save(false);
+
+                $agency = ResearcherAgency::find()->where(['personal_code'=>$project->personal_code])->one();
+                $project->faculty_id = $agency->faculty_id;
+                $project->save(false);
+
                 $items = Yii::$app->request->post();
 
                 // Loop to save each partition detail
@@ -116,7 +126,9 @@ class ProjectGarjanController extends Controller
             return $this->render('create', [
                 'project' => $project,
                 'type' => $type,
+                'faculty' => $faculty,
                 'type_list' => $type_list,
+                'faculty_list' => $faculty_list
             ]); 
         }   
          
@@ -132,15 +144,25 @@ class ProjectGarjanController extends Controller
     {
         $project = ProjectGarjan::findOne($id);
         $type = ProjectType::findOne($project->type_id);
-        $type_list = ArrayHelper::map($this->getType($type->sub_topic), 'id', 'type');
+        $type_list = ArrayHelper::map($this->getType($type->sub_topic), 'id', 'name'); 
+       
+        $agency = ResearcherAgency::findOne(['personal_code'=>$project->personal_code]);
+        $faculty = ResearcherFaculty::findOne($agency->faculty_id);
+        $faculty_list = ArrayHelper::map($this->getFaculty($agency->institution_id), 'id', 'name');
+        
         $project->schedule = ProjectPartitions::find()->andWhere(['project_id'=>$project->id])
                                                       ->andWhere(['group'=>'garjan'])->all();
+
         if (isset($_POST) && $_POST!=null) 
         {
             $transaction = Yii::$app->db->beginTransaction();
             try{
                 $post = Yii::$app->request->post();
+                $project->personal_code = $post['ProjectGarjan']['personal_code'];
                 $project->type_id = $post['ProjectType']['type'];
+                $project->save();
+
+                $project->faculty_id = $post['ResearcherFaculty']['name'];
                 $project->save();
 
                 $partition = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
@@ -171,7 +193,9 @@ class ProjectGarjanController extends Controller
             return $this->render('update', [
                 'project' => $project,
                 'type' => $type,
+                'faculty' => $faculty,
                 'type_list' => $type_list,
+                'faculty_list' => $faculty_list
             ]);
         }
     }
@@ -210,6 +234,33 @@ class ProjectGarjanController extends Controller
         }
     }
 
+    /*public function actionGetFaculty($personal_code){
+        // Find the personal code from the researcher table
+        $agency = ResearcherAgency::find()->where(['personal_code'=>$personal_code])->one();
+        $faculty = ResearcherFaculty::find()->where(['id'=>$agency->faculty_id])->one();
+        echo Json::encode($faculty);
+    }*/
+
+    public function actionGetFaculty() {
+     $out = [];
+     if (isset($_POST['depdrop_parents'])) {
+         $parents = $_POST['depdrop_parents'];
+         if ($parents != null) {
+             $personal_code = $parents[0];
+             $agency = ResearcherAgency::findOne(['personal_code'=>$personal_code]);
+             $out = $this->getFaculty($agency->institution_id);
+             echo Json::encode(['output'=>$out, 'selected'=>'']);
+             return;
+         }
+     }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    protected function getFaculty($id){
+        $datas = ResearcherFaculty::find()->where(['institution_id'=>$id])->all();
+        return $this->MapData($datas, 'id', 'name');
+    }
+
     public function actionGetType() {
      $out = [];
      if (isset($_POST['depdrop_parents'])) {
@@ -234,6 +285,6 @@ class ProjectGarjanController extends Controller
         foreach ($datas as $key => $value) {
             array_push($obj, ['id'=>$value->{$fieldId}, 'name'=>$value->{$fieldName}]);
         }
-        return $obj;
+        return $obj; // key of mapdata is id and name
     }
 }

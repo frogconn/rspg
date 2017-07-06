@@ -67,13 +67,23 @@ use yii\helpers\Url;
     <?php echo $form->field($project, 'personal_code')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(Researcher::find()->all(), 'personal_code', 'fullname_th'),
             'language' => 'th',
-            'options' => ['placeholder' => 'เลือกหัวหน้าโครงการ'],
+            'options' => ['placeholder' => 'เลือกหัวหน้าโครงการ', 'id'=>'ddl-header'],
             'pluginOptions' => [
                 'allowClear' => true
             ],
         ]);
     ?>
 
+    <?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
+            'data'=> $faculty_list,
+            'options'=>['id'=>'ddl-faculty'],
+            'pluginOptions'=>[
+                'depends'=>['ddl-header'],
+                'placeholder'=>'เลือกคณะ',
+                'url'=>Url::to(['/project-garjan/get-faculty'])
+            ]
+        ]); 
+    ?>
 
     <?= $form->field($project, 'schedule')->widget(MultipleInput::className(), [
             'columns' => [
@@ -173,5 +183,25 @@ use yii\helpers\Url;
 </div>
 
 <script>
+    document.getElementById('ddl-faculty').value="<?php echo $faculty->id; ?>";
     document.getElementById('projecttype-type').value="<?php echo $type->id; ?>";
 </script>
+
+<?php
+    $script = <<< JS
+    // here you right all your javascript stuff
+    $('#ddl-header').change(function(){
+        /*var personal_code = $(this).val();
+        $.get('get-faculty', { personal_code : personal_code }, function(data){
+            var data = $.parseJSON(data);
+            alert(data);
+            $('#researcherfaculty-name').attr('value', data.name);
+        });*/
+        $("#ddl-faculty").depdrop({
+            depends: ['ddl-header'],
+            url: '/project-garjan/get-faculty'
+        });
+    }).change();
+JS;
+$this->registerJs($script);
+?>

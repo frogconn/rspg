@@ -24,13 +24,14 @@ use app\models\AddressProvince;
 
     <?= $form->field($researchArea, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($provinceid, 'name')->dropdownList(ArrayHelper::map(
-        AddressProvince::find()->all(), 'id', 'name'), [
-                'id'=>'ddl-province',
-                'options' => [
-                    $provinceid->id => ['Selected'=>'selected']],
-                'prompt'=>'เลือกจังหวัด'
-            ]); 
+    <?= $form->field($provinceid, 'name')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(AddressProvince::find()->all(), 'id', 'name'),
+            'language' => 'th',
+            'options' => ['placeholder' => 'เลือกจังหวัด', 'id' => 'ddl-province'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
     ?>
 
     <?= $form->field($amphurid, 'name')->widget(DepDrop::classname(), [

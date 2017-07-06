@@ -58,7 +58,7 @@ class ProjectGarjan extends \yii\db\ActiveRecord
             'year' => 'ปีงบประมาณ',
             'name' => 'ชื่อโครงการวิจัย',
             'personal_code' => 'หัวหน้าโครงการวิจัย',
-            'faculty_id' => 'รหัสคณะ',
+            'faculty_id' => 'คณะ', //รหัสคณะของหัวหน้าวิจัย
             'budget' => 'งบประมาณ',
             'type_id' => 'รหัสประเภทของโครงการ',
             'summary' => 'สรุปผลงานวิจัย',
