@@ -79,6 +79,7 @@ class ResearcherController extends Controller
         $instit = new ResearcherInstitution();// institution
         $faculty = new ResearcherFaculty();
         $agency = new ResearcherAgency();
+		$attach_file = new AttachFiles();
         $faculty_list = [];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -101,6 +102,7 @@ class ResearcherController extends Controller
                 'instit' => $instit,
                 'faculty' => $faculty,
                 'agency' => $agency,
+				'attach_file' => $attach_file,
                 'faculty_list' => $faculty_list,
             ]);
         }
@@ -118,6 +120,7 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
+		$attach_file = $this->findAttach('app\models\Researcher',$id);
         $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -133,6 +136,7 @@ class ResearcherController extends Controller
                 'instit' => $instit,
                 'faculty' => $faculty,
                 'agency'=>$agency,
+				'attach_file' => $attach_file,
                 'faculty_list' => $faculty_list,
             ]);
         }
