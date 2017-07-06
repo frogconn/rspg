@@ -75,7 +75,12 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
 
-    <div class="row">
+	<?php
+       echo app\widgets\Upload::widget(['model' => $model,'required' => false]);
+	?>
+
+	
+    <!--div class="row">
         <div class="col-md-2">
         <div class="well text-center">
             <?= Html::img($model->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
@@ -84,7 +89,7 @@ use yii\helpers\Url;
         <div class="col-md-10">
             <?= $form->field($model, 'evidence_file')->fileInput() ?>
         </div>
-    </div>
+    </div-->
 
     <!--?= $form->field($model, 'created_date')->textInput() ?-->
 

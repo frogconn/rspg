@@ -37,6 +37,15 @@ class Researcher extends \yii\db\ActiveRecord
     {
         return 'researcher';
     }
+	
+	public function behaviors()
+    {
+        return [
+            'fileBehavior' => [
+                'class' => \app\components\UploadBehavior::className()
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
