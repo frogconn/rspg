@@ -40,6 +40,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'personal_code',
             'isForeigner',
+             [
+            'format'=>'raw',
+            'attribute'=>'ชื่อสถาบัน',
+            'value'=>Html::a($instit->name),
+            ],
+             [
+            'format'=>'raw',
+            'attribute'=>'ชื่อคณะ',
+            'value'=>Html::a($faculty->name),
+            ],
             'title',
             'firstname_th',
             'lastname_th',
