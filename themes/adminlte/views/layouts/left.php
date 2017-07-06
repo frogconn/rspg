@@ -42,6 +42,46 @@ use app\components\MenuHelper;
                   'active' => MenuHelper::Active('researcher')
                 ],
                 [
+            		'label' => 'ผลงานวิจัย',
+            		'icon' => 'folder',
+            		'url' => '#',
+            		'items' => [
+                        [
+                            'label' => 'พื้นที่วิจัย',
+            				'icon' => 'file-image-o',
+            				'url' => '@web/research-area-information',
+                        ],
+                        [
+            				'label' => 'ทรัพยากร',
+            				'icon' => 'share',
+            				'url' => '#',
+            				'items' => [
+            					['label' => 'พืช', 'icon' => 'circle-o', 'url' => ['/resource-plant']],
+            			    	['label' => 'สัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal']],
+            					['label' => 'จุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology']],
+            				],
+            			],
+            		],
+            	],
+                [
+            		'label' => 'โครงงานวิจัย',
+            		'icon' => 'folder',
+            		'url' => '#',
+            		'items' => [
+                        [
+                            'label' => 'งานด้านนิเวศวิทยาและชุมชน',
+            				'icon' => 'handshake-o',
+            				'url' => '#',
+                        ],
+                        [
+            				'label' => 'พืชอนุรักษ์ยางนา',
+            				'icon' => 'leaf',
+            				'url' => '@web/project-garjan',
+            				
+            			],
+            		],
+            	],
+                [
             		'label' => 'ตั้งค่าผู้ใช้งาน',
             		'icon' => 'cog',
             		'url' => '#',
