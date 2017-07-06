@@ -101,8 +101,8 @@ class ResearchAreaInformationController extends Controller
                 $information->information = $_POST['ResearchAreaInformation']['information'];
 
                 $information->save(false);
-                return $this->redirect(['research-area-information/index']);
-                //return $this->redirect(['view', 'id' => $researchArea->id]);
+                //return $this->redirect(['research-area-information/index']);
+                return $this->redirect(['view', 'id' => $researchArea->id]);
             }
         } else {
             return $this->render('create', [
