@@ -61,9 +61,16 @@ class ResearcherController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $agency = $this->findAgency($model->personal_code);
+        $instit = $this->findInstitution($agency->institution_id);
+        $faculty = $this->findFaculty($agency->faculty_id);
         return $this->render('view', [
 			'model' => $this->findModel($id),
 			'attach_file' => $this->findAttach('app\models\Researcher',$id),
+                                        'instit' => $instit,
+                                        'faculty' => $faculty,
+                                        'agency' => $agency,
         ]);
     }
 
@@ -134,6 +141,7 @@ class ResearcherController extends Controller
                 'faculty' => $faculty,
                 'agency'=>$agency,
                 'faculty_list' => $faculty_list,
+                
             ]);
         }
     }
