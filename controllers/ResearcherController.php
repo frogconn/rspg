@@ -9,6 +9,7 @@ use app\models\ResearcherSearch;
 use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
 use app\models\ResearcherAgency;
+use app\models\AttachFiles;
 
 use yii\filters\VerbFilter;
 
@@ -62,6 +63,7 @@ class ResearcherController extends Controller
     {
         return $this->render('view', [
 			'model' => $this->findModel($id),
+			'attach_file' => $this->findAttach('app\models\Researcher',$id),
         ]);
     }
 
@@ -214,4 +216,14 @@ class ResearcherController extends Controller
             throw new NotFoundHttpException('[faculty]The requested page does not exist.');
         }
     }
+	// get images
+	protected function findAttach($name,$id)
+    {
+        if (($attach = AttachFiles::findOne(['itemId'=>$id,'model'=>$name])) !== null) {
+            return $attach;
+        } else {
+            throw new NotFoundHttpException('[attachFile]The requested page does not exist.'.$name.$id);
+        }
+    }
+	//
 }

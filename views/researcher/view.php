@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'format'=>'raw',
             'attribute'=>'evidence_file',
-            'value'=>Html::img($model->photoViewer,['class'=>'img-thumbnail','style'=>'width:200px;'])
+            'value'=>Html::img('@web'.'/uploads/files/'.$attach_file->name,['class'=>'img-thumbnail','style'=>'width:200px;'])
             ],
             'created_date',
             'created_by',
