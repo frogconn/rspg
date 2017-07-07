@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+         <?= Html::a('Create Continue',[ 'project-ecology/create'], ['class' => 'btn bg-green']) ?>
     </p>
 
       <div class="box box-success">
