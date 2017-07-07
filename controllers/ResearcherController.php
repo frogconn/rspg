@@ -136,6 +136,13 @@ class ResearcherController extends Controller
                 $model->evidence_file = $model->upload($model,'evidence_file');
                 $model->save();
             }
+            if($model->save()){
+                $agency->researcher_id=$model->id;
+                $agency->personal_code = $_POST['Researcher']['personal_code'];
+                $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];
+                $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
+                $agency->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -158,8 +165,9 @@ class ResearcherController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = $this->findModel($id);
         $this->findModel($id)->delete();
-
+        $this->findAgency($model->personal_code)->delete();
         return $this->redirect(['index']);
     }
 
