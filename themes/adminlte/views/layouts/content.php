@@ -8,7 +8,21 @@ use dmstr\widgets\Alert;
         <?php if (isset($this->blocks['content-header'])) { ?>
             <h1><?= $this->blocks['content-header'] ?></h1>
         <?php } else { ?>
+
+        <font size="2">
+        <div  class="row">
+        <?=
+        Breadcrumbs::widget(
+            [
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]
+        ) ?>
+        </div>
+        </font>
+
             <h1>
+            <font size="5">
+            <div  class="left">
                 <?php
                 if ($this->title !== null) {
                     echo \yii\helpers\Html::encode($this->title);
@@ -18,15 +32,11 @@ use dmstr\widgets\Alert;
                     );
                     echo ($this->context->module->id !== \Yii::$app->id) ? '<small>Module</small>' : '';
                 } ?>
+                </font>
+                </div>
             </h1>
         <?php } ?>
-<div  class="">
-        <?=
-        Breadcrumbs::widget(
-            [
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]
-        ) ?>
+
     </section>
 
     <section class="content">
