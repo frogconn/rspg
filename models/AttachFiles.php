@@ -54,4 +54,8 @@ class AttachFiles extends \yii\db\ActiveRecord
             'mime' => 'Mime',
         ];
     }
+		public function getPhotoViewer()
+	{
+		return empty($this->name) ? Yii::getAlias('@web').'/img/none.png' : '@web'.'/uploads/files/'.$this->name;
+	}
 }

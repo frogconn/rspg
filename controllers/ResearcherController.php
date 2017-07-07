@@ -68,9 +68,9 @@ class ResearcherController extends Controller
         return $this->render('view', [
 			'model' => $this->findModel($id),
 			'attach_file' => $this->findAttach('app\models\Researcher',$id),
-                                        'instit' => $instit,
-                                        'faculty' => $faculty,
-                                        'agency' => $agency,
+            'instit' => $instit,
+            'faculty' => $faculty,
+            'agency' => $agency,
         ]);
     }
 
@@ -96,6 +96,14 @@ class ResearcherController extends Controller
                 $model->save();
             }
             if($model->save()){
+				$attach_file->name="-";
+				$attach_file->model="app\models\Researcher";
+				$attach_file->itemId=$model->id;
+				$attach_file->hash="-";
+				$attach_file->size="0";
+				$attach_file->type="none";
+				$attach_file->mime="none";
+				$attach_file->save();
                 $agency->researcher_id=$model->id;
                 $agency->personal_code = $_POST['Researcher']['personal_code'];
                 $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];
@@ -136,6 +144,13 @@ class ResearcherController extends Controller
                 $model->evidence_file = $model->upload($model,'evidence_file');
                 $model->save();
             }
+            if($model->save()){
+                $agency->researcher_id=$model->id;
+                $agency->personal_code = $_POST['Researcher']['personal_code'];
+                $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];
+                $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
+                $agency->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -158,8 +173,9 @@ class ResearcherController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = $this->findModel($id);
         $this->findModel($id)->delete();
-
+        $this->findAgency($model->personal_code)->delete();
         return $this->redirect(['index']);
     }
 
@@ -233,9 +249,9 @@ class ResearcherController extends Controller
     {
         if (($attach = AttachFiles::findOne(['itemId'=>$id,'model'=>$name])) !== null) {
             return $attach;
-        } else {
-            throw new NotFoundHttpException('[attachFile]The requested page does not exist.'.$name.$id);
-        }
+        }// else {
+         //   throw new NotFoundHttpException('[attachFile]The requested page does not exist.'.$name.$id);
+        //}
     }
 	//
 }
