@@ -68,9 +68,9 @@ class ResearcherController extends Controller
         return $this->render('view', [
 			'model' => $this->findModel($id),
 			'attach_file' => $this->findAttach('app\models\Researcher',$id),
-                                        'instit' => $instit,
-                                        'faculty' => $faculty,
-                                        'agency' => $agency,
+            'instit' => $instit,
+            'faculty' => $faculty,
+            'agency' => $agency,
         ]);
     }
 
