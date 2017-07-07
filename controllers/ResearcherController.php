@@ -108,7 +108,6 @@ class ResearcherController extends Controller
                 'instit' => $instit,
                 'faculty' => $faculty,
                 'agency' => $agency,
-				'attach_file' => $attach_file,
                 'faculty_list' => $faculty_list,
             ]);
         }
