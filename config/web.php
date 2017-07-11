@@ -38,7 +38,7 @@ $config = [
         ],
         'user' => [
             //'identityClass' => 'app\models\User',
-			      'identityClass' => 'dektrium\user\models\User',
+			'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
