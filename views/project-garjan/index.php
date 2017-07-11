@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ProjectGarjanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Project Garjans';
+$this->title = 'พืชอนุรักษ์ยางนา';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-garjan-index">
@@ -16,13 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Project Garjan', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-success">
-            <div class="box-header with-border">
+            <!--<div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 
