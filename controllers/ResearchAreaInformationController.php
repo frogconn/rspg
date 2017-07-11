@@ -97,10 +97,12 @@ class ResearchAreaInformationController extends Controller
                 $information->province_id = $_POST['AddressProvince']['name'];
                 $information->amphur_id = $_POST['AddressAmphur']['name'];
                 $information->district_id = $_POST['AddressDistrict']['name'];
-                //$information->region_id = $_POST['AddressDistrict']['name'];//
                 $information->information = $_POST['ResearchAreaInformation']['information'];
 
                 $information->save(false);
+                $information->region_id = $this->findProvince($information->province_id)->region_id;
+                $information->save(false);
+                //= $this->findRegion($province->region_id);
                 //return $this->redirect(['research-area-information/index']);
                 return $this->redirect(['view', 'id' => $information->id]);
             }
@@ -189,6 +191,15 @@ class ResearchAreaInformationController extends Controller
             throw new NotFoundHttpException('[researcher area]The requested page does not exist.');
         }
     }
+
+    protected function findRegion($id){
+        if (($model = AddressRegion::findOne($id)) != null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page, district does not exist.');
+        }
+    }
+
 	
 	protected function findProvince($id)
     {

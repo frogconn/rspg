@@ -10,7 +10,9 @@ use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
 use app\models\ResearcherAgency;
 use app\models\AttachFiles;
+use \dektrium\user\models\User;
 
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 use yii\helpers\Json;
@@ -34,6 +36,22 @@ class ResearcherController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'update', 'create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'delete'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -65,12 +83,14 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
+        $user = $this -> findUser($model->created_by);
         return $this->render('view', [
 			'model' => $this->findModel($id),
 			//'attach_file' => $this->findAttach('app\models\Researcher',$id),
             'instit' => $instit,
             'faculty' => $faculty,
             'agency' => $agency,
+            'user' => $user,
         ]);
     }
 
@@ -125,7 +145,7 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
-        $faculty_list = ArrayHelper::map($this->getFaculty($agency->institution_id),'id','name');
+        $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($model->validate())
@@ -177,6 +197,15 @@ class ResearcherController extends Controller
     protected function findModel($id)
     {
         if (($model = Researcher::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
+        }
+    }
+
+    protected function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher]The requested page does not exist.');

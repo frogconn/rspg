@@ -94,7 +94,4 @@ class ResearchAreaInformation extends \yii\db\ActiveRecord
         return $this->hasOne(AddressRegion::className(),['id'=>'region_id']); 
     }
 
-     
-
-
 }

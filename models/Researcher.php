@@ -5,6 +5,8 @@ namespace app\models;
 use Yii;
 use \yii\web\UploadedFile;
 
+use yii\behaviors\BlameableBehavior;
+
 /**
  * This is the model class for table "researcher".
  *
@@ -41,6 +43,7 @@ class Researcher extends \yii\db\ActiveRecord
 	public function behaviors()
     {
         return [
+            BlameableBehavior::className(),
             'fileBehavior' => [
                 'class' => \app\components\UploadBehavior::className()
             ],
@@ -95,6 +98,7 @@ class Researcher extends \yii\db\ActiveRecord
 			'gGender' => 'เพศ',
         ];
     }
+    
     public function beforeSave($insert)
     {
         $this->fullname_th = $this->firstname_th." ".$this->lastname_th;
@@ -105,7 +109,7 @@ class Researcher extends \yii\db\ActiveRecord
             {
                 $this->created_date = new \yii\db\Expression('NOW()');
             }
-             $this->updated_date = new \yii\db\Expression('NOW()');
+            $this->updated_date = new \yii\db\Expression('NOW()');
             return true;
         }
         return false;

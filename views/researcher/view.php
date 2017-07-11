@@ -67,7 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'value'=>Html::img($attach_file->photoViewer,['class'=>'img-thumbnail','style'=>'width:200px;'])
             //],
             'created_date',
-            'created_by',
+            [
+            'format'=>'raw',
+            'attribute'=>'created_by',
+            'value'=>Html::a($user->username),
+            ],
             'updated_date',
             'updated_by',
         ],
