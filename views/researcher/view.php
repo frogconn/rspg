@@ -44,12 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
              [
             'format'=>'raw',
             'attribute'=>'ชื่อสถาบัน',
-            'value'=>Html::a($instit->name),
+            'value'=>Html::encode($instit->name),
             ],
              [
             'format'=>'raw',
             'attribute'=>'ชื่อคณะ',
-            'value'=>Html::a($faculty->name),
+            'value'=>Html::encode($faculty->name),
             ],
             'title',
             'firstname_th',
