@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Researcher */
 
@@ -44,12 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
              [
             'format'=>'raw',
             'attribute'=>'ชื่อสถาบัน',
-            'value'=>Html::encode($instit->name),
+            'value'=>Html::a($instit->name),
             ],
              [
             'format'=>'raw',
             'attribute'=>'ชื่อคณะ',
-            'value'=>Html::encode($faculty->name),
+            'value'=>Html::a($faculty->name),
             ],
             'title',
             'firstname_th',

@@ -45,8 +45,15 @@ class ResearcherSearch extends Researcher
      */
     public function search($params)
     {
-        $query = Researcher::find();
-
+        $session = Yii::$app->session;
+            
+        // Is user admin or staff ?
+        if ($session['user_role'] != 'Researcher') {
+            $query = Researcher::find();
+        } else {
+            $query = Researcher::find()->where(['created_by'=>$session['user_id']]);
+        }
+        
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

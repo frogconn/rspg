@@ -21,6 +21,9 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
+use yii\web\ForbiddenHttpException;
+
+
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
  */
@@ -142,6 +145,12 @@ class ResearcherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnResearcher', ['model' => $model]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        } 
+
         $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
@@ -153,24 +162,25 @@ class ResearcherController extends Controller
                 $model->evidence_file = $model->upload($model,'evidence_file');
                 $model->save();
             }
-            if($model->save()){
-                $agency->researcher_id=$model->id;
-                $agency->personal_code = $_POST['Researcher']['personal_code'];
-                $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];
-                $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
-                $agency->save();
-            }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'instit' => $instit,
-                'faculty' => $faculty,
-                'agency'=>$agency,
-                'faculty_list' => $faculty_list,
+                if($model->save()){
+                    $agency->researcher_id=$model->id;
+                    $agency->personal_code = $_POST['Researcher']['personal_code'];
+                    $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];                        $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
+                    $agency->save();
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                    'instit' => $instit,
+                    'faculty' => $faculty,
+                    'agency'=>$agency,
+                    'faculty_list' => $faculty_list,
                 
-            ]);
-        }
+                ]);
+            }
+        
+        
     }
 
     /**
