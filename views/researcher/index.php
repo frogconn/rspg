@@ -1,4 +1,6 @@
 <?php
+use kartik\widgets\ActiveForm;
+use kartik\widgets\DepDrop;
 
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -24,9 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
             </div-->
 
-            <div class="box-body">
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+		<div class="box-body">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><?= Html::encode("ค้นหา") ?></h3>
+				</div>
+				    <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL],
+					[
+						'options' => ['enctype' => 'multipart/form-data']
+	]				); ?>
+				    <?php $list = ['Y' => 'Yes', 'N' => 'No'];
+					echo $form->field($searchModel, 'is_foreigner')->radioList($list); ?>
+					<?php ActiveForm::end(); ?>
+			</div>
+		</div>
+	<?= GridView::widget([
+		'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
