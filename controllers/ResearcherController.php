@@ -145,7 +145,7 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
-        $faculty_list = ArrayHelper::map($this->getFaculty($agency->faculty_id),'id','name');
+        $faculty_list = ArrayHelper::map($this->getFaculty($agency->institution_id),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($model->validate())
