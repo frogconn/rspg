@@ -97,9 +97,9 @@ use yii\helpers\Url;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($model->isNewRecord ? 'สร้าง' : 'แก้ไขข้อมูล', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('Cancle',[ 'researcher/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',[ 'researcher/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>

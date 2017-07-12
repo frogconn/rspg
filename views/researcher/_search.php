@@ -67,9 +67,9 @@ use yii\widgets\ActiveForm;
 
     <div class="col-xs-2">
         <div class="form-group">
-            <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
             <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
-            <?= Html::a('Reset', ['reset'], ['class' => 'btn btn-default']) ?>
+            <?= Html::a('ยกเลิก', ['reset'], ['class' => 'btn btn-default']) ?>
         <?php ActiveForm::end(); ?>
         </div>
     </div>

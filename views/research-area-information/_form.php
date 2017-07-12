@@ -68,9 +68,9 @@ use app\models\AddressProvince;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($researchArea->isNewRecord ? 'Create' : 'Update', ['class' => $researchArea->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($researchArea->isNewRecord ? 'สร้าง' : 'แก้ไขข้อมูล', ['class' => $researchArea->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('Cancle',[ 'research-area-information/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',[ 'research-area-information/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>

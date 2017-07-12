@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-success">

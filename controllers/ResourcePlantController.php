@@ -211,7 +211,7 @@ class ResourcePlantController extends Controller
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
+            throw new NotFoundHttpException('[user]The requested page does not exist.');
         }
     }
 }

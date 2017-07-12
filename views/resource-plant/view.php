@@ -15,17 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Back',[ 'resource-plant/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('ย้อนกลับ',[ 'resource-plant/'], ['class' => 'btn bg-navy']) ?>
 
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Create Continue',[ 'resource-plant/create'], ['class' => 'btn bg-green']) ?>
+        <?= Html::a('สร้างข้อมูลเพิ่ม',[ 'resource-plant/create'], ['class' => 'btn bg-green']) ?>
     </p>
 
       <div class="box box-success">
