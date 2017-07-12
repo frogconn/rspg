@@ -9,13 +9,13 @@ use yii\helpers\Url;
 
 $this->title = '';
 ?>
-<div class="site-view">
+<div class="box box-success">
 	<div>
 	<div class="row">
         <div class="col-md-12">
-          <div class="box">
+          
             <!-- /.box-header -->
-            <div class="box-body">
+            
               <div class="row">
                 <div class="col-md-11">
                   <p><center>
@@ -34,9 +34,9 @@ $this->title = '';
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-            </div>
+            
             <!-- ./box-body -->
-            </div>
+            
             <!-- /.box-footer -->
           </div>
           <!-- /.box -->
@@ -50,7 +50,7 @@ $this->title = '';
 	<div class="row">
 	<div class="col-md-4 col-sm-6 col-xs-12">
 	<div class="x_panel">
-	<div class="box box-primary">
+	<div class="box box-success">
 		<div class="box-header with-border">
 			<h3 class="box-title">ผลงานวิจัย</h3>
 			<div class="box-tools pull-right">
@@ -113,7 +113,7 @@ $this->title = '';
 	<div class="row">
 	<div class="col-md-4 col-sm-6 col-xs-12">
 	<div class="x_panel">
-	<div class="box box-primary">
+	<div class="box box-success">
 		<div class="box-header with-border">
 			<h3 class="box-title">โครงงานวิจัย</h3>
 			<div class="box-tools pull-right">

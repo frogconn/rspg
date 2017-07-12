@@ -20,51 +20,45 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <div class="box box-success">
+        <!--div class="box-header with-border">
+            <h3 class="box-title">ค้นหา</h3>
+        </div-->
+        <div class="box-body">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+        <!-- /.box-body -->
+    </div>
 
     <div class="box box-success">
             <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
             </div-->
 
-		<div class="box-body">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><?= Html::encode("ค้นหา") ?></h3>
-				</div>
-				    <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL],
-					[
-						'options' => ['enctype' => 'multipart/form-data']
-	]				); ?>
-	
-				    <?php $list = ['Y' => 'Yes', 'N' => 'No'];
-					echo $form->field($searchModel, 'is_foreigner')->radioList($list); ?>
-					
-					<?php $list = ['M' => 'Male', 'F' => 'Female'];
-					echo $form->field($searchModel, 'gender')->radioList($list); ?>
-					
-					<?= $form->field($searchModel, 'fullname_th')->textInput(['maxlength' => true]) ?>
-					
-					<?= Html::a('ค้นหา', ['#'], ['class' => 'btn btn-success']) ?>
-					<?php ActiveForm::end(); ?>
-			</div>
-		</div>
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
             // 'id',
             'personal_code',
             // 'is_foreigner',
+             [
+                 'attribute' => 'is_foreigner',
+                 'value' =>'isForeigner',
+             ],
             // 'title',
             // 'firstname_th',
             // 'lastname_th',
             // 'firstname_en',
             // 'lastname_en',
             'fullname_th',
-            // 'fullname_en',
-            // 'gender',
+            'fullname_en',
+             [
+                 'attribute' => 'gender',
+                 'value' =>'gGender',
+             ],
             'email',
             'telephone',
             // 'evidence_file',

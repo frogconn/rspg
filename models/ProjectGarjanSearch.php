@@ -45,6 +45,7 @@ class ProjectGarjanSearch extends ProjectGarjan
      */
     public function search($params)
     {
+
         $query = ProjectGarjan::find()->joinWith('researcher')->joinWith('projectType');
 
         // add conditions that should always apply here
