@@ -15,17 +15,17 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <div class="col-xs-4">
-        <p>ใส่ keyword เช่น ชื่อ หกดห</p>
+    <div class="col-xs-5">
+        <p></p>
         <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-xs-4">
         <?php $list = ['Y' => 'ใช่', 'N' => 'ไม่ใช่'];
 	    echo $form->field($model, 'is_foreigner')->radioList($list); ?>
 	</div>
 
-    <div class="col-xs-5">
+    <div class="col-xs-3">
         <?php $list = ['M' => 'ชาย', 'F' => 'หญิง'];
 	    echo $form->field($model, 'gender')->radioList($list); ?>
     </div>
@@ -65,10 +65,12 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'updated_by') ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
-        <?= Html::a('Reset', ['reset'], ['class' => 'btn btn-default']) ?>
-    <?php ActiveForm::end(); ?>
+    <div class="col-xs-2">
+        <div class="form-group">
+            <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+            <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
+            <?= Html::a('Reset', ['reset'], ['class' => 'btn btn-default']) ?>
+        <?php ActiveForm::end(); ?>
+        </div>
     </div>
 </div>
