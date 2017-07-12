@@ -16,12 +16,14 @@ use app\models\ResearcherFaculty;
 use app\models\ResearcherInstitution;
 
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
-
 use yii\filters\VerbFilter;
+
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
+use yii\web\JsonParser;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -284,7 +286,7 @@ class ProjectEcologyController extends Controller
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
+            throw new NotFoundHttpException('[user]The requested page does not exist.');
         }
     }
 

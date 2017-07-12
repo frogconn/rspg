@@ -40,9 +40,12 @@ if (Yii::$app->controller->action->id === 'login') {
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
+        <?php 
+            $username = Yii::$app->session['username'];
+        ?>
+
         <?= $this->render(
-            'header.php',
-            ['directoryAsset' => $directoryAsset]
+            'header.php', ['directoryAsset' => $directoryAsset, 'username' => $username]
         ) ?>
 
         <?php if(Yii::$app->session['user_role'] == 'Admin') {?>
