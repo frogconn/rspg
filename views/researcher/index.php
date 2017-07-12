@@ -21,9 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <div class="box box-success">
-        <div class="box-header with-border">
+        <!--div class="box-header with-border">
             <h3 class="box-title">ค้นหา</h3>
-        </div>
+        </div-->
         <div class="box-body">
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
         </div>

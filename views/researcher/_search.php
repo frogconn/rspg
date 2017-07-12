@@ -20,14 +20,14 @@ use yii\widgets\ActiveForm;
         <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
     </div>
     
-    <div class="col-xs-4">
-        <?php $list = ['Y' => 'ใช่', 'N' => 'ไม่ใช่'];
-	    echo $form->field($model, 'is_foreigner')->radioList($list); ?>
+    <div class="col-xs-3">
+        <?php $list = ['' => 'ทั้งหมด','Y' => 'ใช่', 'N' => 'ไม่ใช่'];
+	    echo $form->field($model, 'is_foreigner')->dropdownList($list); ?>
 	</div>
 
-    <div class="col-xs-3">
-        <?php $list = ['M' => 'ชาย', 'F' => 'หญิง'];
-	    echo $form->field($model, 'gender')->radioList($list); ?>
+    <div class="col-xs-2">
+        <?php $list = ['' => 'ทั้งหมด','M' => 'ชาย', 'F' => 'หญิง'];
+	    echo $form->field($model, 'gender')->dropdownList($list); ?>
     </div>
 	<!--?= $form->field($model, 'id') ?-->
 
