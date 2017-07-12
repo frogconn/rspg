@@ -14,15 +14,21 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-    <p>ใส่ keyword เช่น ชื่อ หกดห</p>
-    <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
 
-    <?php $list = ['Y' => 'ใช่', 'N' => 'ไม่ใช่'];
-	echo $form->field($model, 'is_foreigner')->radioList($list); ?>
-					
-	<?php $list = ['M' => 'ชาย', 'F' => 'หญิง'];
-	echo $form->field($model, 'gender')->radioList($list); ?>
+    <div class="col-xs-4">
+        <p>ใส่ keyword เช่น ชื่อ หกดห</p>
+        <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
+    </div>
+    
+    <div class="col-xs-3">
+        <?php $list = ['Y' => 'ใช่', 'N' => 'ไม่ใช่'];
+	    echo $form->field($model, 'is_foreigner')->radioList($list); ?>
+	</div>
 
+    <div class="col-xs-5">
+        <?php $list = ['M' => 'ชาย', 'F' => 'หญิง'];
+	    echo $form->field($model, 'gender')->radioList($list); ?>
+    </div>
 	<!--?= $form->field($model, 'id') ?-->
 
     <!--?= $form->field($model, 'personal_code') ?-->
