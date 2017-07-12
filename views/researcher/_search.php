@@ -14,15 +14,25 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-	<?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'personal_code') ?>
+    <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
 
-    <?= $form->field($model, 'is_foreigner') ?>
+    <?php $list = ['Y' => 'Yes', 'N' => 'No'];
+	echo $form->field($model, 'is_foreigner')->radioList($list); ?>
+					
+	<?php $list = ['M' => 'Male', 'F' => 'Female'];
+	echo $form->field($model, 'gender')->radioList($list); ?>
 
-    <?= $form->field($model, 'title') ?>
+	<!--?= $form->field($model, 'id') ?-->
 
-    <?= $form->field($model, 'firstname_th') ?>
+    <!--?= $form->field($model, 'personal_code') ?-->
+
+    <!--?= $form->field($model, 'is_foreigner') ?-->
+
+    <!--?= $form->field($model, 'title') ?-->
+
+    <!--?= $form->field($model, 'firstname_th') ?-->
+
     <?php // echo $form->field($model, 'lastname_th') ?>
 
     <?php // echo $form->field($model, 'firstname_en') ?>
@@ -52,14 +62,6 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-    <div class="input-group">
-      <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> ค้นหา</button>
-       
-      </span>
-     </div>
-
     <?php ActiveForm::end(); ?>
-
+    </div>
 </div>
