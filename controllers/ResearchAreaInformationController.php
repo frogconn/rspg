@@ -259,7 +259,7 @@ class ResearchAreaInformationController extends Controller
 	
 	protected function findAmphur($id)
     {
-        if (($model = AddressAmphur::findOne(['id'=>$id])) !== null) {
+        if (($model = AddressAmphur::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[amphur]The requested page does not exist.');
@@ -268,7 +268,7 @@ class ResearchAreaInformationController extends Controller
 	
 	protected function findDistrict($id)
     {
-        if (($model = AddressDistrict::findOne(['id'=>$id])) !== null) {
+        if (($model = AddressDistrict::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[district]The requested page does not exist.');
@@ -280,7 +280,7 @@ class ResearchAreaInformationController extends Controller
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
+            throw new NotFoundHttpException('[user]The requested page does not exist.');
         }
     }
 	

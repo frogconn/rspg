@@ -197,13 +197,12 @@ class ProjectEcologyController extends Controller
                 $project->stop = $post['ProjectEcology']['stop'];
                 $project->year = $post['ProjectEcology']['year'];
                 $project->name = $post['ProjectEcology']['name'];
-                $project->personal_code = $post['ProjectEcology']['personal_code'];
                 $project->budget = $post['ProjectEcology']['budget'];
                 $project->summary = $post['ProjectEcology']['summary'];
-                $project->save();
+                $project->save(false);
 
                 $partition = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
-                $project->save();
+                $project->save(false);
 
                 $partition = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
                 foreach ($partition as $model) {

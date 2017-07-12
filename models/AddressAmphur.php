@@ -29,6 +29,7 @@ class AddressAmphur extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'province_id'], 'required'],
             [['province_id', 'region_id'], 'integer'],
             [['code'], 'string', 'max' => 5],
             [['name'], 'string', 'max' => 127],

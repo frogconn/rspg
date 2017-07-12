@@ -27,7 +27,6 @@ use app\models\AddressProvince;
     <?= $form->field($province, 'name')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(AddressProvince::find()->all(), 'id', 'name'),
             'language' => 'th',
-            
             'options' => [
                 'value' => $province->id,
                 'placeholder' => 'เลือกจังหวัด',
@@ -40,8 +39,8 @@ use app\models\AddressProvince;
     ?>
 
     <?= $form->field($amphur, 'name')->widget(DepDrop::classname(), [
-            'options'=>['id'=>'ddl-amphur'],
             'data'=> $amphur_list,
+            'options'=>['id'=>'ddl-amphur'],
             'pluginOptions'=>[
                 'depends'=>['ddl-province'],
                 'placeholder'=>'เลือกอำเภอ',
@@ -51,8 +50,8 @@ use app\models\AddressProvince;
     ?>
 
     <?= $form->field($district, 'name')->widget(DepDrop::classname(), [
-			'options'=>['id'=>'ddl-district'],
 			'data' => $district_list,
+            'options'=>['id'=>'ddl-district'],
 			'pluginOptions'=>[
 				'depends'=>['ddl-province', 'ddl-amphur'],
 				'placeholder'=>'เลือกตำบล',

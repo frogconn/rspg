@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-             [
+            [
 
                  'attribute' => 'type_name',
                  'label' => 'ประเภท',
