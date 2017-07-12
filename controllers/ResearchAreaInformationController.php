@@ -158,8 +158,8 @@ class ResearchAreaInformationController extends Controller
 
 		$researchArea = $this->findArea($information->area_id);
 		$province = $this->findProvince($information->province_id);
-        $amphur   = $this->findAmphur($information->province_id);
-        $district = $this->findDistrict($information->amphur_id);
+        $amphur   = $this->findAmphur($information->amphur_id);
+        $district = $this->findDistrict($information->district_id);
 		$amphur_list = ArrayHelper::map($this->getAmphur($information->province_id),'id','name');
 		$district_list = ArrayHelper::map($this->getDistrict($information->amphur_id),'id','name');
 

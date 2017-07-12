@@ -110,7 +110,7 @@ class ResourcePlantController extends Controller
                 $plant->save(false);
 
                 Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-                return $this->redirect(['view', 'id' => $researchArea->id]);
+                return $this->redirect(['view', 'id' => $plant->id]);
             }
         } else {
             return $this->render('create', [

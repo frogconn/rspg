@@ -40,12 +40,13 @@ use app\models\AddressProvince;
 
     <?= $form->field($amphur, 'name')->widget(DepDrop::classname(), [
             'data'=> $amphur_list,
+            'value' => $amphur->id,
             'options'=>['id'=>'ddl-amphur'],
             'pluginOptions'=>[
                 'depends'=>['ddl-province'],
                 'placeholder'=>'เลือกอำเภอ',
                 'url'=>Url::to(['/research-area-information/get-amphur'])
-            ]
+            ],
         ]); 
     ?>
 
@@ -56,7 +57,8 @@ use app\models\AddressProvince;
 				'depends'=>['ddl-province', 'ddl-amphur'],
 				'placeholder'=>'เลือกตำบล',
 				'url'=>Url::to(['/research-area-information/get-district'])
-           ]
+           ],
+           
         ]); 
     ?>
 
