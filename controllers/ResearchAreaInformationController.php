@@ -204,7 +204,7 @@ class ResearchAreaInformationController extends Controller
     {
         $model = $this->findModel($id);
         $session = Yii::$app->session;
-        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $information]))) {
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
             throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
         }
         ResearchArea::findOne($model->area_id)->delete();

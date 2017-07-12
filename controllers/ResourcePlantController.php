@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-
 use Yii;
 
 use app\models\ResearchArea;
@@ -10,9 +9,11 @@ use app\models\ResourcePlant;
 use app\models\ResourcePlantSearch;
 use app\models\ResourceType;
 
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 use \dektrium\user\models\User;
@@ -31,6 +32,22 @@ class ResourcePlantController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'update', 'create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'delete'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -146,7 +163,12 @@ class ResourcePlantController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }  
+        $model->delete();
 
         return $this->redirect(['index']);
     }

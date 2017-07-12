@@ -8,9 +8,11 @@ use app\models\ResourceMicrology;
 use app\models\ResourceMicrologySearch;
 use app\models\ResourceType;
 
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 use \dektrium\user\models\User;
@@ -29,6 +31,22 @@ class ResourceMicrologyController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'update', 'create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'delete'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -137,7 +155,12 @@ class ResourceMicrologyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findMicro($id)->delete();
+        $model = $this->findMicro($id);
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }  
+        $model->delete();
 
         return $this->redirect(['index']);
     }

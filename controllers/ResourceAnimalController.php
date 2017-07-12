@@ -9,9 +9,11 @@ use app\models\ResourceAnimalSearch;
 use app\models\ResearchArea;
 use app\models\ResourceType;
 
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 use \dektrium\user\models\User;
@@ -30,6 +32,22 @@ class ResourceAnimalController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'update', 'create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'delete'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -109,6 +127,12 @@ class ResourceAnimalController extends Controller
     public function actionUpdate($id)
     {
         $animal = $this->findAnimal($id);
+
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $animal]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }  
+
         $type = $this->findType($animal->type_id);
         $area = $this->findArea($animal->zone_id ); 
 
@@ -142,8 +166,12 @@ class ResourceAnimalController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findAnimal($id)->delete();
-
+        $model = $this->findAnimal($id);
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }  
+        $model->delete();
         return $this->redirect(['index']);
     }
 

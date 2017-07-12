@@ -16,12 +16,14 @@ use app\models\ResearcherAgency;
 use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
 
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\JsonParser;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -45,6 +47,22 @@ class ProjectGarjanController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'update', 'create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'delete'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -156,6 +174,12 @@ class ProjectGarjanController extends Controller
     public function actionUpdate($id)
     {
         $project = ProjectGarjan::findOne($id);
+
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $project]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }  
+        
         $type = ProjectType::findOne($project->type_id);
         $type_list = ArrayHelper::map($this->getType($type->sub_topic), 'id', 'name'); 
        
@@ -230,6 +254,12 @@ class ProjectGarjanController extends Controller
     public function actionDelete($id)
     {
         $project = $this->findProject($id);
+
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $project]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }  
+
         $partitions = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
         foreach ($partitions as $model) {
             $model->delete(); // Delete each row partition

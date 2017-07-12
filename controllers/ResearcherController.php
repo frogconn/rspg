@@ -198,8 +198,9 @@ class ResearcherController extends Controller
         if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
             throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
         }
-        $this->findModel($id)->delete();
+        
         $this->findAgency($model->personal_code)->delete();
+        $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
 
