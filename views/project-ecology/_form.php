@@ -59,7 +59,7 @@ use yii\helpers\Url;
         ]);
     ?>
 
-    <?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
+    <!--?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
             'data'=> $faculty_list,
             'options'=>['id'=>'ddl-faculty'],
             'pluginOptions'=>[
@@ -68,7 +68,7 @@ use yii\helpers\Url;
                 'url'=>Url::to(['/project-ecology/get-faculty'])
             ]
         ]); 
-    ?>
+    ?-->
 
     <?= $form->field($project, 'schedule')->widget(MultipleInput::className(), [
             'columns' => [
