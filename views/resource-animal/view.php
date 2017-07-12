@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourceAnimal */
 
 $this->title = $model->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Resource Animals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-animal-view">
@@ -50,18 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'benefit:ntext',
             //'image_id',
             //'type_id',
-            'created_date',
-            [
-                'format'=>'raw',
-                'attribute'=>'สร้างโดย',
-                'value'=>$created_by->username,
-            ],
-            'updated_date',
-            [
-                'format'=>'raw',
-                'attribute'=>'แก้ไขล่าสุดโดย',
-                'value'=>$updated_by->username,
-            ],
+            //'created_date',
+            //'created_by',
+            //'updated_date',
+            //'updated_by',
         ],
     ]) ?>
 </div>

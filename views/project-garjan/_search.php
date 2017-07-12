@@ -10,20 +10,17 @@ use yii\widgets\ActiveForm;
 
 <div class="project-garjan-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($searchModel, 'id') ?>
 
-    <?= $form->field($model, 'year') ?>
+    <?= $form->field($searchModel, 'year') ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($searchModel, 'name') ?>
 
-    <?= $form->field($model, 'personal_code') ?>
+    <?= $form->field($searchModel, 'fullname_th') ?>
 
-    <?= $form->field($model, 'faculty_id') ?>
+    <?php//= $form->field($model, 'faculty_id') ?>
 
     <?php // echo $form->field($model, 'budget') ?>
 

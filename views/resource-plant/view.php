@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourcePlant */
 
 $this->title = $model->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรพืช', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-plant-view">
@@ -44,24 +44,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'location_name',
             'science_name',
             'family_name',
-            'information',
+            'information:ntext',
             //'zone_id',
             'researchArea.name',
-            'benefit',
+            'benefit:ntext',
             //'image_id',
             //'type_id',
-            'created_date',
-            [
-                'format'=>'raw',
-                'attribute'=>'สร้างโดย',
-                'value'=>$created_by->username,
-            ],
-            'updated_date',
-            [
-                'format'=>'raw',
-                'attribute'=>'แก้ไขล่าสุดโดย',
-                'value'=>$updated_by->username,
-            ],
+            //'created_date',
+            //'created_by',
+            //'updated_date',
+            //'updated_by',
         ],
     ]) ?>
 </div>
