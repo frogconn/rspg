@@ -14,13 +14,13 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
+    <p>ใส่ keyword เช่น ชื่อ หกดห</p>
     <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
 
-    <?php $list = ['Y' => 'Yes', 'N' => 'No'];
+    <?php $list = ['Y' => 'ใช่', 'N' => 'ไม่ใช่'];
 	echo $form->field($model, 'is_foreigner')->radioList($list); ?>
 					
-	<?php $list = ['M' => 'Male', 'F' => 'Female'];
+	<?php $list = ['M' => 'ชาย', 'F' => 'หญิง'];
 	echo $form->field($model, 'gender')->radioList($list); ?>
 
 	<!--?= $form->field($model, 'id') ?-->
@@ -61,7 +61,8 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
+        <?= Html::a('Reset', ['reset'], ['class' => 'btn btn-default']) ?>
     <?php ActiveForm::end(); ?>
     </div>
 </div>

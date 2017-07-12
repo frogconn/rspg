@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="box-title">ค้นหา</h3>
         </div>
         <div class="box-body">
-            <p>ใส่ keyword เช่น ชื่อ หกดห</p>
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
         </div>
         <!-- /.box-body -->

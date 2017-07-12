@@ -288,4 +288,8 @@ class ResearcherController extends Controller
         }
     }
 	//
+    public function actionReset()
+    {   
+        return $this->redirect(['index']);
+    }
 }
