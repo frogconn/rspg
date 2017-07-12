@@ -95,7 +95,8 @@ class Researcher extends \yii\db\ActiveRecord
             'updated_by' => 'แก้ไขล่าสุดโดย',
             'updated_date' => 'แก้ไขล่าสุดเมื่อ',
             'isForeigner' => 'ชาวต่างชาติ',
-			'gGender' => 'เพศ',
+             'gGender' => 'เพศ',
+            'searchAll' => 'ค้นหา'
         ];
     }
     

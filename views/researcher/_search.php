@@ -16,8 +16,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <div class="col-xs-5">
-        <p></p>
-        <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
+       <?= $form->field($model, 'searchAll') ?>
     </div>
     
     <div class="col-xs-3">
@@ -67,6 +66,7 @@ use yii\widgets\ActiveForm;
 
     <div class="col-xs-2">
         <div class="form-group">
+        <br>
             <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
             <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
             <?= Html::a('ยกเลิก', ['reset'], ['class' => 'btn btn-default']) ?>
