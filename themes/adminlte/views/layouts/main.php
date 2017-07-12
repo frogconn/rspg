@@ -45,11 +45,11 @@ if (Yii::$app->controller->action->id === 'login') {
             ['directoryAsset' => $directoryAsset]
         ) ?>
 
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?>
+        <?php if(Yii::$app->session['user_role'] == 'Admin') {?>
+            <?= $this->render('left-admin.php',['directoryAsset' => $directoryAsset]);?>       
+        <?php } else {?>
+            <?=$this->render('left.php',['directoryAsset' => $directoryAsset]);?>
+        <?php } ?>
 
         <?= $this->render(
             'content.php',

@@ -1,18 +1,20 @@
 <?php
+use yii\base\Controller;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectGarjan */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Project Garjans', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการยางนา', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-garjan-view">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Back',[ 'project-garjan/'], ['class' => 'btn bg-navy']) ?>
@@ -29,29 +31,46 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
       <div class="box box-success">
-            <div class="box-header with-border">
+            <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            </div-->
 
             <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
+            'projectType.type',
             'year',
             'name',
-            'personal_code',
-            'faculty_id',
+            [
+                'format'=>'raw',
+                'attribute'=>'หัวหน้าโครงการ',
+                'value'=>$researcher->fullname_th,
+            ],
+            [
+                'label'=>'ผู้ร่วมโครงการ',
+                'format'=>'raw',
+                'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
+            ],
             'budget',
-            'type_id',
             'summary:ntext',
             'start',
             'stop',
-            'created_by',
+            //'type_id',
             'created_date',
-            'update_by',
-            'update_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
+            ],
+            'updated_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 </div>

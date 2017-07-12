@@ -24,17 +24,22 @@ use app\models\AddressProvince;
 
     <?= $form->field($researchArea, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($provinceid, 'name')->widget(Select2::classname(), [
+    <?= $form->field($province, 'name')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(AddressProvince::find()->all(), 'id', 'name'),
             'language' => 'th',
-            'options' => ['placeholder' => 'เลือกจังหวัด', 'id' => 'ddl-province'],
+            
+            'options' => [
+                'value' => $province->id,
+                'placeholder' => 'เลือกจังหวัด',
+                'id' => 'ddl-province',
+            ],
             'pluginOptions' => [
                 'allowClear' => true
             ],
         ]);
     ?>
 
-    <?= $form->field($amphurid, 'name')->widget(DepDrop::classname(), [
+    <?= $form->field($amphur, 'name')->widget(DepDrop::classname(), [
             'options'=>['id'=>'ddl-amphur'],
             'data'=> $amphur_list,
             'pluginOptions'=>[
@@ -45,7 +50,7 @@ use app\models\AddressProvince;
         ]); 
     ?>
 
-    <?= $form->field($districtid, 'name')->widget(DepDrop::classname(), [
+    <?= $form->field($district, 'name')->widget(DepDrop::classname(), [
 			'options'=>['id'=>'ddl-district'],
 			'data' => $district_list,
 			'pluginOptions'=>[
@@ -57,8 +62,6 @@ use app\models\AddressProvince;
     ?>
 
     <?= $form->field($information, 'information')->textarea(['rows' => '4']) ?>
-
-
 
 	</div>
 
@@ -79,3 +82,8 @@ use app\models\AddressProvince;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    document.getElementById('ddl-amphur').value="<?php echo $amphur->id; ?>";
+    document.getElementById('ddl-district').value="<?php echo $district->id; ?>";
+</script>

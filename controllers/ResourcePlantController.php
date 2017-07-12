@@ -4,16 +4,18 @@ namespace app\controllers;
 
 
 use Yii;
+
+use app\models\ResearchArea;
 use app\models\ResourcePlant;
 use app\models\ResourcePlantSearch;
-use app\models\ResearchArea;
 use app\models\ResourceType;
+
+use yii\filters\VerbFilter;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-use yii\filters\VerbFilter;
-
+use \dektrium\user\models\User;
 /**
  * ResourcePlantController implements the CRUD actions for ResourcePlant model.
  */
@@ -56,8 +58,13 @@ class ResourcePlantController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $created_by = $this->findUser($model->created_by);
+        $updated_by = $this->findUser($model->updated_by);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
         ]);
     }
 
@@ -73,9 +80,6 @@ class ResourcePlantController extends Controller
         $researchArea = new  ResearchArea();
 
         if (isset($_POST) && $_POST!=null) {
-           
-            
-
             if($plant->load(Yii::$app->request->post()) && $plant->save(false)){
                 $plant -> id;
                 $plant->common_name = $_POST['ResourcePlant']['common_name'];
@@ -86,9 +90,9 @@ class ResourcePlantController extends Controller
                 $plant->zone_id = $_POST['ResearchArea']['name'];
                 $plant->type_id = $_POST['ResourceType']['name'];
                 $plant->benefit = $_POST['ResourcePlant']['benefit'];
-
-
                 $plant->save(false);
+
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
                 return $this->redirect(['view', 'id' => $researchArea->id]);
             }
         } else {
@@ -112,18 +116,18 @@ class ResourcePlantController extends Controller
         $researchArea = $this->findArea($plant->zone_id ); 
         $type = $this->findType($plant->type_id);
 
-
         if ($plant->load(Yii::$app->request->post()) && $plant->save(false)) {
-                $plant->common_name = $_POST['ResourcePlant']['common_name'];
-                $plant->location_name = $_POST['ResourcePlant']['location_name'];
-                $plant->science_name = $_POST['ResourcePlant']['science_name'];
-                $plant->family_name = $_POST['ResourcePlant']['family_name'];
-                $plant->information = $_POST['ResourcePlant']['information'];
-                $plant->zone_id = $_POST['ResearchArea']['name'];
-                $plant->type_id = $_POST['ResourceType']['name'];
-                $plant->benefit = $_POST['ResourcePlant']['benefit'];
+            $plant->common_name = $_POST['ResourcePlant']['common_name'];
+            $plant->location_name = $_POST['ResourcePlant']['location_name'];
+            $plant->science_name = $_POST['ResourcePlant']['science_name'];
+            $plant->family_name = $_POST['ResourcePlant']['family_name'];
+            $plant->information = $_POST['ResourcePlant']['information'];
+            $plant->zone_id = $_POST['ResearchArea']['name'];
+            $plant->type_id = $_POST['ResourceType']['name'];
+            $plant->benefit = $_POST['ResourcePlant']['benefit'];
+            $plant->save();
 
-                $plant->save();
+            Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
             return $this->redirect(['view', 'id' => $plant->id]);
         } else {
             return $this->render('update', [
@@ -177,6 +181,15 @@ class ResourcePlantController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page, type does not exist.');
+        }
+    }
+
+    protected function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
         }
     }
 }

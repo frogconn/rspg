@@ -40,18 +40,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id',
+            [
+            'format'=>'raw',
+            'attribute'=>'ชื่อพื้นที่วิจัย',
+            'value'=>$area_name->name,
+            ],
             'addressProvince.name',
             'addressAmphur.name',
             'addressDistrict.name',
             'addressRegion.name',
            //* 'image_id',
-            //*'information:ntext',
-            //*'created_date',
-            //*'created_by',
-           //* 'updated_date',
-            //'updated_by',
-
-         
+            'information',
+            'created_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
+            ],
+            'updated_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 

@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use yii\behaviors\BlameableBehavior;
 /**
  * This is the model class for table "research_area".
  *
@@ -22,6 +22,13 @@ class ResearchArea extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'research_area';
+    }
+
+    public function behaviors()
+    {
+        return [
+            BlameableBehavior::className(),
+        ];
     }
 
     /**

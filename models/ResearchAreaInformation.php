@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "research_area_information".
@@ -28,6 +29,13 @@ class ResearchAreaInformation extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'research_area_information';
+    }
+
+    public function behaviors()
+    {
+        return [
+            BlameableBehavior::className(),
+        ];
     }
 
     /**
@@ -57,10 +65,10 @@ class ResearchAreaInformation extends \yii\db\ActiveRecord
             'region_id' => 'รหัสภูมิภาค',
             'image_id' => 'รหัสภาพ',
             'information' => 'ข้อมูลทั่วไป',
-            'created_date' => 'Created Date',
-            'created_by' => 'Created By',
-            'updated_date' => 'Updated Date',
-            'updated_by' => 'Updated By',
+            'created_by' => 'สร้างโดย',
+            'created_date' => 'สร้างเมื่อ',
+            'updated_by' => 'แก้ไขล่าสุดโดย',
+            'updated_date' => 'แก้ไขล่าสุดเมื่อ',
         ];
     }
     // new code
@@ -78,7 +86,9 @@ class ResearchAreaInformation extends \yii\db\ActiveRecord
         return false;
     }
 
-    
+    public function getResearchArea(){
+        return $this->hasOne(ResearchArea::className(),['id'=>'area_id']); 
+    }
 
     public function getAddressProvince(){
         return $this->hasOne(AddressProvince::className(),['id'=>'province_id']); 
@@ -90,6 +100,7 @@ class ResearchAreaInformation extends \yii\db\ActiveRecord
     public function getAddressDistrict(){
         return $this->hasOne(AddressDistrict::className(),['id'=>'district_id']); 
     }
+
     public function getAddressRegion(){
         return $this->hasOne(AddressRegion::className(),['id'=>'region_id']); 
     }

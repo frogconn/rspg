@@ -27,17 +27,27 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box-body">
 
 
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php Pjax::begin(); ?>    
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-            'id',
+            //'id',
+            [
+                 'attribute' => 'type',
+                 'label' => 'หมวดหมู่',
+                 'value' => 'projectType.type'
+            ],
             'year',
             'name',
-            'personal_code',
-            'faculty_id',
+            [
+                 'attribute' => 'fullname_th',
+                 'label' => 'หัวหน้าโครงการ',
+                 'value' => 'researcher.fullname_th'
+            ],
+            //'faculty_id',
             // 'budget',
             // 'type_id',
             // 'summary:ntext',

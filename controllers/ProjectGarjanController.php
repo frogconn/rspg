@@ -3,6 +3,10 @@
 namespace app\controllers;
 
 use Yii;
+
+use app\base\Model;
+
+use app\models\AttachFiles;
 use app\models\ProjectGarjan;
 use app\models\ProjectGarjanSearch;
 use app\models\ProjectType;
@@ -12,19 +16,19 @@ use app\models\ResearcherAgency;
 use app\models\ResearcherInstitution;
 use app\models\ResearcherFaculty;
 
-use yii\widgets\ActiveForm;
+use yii\filters\VerbFilter;
+
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 use yii\web\Controller;
 use yii\web\JsonParser;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
-use yii\filters\VerbFilter;
+use yii\widgets\ActiveForm;
 
-use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
-
-use app\base\Model;
+use \dektrium\user\models\User;
 
 /**
  * ProjectGarjanController implements the CRUD actions for ProjectGarjan model.
@@ -68,8 +72,15 @@ class ProjectGarjanController extends Controller
      */
     public function actionView($id)
     {
+        $project = $this->findProject($id);
+        $researcher = Researcher::findOne(['personal_code'=>$project->personal_code]);
+        $created_by = $this -> findUser($project->created_by);
+        $updated_by = $this -> findUser($project->updated_by);
         return $this->render('view', [
             'model' => $this->findProject($id),
+            'researcher' => $researcher,
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
         ]);
     }
 
@@ -92,6 +103,8 @@ class ProjectGarjanController extends Controller
             try {
                 $post = Yii::$app->request->post();
                 $project->type_id = $post['ProjectType']['type'];
+                $project->start = $post['ProjectGarjan']['start'];
+                $project->stop = $post['ProjectGarjan']['stop'];
                 $project->save(false);
 
                 $agency = ResearcherAgency::find()->where(['personal_code'=>$project->personal_code])->one();
@@ -160,6 +173,13 @@ class ProjectGarjanController extends Controller
                 $post = Yii::$app->request->post();
                 $project->personal_code = $post['ProjectGarjan']['personal_code'];
                 $project->type_id = $post['ProjectType']['type'];
+                $project->start = $post['ProjectGarjan']['start'];
+                $project->stop = $post['ProjectGarjan']['stop'];
+                $project->year = $post['ProjectGarjan']['year'];
+                $project->name = $post['ProjectGarjan']['name'];
+                $project->personal_code = $post['ProjectGarjan']['personal_code'];
+                $project->budget = $post['ProjectGarjan']['budget'];
+                $project->summary = $post['ProjectGarjan']['summary'];
                 $project->save();
 
                 $project->faculty_id = $post['ResearcherFaculty']['name'];
@@ -178,6 +198,7 @@ class ProjectGarjanController extends Controller
                     $partitions->position = $val['position'];
                     $partitions->telephone = $val['telephone'];
                     $partitions->email = $val['email'];
+                    $partitions->group = 'garjan';
                     $partitions->save();
                 }
                 $transaction->commit();
@@ -231,6 +252,15 @@ class ProjectGarjanController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[User]The requested page does not exist.');
         }
     }
 

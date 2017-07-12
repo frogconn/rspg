@@ -13,11 +13,12 @@ use app\models\ResearchAreaInformation;
 class ResearchAreaInformationSearch extends ResearchAreaInformation
 {
     public $searchAll;
+    public $area_name;
     public $province_name;
     public $amphur_name;
     public $district_name;
     public $region_name;
-    
+   
 
     /**
      * @inheritdoc
@@ -26,7 +27,7 @@ class ResearchAreaInformationSearch extends ResearchAreaInformation
     {
         return [
             [['id', 'province_id', 'amphur_id', 'district_id', 'region_id', 'image_id', 'created_by', 'updated_by'], 'integer'],
-            [['information', 'created_date', 'updated_date','searchAll', 'province_name', 'amphur_name', 'district_name', 'region_name'], 'safe'],
+            [['information', 'created_date', 'updated_date','searchAll', 'province_name', 'amphur_name', 'district_name', 'region_name', 'area_name'], 'safe'],
         ];
     }
 
@@ -48,8 +49,17 @@ class ResearchAreaInformationSearch extends ResearchAreaInformation
      */
     public function search($params)
     {
-         $query = ResearchAreaInformation::find()->joinWith('addressProvince')->joinWith('addressAmphur')->joinWith('addressDistrict')->joinWith('addressRegion');
-
+        $session = Yii::$app->session;
+        if ($session['user_role'] != 'Researcher') {
+            $query = ResearchAreaInformation::find();
+        } else {
+            $query = ResearchAreaInformation::find()->where(['research_area_information.created_by'=>$session['user_id']]);
+        }
+        $query->joinWith('addressProvince')
+                ->joinWith('addressAmphur')
+                ->joinWith('addressDistrict')
+                ->joinWith('addressRegion')
+                ->joinWith('researchArea');
 
         // add conditions that should always apply here
 
@@ -64,6 +74,12 @@ class ResearchAreaInformationSearch extends ResearchAreaInformation
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        $dataProvider->sort->attributes['area_name'] = [
+            'asc' => ['research_area.name' => SORT_ASC],
+            'desc' => ['research_area.name'=> SORT_DESC], 
+        ]; 
+
         $dataProvider->sort->attributes['province_name'] = [
             'asc' => ['address_province.name' => SORT_ASC],
             'desc' => ['address_province.name'=> SORT_DESC], 
@@ -82,8 +98,6 @@ class ResearchAreaInformationSearch extends ResearchAreaInformation
             'desc' => ['address_region.name'=> SORT_DESC], 
         ];
 
-
-
         // grid filtering conditions
         /*$query->andFilterWhere([
             'id' => $this->id,
@@ -99,10 +113,11 @@ class ResearchAreaInformationSearch extends ResearchAreaInformation
         ]);
 */
         $query
-        -> orFilterWhere([ 'like', 'address_province.name', $this->searchAll ])
-        -> orFilterWhere([ 'like', 'address_district.name', $this->searchAll ])
-        -> orFilterWhere([ 'like', 'address_region.name', $this->searchAll ])
-        ->orFilterWhere([ 'like', 'address_amphur.name', $this->searchAll ]);
+        ->orFilterWhere([ 'like', 'address_province.name', $this->searchAll ])
+        ->orFilterWhere([ 'like', 'address_district.name', $this->searchAll ])
+        ->orFilterWhere([ 'like', 'address_region.name', $this->searchAll ])
+        ->orFilterWhere([ 'like', 'address_amphur.name', $this->searchAll ])
+        ->orFilterWhere([ 'like', 'research_area.name', $this->searchAll ]);
        // ->orFilterWhere([ 'like', 'district_id', $this->searchAll ])
        // ->orFilterWhere([ 'like', 'region_id', $this->searchAll ]);
          return $dataProvider;

@@ -3,9 +3,9 @@
 use app\models\Researcher;
 use app\models\ProjectType;
 
-use kartik\select2\Select2;
 use kartik\widgets\ActiveForm;
 use kartik\widgets\DepDrop;
+use kartik\select2\Select2;
 
 use unclead\multipleinput\MultipleInput;
 use unclead\multipleinput\examples\models\ExampleModel;
@@ -161,6 +161,10 @@ use yii\helpers\Url;
             ]
         ]
     ]); ?>
+
+    <?php
+       echo app\widgets\Upload::widget(['model' => $project,'required' => false]);
+	?>
 
 	</div>
 

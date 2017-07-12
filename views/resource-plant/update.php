@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ResourcePlant */
 
-$this->title = '' . $plant->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $plant->id, 'url' => ['view', 'id' => $plant->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = $plant->common_name;
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรพืช', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $plant->common_name, 'url' => ['view', 'id' => $plant->id]];
+$this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="resource-plant-update">
 

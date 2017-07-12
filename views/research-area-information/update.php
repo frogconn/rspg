@@ -20,9 +20,9 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_form', [
         'information' => $information,
 		'researchArea' => $researchArea,
-		'provinceid' => $provinceid,
-		'amphurid' => $amphurid,
-		'districtid' => $districtid,
+		'province' => $province,
+		'amphur' => $amphur,
+		'district' => $district,
 		'amphur_list' => $amphur_list,
 		'district_list' => $district_list,
     ]) ?>

@@ -12,6 +12,8 @@ use app\models\ProjectGarjan;
  */
 class ProjectGarjanSearch extends ProjectGarjan
 {
+    public $type;
+    public $fullname_th;
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class ProjectGarjanSearch extends ProjectGarjan
     {
         return [
             [['id', 'year', 'faculty_id', 'type_id'], 'integer'],
-            [['name', 'personal_code', 'summary', 'start', 'stop', 'created_by', 'created_date', 'update_by', 'update_date'], 'safe'],
+            [['name', 'personal_code', 'summary', 'start', 'stop', 'created_by', 'created_date', 'update_by', 'update_date', 'type', 'fullname_th'], 'safe'],
             [['budget'], 'number'],
         ];
     }
@@ -58,6 +60,16 @@ class ProjectGarjanSearch extends ProjectGarjan
             return $dataProvider;
         }
 
+        $dataProvider->sort->attributes['type'] = [
+            'asc' => ['project_type.type' => SORT_ASC],
+            'desc' => ['project_type.type'=> SORT_DESC], 
+        ]; 
+
+        $dataProvider->sort->attributes['fullname_th'] = [
+            'asc' => ['researcher.fullname_th' => SORT_ASC],
+            'desc' => ['researcher.fullname_th'=> SORT_DESC], 
+        ];
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -67,15 +79,15 @@ class ProjectGarjanSearch extends ProjectGarjan
             'type_id' => $this->type_id,
             'start' => $this->start,
             'stop' => $this->stop,
-            'created_date' => $this->created_date,
-            'update_date' => $this->update_date,
+            //'created_date' => $this->created_date,
+            //'update_date' => $this->update_date,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'personal_code', $this->personal_code])
+            ->andFilterWhere(['like', 'year', $this->year])
             ->andFilterWhere(['like', 'summary', $this->summary])
-            ->andFilterWhere(['like', 'created_by', $this->created_by])
-            ->andFilterWhere(['like', 'update_by', $this->update_by]);
+            ->andFilterWhere(['like', 'project_type.type', $this->type])
+            ->andFilterWhere(['like', 'researcher.fullname_th', $this->fullname_th]);
 
         return $dataProvider;
     }

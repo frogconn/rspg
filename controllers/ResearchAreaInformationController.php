@@ -3,24 +3,26 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\ResearchAreaInformation;
-use app\models\ResearchAreaInformationSearch;
-use app\models\ResearchArea;
-use app\models\AddressProvince;
+
 use app\models\AddressAmphur;
 use app\models\AddressDistrict;
+use app\models\AddressProvince;
 use app\models\AddressRegion;
+use app\models\ResearchArea;
+use app\models\ResearchAreaInformation;
+use app\models\ResearchAreaInformationSearch;
 
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
+use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
 
-
-
-
+use \dektrium\user\models\User;
 
 /**
  * ResearchAreaInformationController implements the CRUD actions for ResearchAreaInformation model.
@@ -37,6 +39,22 @@ class ResearchAreaInformationController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'update', 'create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'delete'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -66,9 +84,13 @@ class ResearchAreaInformationController extends Controller
     {
 		$model = $this->findModel($id);
 		$area_name = $this->findArea($model->area_id);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
         return $this->render('view', [
             'model' => $model,
 			'area_name' => $area_name,
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
         ]);
     }
 
@@ -80,10 +102,9 @@ class ResearchAreaInformationController extends Controller
     public function actionCreate()
     {
         $researchArea   = new ResearchArea();
-        $provinceid = new AddressProvince();
-        $amphurid   = new AddressAmphur();
-        $districtid = new AddressDistrict();
-        //$regionid   = new AddressRegion();
+        $province = new AddressProvince();
+        $amphur   = new AddressAmphur();
+        $district = new AddressDistrict();
         $information = new ResearchAreaInformation();
 		$amphur_list=[];
 		$district_list=[];
@@ -98,23 +119,22 @@ class ResearchAreaInformationController extends Controller
                 $information->amphur_id = $_POST['AddressAmphur']['name'];
                 $information->district_id = $_POST['AddressDistrict']['name'];
                 $information->information = $_POST['ResearchAreaInformation']['information'];
-
                 $information->save(false);
+
                 $information->region_id = $this->findProvince($information->province_id)->region_id;
                 $information->save(false);
-                //= $this->findRegion($province->region_id);
-                //return $this->redirect(['research-area-information/index']);
+
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
                 return $this->redirect(['view', 'id' => $information->id]);
             }
         } else {
             return $this->render('create', [
             'researchArea'  => $researchArea,
-            'provinceid'    => $provinceid, 
-            'amphurid'      => $amphurid,
-            'districtid'    => $districtid,
-            //'regionid'      => $regionid,
+            'province'      => $province, 
+            'amphur'        => $amphur,
+            'district'      => $district,
             'information'   => $information,
-			'amphur_list' => $amphur_list,
+			'amphur_list'   => $amphur_list,
 			'district_list' => $district_list,
            ]);
      
@@ -130,22 +150,44 @@ class ResearchAreaInformationController extends Controller
     public function actionUpdate($id)
     {
         $information = $this->findModel($id);
-		$researchArea = $this->findArea($information->area_id);
-		$provinceid = $this->findProvince($information->province_id);
-        $amphurid   = $this->findAmphur($provinceid->id);
-        $districtid = $this->findDistrict($amphurid->id);
-		$amphur_list = ArrayHelper::map($this->getAmphur($provinceid->id),'id','name');
-		$district_list = ArrayHelper::map($this->getDistrict($amphurid->id),'id','name');
 
-        if ($information->load(Yii::$app->request->post()) && $information->save()) {
-            return $this->redirect(['view', 'id' => $information->id]);
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $information]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        } 
+
+		$researchArea = $this->findArea($information->area_id);
+		$province = $this->findProvince($information->province_id);
+        $amphur   = $this->findAmphur($information->province_id);
+        $district = $this->findDistrict($information->amphur_id);
+		$amphur_list = ArrayHelper::map($this->getAmphur($information->province_id),'id','name');
+		$district_list = ArrayHelper::map($this->getDistrict($information->amphur_id),'id','name');
+
+        if (isset($_POST) && $_POST!=null) {
+           
+            $researchArea->name = $_POST['ResearchArea']['name'];
+
+            if($researchArea->load(Yii::$app->request->post()) && $researchArea->save(false)){
+                $information ->area_id = $researchArea -> id;
+                $information->province_id = $_POST['AddressProvince']['name'];
+                $information->amphur_id = $_POST['AddressAmphur']['name'];
+                $information->district_id = $_POST['AddressDistrict']['name'];
+                $information->information = $_POST['ResearchAreaInformation']['information'];
+                $information->save(false);
+
+                $information->region_id = $this->findProvince($information->province_id)->region_id;
+                $information->save(false);
+
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+                return $this->redirect(['view', 'id' => $information->id]);
+            }
         } else {
             return $this->render('update', [
                 'information' => $information,
 				'researchArea' => $researchArea,
-				'provinceid' => $provinceid,
-				'amphurid' => $amphurid,
-				'districtid' => $districtid,
+				'province' => $province,
+				'amphur' => $amphur,
+				'district' => $district,
 				'amphur_list' => $amphur_list,
 				'district_list' => $district_list,
             ]);
@@ -160,8 +202,13 @@ class ResearchAreaInformationController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $information]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }
+        ResearchArea::findOne($model->area_id)->delete();
+        $model->delete();
         return $this->redirect(['index']);
     }
 
@@ -225,6 +272,15 @@ class ResearchAreaInformationController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[district]The requested page does not exist.');
+        }
+    }
+
+    protected function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
         }
     }
 	

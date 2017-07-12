@@ -3,8 +3,9 @@
 namespace app\models;
 
 use Yii;
-
 use app\models\ResourceType;
+use yii\behaviors\BlameableBehavior;
+use \yii\web\UploadedFile;
 
 /**
  * This is the model class for table "resource_animal".
@@ -37,6 +38,7 @@ class ResourceAnimal extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            BlameableBehavior::className(),
             'fileBehavior' => [
                 'class' => \app\components\UploadBehavior::className()
             ],
@@ -74,12 +76,57 @@ class ResourceAnimal extends \yii\db\ActiveRecord
             'image_id' => 'รหัสรูปภาพ',
             'type_id' => 'รหัสประเภท',
             'name' => 'ประเภท',
-            'created_date' => 'Created Date',
-            'created_by' => 'Created By',
-            'updated_date' => 'Updated Date',
-            'updated_by' => 'Updated By',
+            'created_by' => 'สร้างโดย',
+            'created_date' => 'สร้างเมื่อ',
+            'updated_by' => 'แก้ไขล่าสุดโดย',
+            'updated_date' => 'แก้ไขล่าสุดเมื่อ',
         ];
     }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) 
+        {
+            if($this->isNewRecord)
+            {
+                $this->created_date = new \yii\db\Expression('NOW()');
+            }
+            $this->updated_date = new \yii\db\Expression('NOW()');
+            return true;
+        }
+        return false;
+    }
+    // new code here
+	public function upload($model,$attribute)
+	{
+		$evidence_file  = UploadedFile::getInstance($model, $attribute);
+		$path = $this->getUploadPath();
+		if ($this->validate() && $evidence_file !== null) 
+		{
+			$fileName = md5($evidence_file->baseName.time()) . '.' . $evidence_file->extension;
+			//$fileName = $photo->baseName . '.' . $photo->extension;
+			if($evidence_file->saveAs($path.$fileName))
+			{
+				return $fileName;
+			}
+		}
+		return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
+	}
+
+	public function getUploadPath()
+	{
+		return Yii::getAlias('@webroot').'/'.$this->upload_foler.'/';
+	}
+
+	public function getUploadUrl()
+	{
+		return Yii::getAlias('@web').'/'.$this->upload_foler.'/';
+	}
+
+	public function getPhotoViewer()
+	{
+		return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
+	}
 
     public function getResourceType(){
         return $this->hasOne(ResourceType::className(),['id'=>'type_id']);

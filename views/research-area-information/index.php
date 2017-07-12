@@ -13,16 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="research-area-information-index">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div>
+            
 
             <div class="box-body">
 
@@ -39,19 +36,24 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             //'province_id',
             [
-                 'attribute' => 'province_name',
-                 'label' => 'จังหวัด',
-                 'value' => 'addressProvince.name'
+                 'attribute' => 'area_name',
+                 'label' => 'ชื่อพื้นที่วิจัย',
+                 'value' => 'researchArea.name'
+            ],
+            [
+                 'attribute' => 'district_name',
+                 'label' => 'ตำบล',
+                 'value' => 'addressDistrict.name'
             ],
             [
                  'attribute' => 'amphur_name',
                  'label' => 'อำเภอ',
                  'value' => 'addressAmphur.name'
             ],
-             [
-                 'attribute' => 'district_name',
-                 'label' => 'ตำบล',
-                 'value' => 'addressDistrict.name'
+            [
+                 'attribute' => 'province_name',
+                 'label' => 'จังหวัด',
+                 'value' => 'addressProvince.name'
             ],
             [
                  'attribute' => 'region_name',

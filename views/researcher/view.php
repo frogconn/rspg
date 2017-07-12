@@ -42,15 +42,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'personal_code',
             'isForeigner',
-             [
-            'format'=>'raw',
-            'attribute'=>'ชื่อสถาบัน',
-            'value'=>Html::a($instit->name),
+            [
+                'format'=>'raw',
+                'attribute'=>'ชื่อสถาบัน',
+                'value'=>$instit->name,
             ],
-             [
-            'format'=>'raw',
-            'attribute'=>'ชื่อคณะ',
-            'value'=>Html::a($faculty->name),
+            [
+                'format'=>'raw',
+                'attribute'=>'ชื่อคณะ',
+                'value'=>$faculty->name,
             ],
             'title',
             'firstname_th',
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'fullname_th',
             'fullname_en',
             'gGender',
-            'email:email',
+            'email',
             'telephone',
             //[
             //'format'=>'raw',
@@ -69,12 +69,16 @@ $this->params['breadcrumbs'][] = $this->title;
             //],
             'created_date',
             [
-            'format'=>'raw',
-            'attribute'=>'created_by',
-            'value'=>Html::a($user->username),
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
             ],
             'updated_date',
-            'updated_by',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 </div>

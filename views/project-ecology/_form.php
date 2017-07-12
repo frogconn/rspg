@@ -1,16 +1,17 @@
 <?php
-
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
+use app\models\Researcher;
+use app\models\ProjectType;
 
 use kartik\select2\Select2;
+use kartik\widgets\DepDrop;
 use kartik\widgets\ActiveForm;
 
 use unclead\multipleinput\MultipleInput;
 use unclead\multipleinput\examples\models\ExampleModel;
 
-use app\models\Researcher;
-use app\models\ProjectType;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectEcology */
@@ -32,14 +33,13 @@ use app\models\ProjectType;
     <div class="box-body">
 
     <?= $form->field($type, 'type') ->dropdownList(ArrayHelper::map(
-        ProjectType::find() ->where(['topic' => 'นิเวศวิทยา'])->all(), 'id', 'type'), [
+        ProjectType::find()->where(['topic' => 'นิเวศวิทยา'])->all(), 'id', 'type'), [
                             'options'=>[
                                 $type -> id => ['Selected' => 'selected']],
                             'prompt'=>'เลือกหมวดหมู่'
-                        ]);
+        ]);
     ?>
 
-    
     <?php echo $form->field($project, 'year')->widget(etsoft\widgets\YearSelectbox::classname(), [
             'yearStart' => 2549,
             'yearStartType' => 'fix',
@@ -57,6 +57,17 @@ use app\models\ProjectType;
                 'allowClear' => true
             ],
         ]);
+    ?>
+
+    <?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
+            'data'=> $faculty_list,
+            'options'=>['id'=>'ddl-faculty'],
+            'pluginOptions'=>[
+                'depends'=>['ddl-header'],
+                'placeholder'=>'เลือกคณะ',
+                'url'=>Url::to(['/project-ecology/get-faculty'])
+            ]
+        ]); 
     ?>
 
     <?= $form->field($project, 'schedule')->widget(MultipleInput::className(), [
@@ -137,6 +148,10 @@ use app\models\ProjectType;
         ]
     ]); ?>
 
+    <?php
+       echo app\widgets\Upload::widget(['model' => $project,'required' => false]);
+	?>
+
 
 	</div>
 
@@ -157,3 +172,7 @@ use app\models\ProjectType;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    document.getElementById('ddl-faculty').value="<?php echo $faculty->id; ?>";
+</script>

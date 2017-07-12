@@ -3,16 +3,18 @@
 namespace app\controllers;
 
 use Yii;
+
 use app\models\ResourceAnimal;
 use app\models\ResourceAnimalSearch;
-use app\models\ResourceType;
 use app\models\ResearchArea;
+use app\models\ResourceType;
+
+use yii\filters\VerbFilter;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-use yii\filters\VerbFilter;
-
+use \dektrium\user\models\User;
 /**
  * ResourceAnimalController implements the CRUD actions for ResourceAnimal model.
  */
@@ -55,8 +57,13 @@ class ResourceAnimalController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findAnimal($id);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
         return $this->render('view', [
             'model' => $this->findAnimal($id),
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
         ]);
     }
 
@@ -80,10 +87,10 @@ class ResourceAnimalController extends Controller
             $animal->science_name = $_POST['ResourceAnimal']['science_name'];
             $animal->family_name = $_POST['ResourceAnimal']['family_name'];
             $animal->benefit = $_POST['ResourceAnimal']['benefit'];
-
             $animal->save();
-            return $this->redirect(['view', 'id' => $animal->id]);
 
+            Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+            return $this->redirect(['view', 'id' => $animal->id]);
         } else {
             return $this->render('create', [
                 'animal' => $animal,
@@ -114,10 +121,10 @@ class ResourceAnimalController extends Controller
             $animal->science_name = $_POST['ResourceAnimal']['science_name'];
             $animal->family_name = $_POST['ResourceAnimal']['family_name'];
             $animal->benefit = $_POST['ResourceAnimal']['benefit'];
-            
             $animal->save();
-            return $this->redirect(['view', 'id' => $animal->id]);
 
+            Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+            return $this->redirect(['view', 'id' => $animal->id]);
         } else {
             return $this->render('update', [
                 'animal' => $animal,
@@ -171,6 +178,15 @@ class ResourceAnimalController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page, type does not exist.');
+        }
+    }
+
+    protected function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
         }
     }
 }

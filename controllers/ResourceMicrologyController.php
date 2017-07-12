@@ -3,16 +3,17 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\ResearchArea;
 use app\models\ResourceMicrology;
 use app\models\ResourceMicrologySearch;
 use app\models\ResourceType;
-use app\models\ResearchArea;
+
+use yii\filters\VerbFilter;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-use yii\filters\VerbFilter;
-
+use \dektrium\user\models\User;
 /**
  * ResourceMicrologyController implements the CRUD actions for ResourceMicrology model.
  */
@@ -55,8 +56,13 @@ class ResourceMicrologyController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findMicro($id);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
         return $this->render('view', [
             'model' => $this->findMicro($id),
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
         ]);
     }
 
@@ -78,8 +84,9 @@ class ResourceMicrologyController extends Controller
             $micro->genus   = $_POST['ResourceMicrology']['genus'];
             $micro->species = $_POST['ResourceMicrology']['species'];
             $micro->benefit = $_POST['ResourceMicrology']['benefit'];
-
             $micro->save();
+
+            Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
             return $this->redirect(['view', 'id' => $micro->id]);
         } else {
             return $this->render('create', [
@@ -109,8 +116,9 @@ class ResourceMicrologyController extends Controller
             $micro->genus   = $_POST['ResourceMicrology']['genus'];
             $micro->species = $_POST['ResourceMicrology']['species'];
             $micro->benefit = $_POST['ResourceMicrology']['benefit'];
-
             $micro->save();
+
+            Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
             return $this->redirect(['view', 'id' => $micro->id]);
         } else {
             return $this->render('update', [
@@ -165,6 +173,15 @@ class ResourceMicrologyController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page, type does not exist.');
+        }
+    }
+
+    protected function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page does not exist.');
         }
     }
 }

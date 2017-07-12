@@ -38,7 +38,7 @@ use yii\helpers\Url;
             [
                 //'data'=> $instit_list,
                 'id'=>'ddl-institution',
-                'prompt'=>'Select'
+                'prompt'=>'เลือกสถาบัน'
             ]); 
     ?>
 
@@ -47,7 +47,7 @@ use yii\helpers\Url;
             'data'=> $faculty_list,
             'pluginOptions'=>[
                 'depends'=>['ddl-institution'],
-                'placeholder'=>'Select',
+                'placeholder'=>'เลือกคณะ',
                 'url'=>Url::to(['/researcher/get-faculty'])
             ]
         ]); 
@@ -90,15 +90,6 @@ use yii\helpers\Url;
             <?= $form->field($model, 'evidence_file')->fileInput() ?>
         </div>
     </div-->
-
-    <!--?= $form->field($model, 'created_date')->textInput() ?-->
-
-    <!--?= $form->field($model, 'created_by')->textInput() ?-->
-
-    <!--?= $form->field($model, 'updated_date')->textInput() ?-->
-
-    <!--?= $form->field($model, 'updated_by')->textInput() ?-->
-
 
 	</div>
 

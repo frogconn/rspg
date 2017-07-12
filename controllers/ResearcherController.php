@@ -2,27 +2,26 @@
 
 namespace app\controllers;
 
-
 use Yii;
-use app\models\Researcher;
-use app\models\ResearcherSearch;
-use app\models\ResearcherInstitution;
-use app\models\ResearcherFaculty;
-use app\models\ResearcherAgency;
+
 use app\models\AttachFiles;
-use \dektrium\user\models\User;
+use app\models\Researcher;
+use app\models\ResearcherAgency;
+use app\models\ResearcherFaculty;
+use app\models\ResearcherInstitution;
+use app\models\ResearcherSearch;
 
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
-use yii\web\ForbiddenHttpException;
-
+use \dektrium\user\models\User;
 
 /**
  * ResearcherController implements the CRUD actions for Researcher model.
@@ -86,14 +85,16 @@ class ResearcherController extends Controller
         $agency = $this->findAgency($model->personal_code);
         $instit = $this->findInstitution($agency->institution_id);
         $faculty = $this->findFaculty($agency->faculty_id);
-        $user = $this -> findUser($model->created_by);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
         return $this->render('view', [
 			'model' => $this->findModel($id),
 			//'attach_file' => $this->findAttach('app\models\Researcher',$id),
             'instit' => $instit,
             'faculty' => $faculty,
             'agency' => $agency,
-            'user' => $user,
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
         ]);
     }
 
@@ -124,6 +125,7 @@ class ResearcherController extends Controller
                 $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
                 $agency->save();
             }
+            Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -147,7 +149,7 @@ class ResearcherController extends Controller
         $model = $this->findModel($id);
 
         $session = Yii::$app->session;
-        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnResearcher', ['model' => $model]))) {
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
             throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
         } 
 
@@ -165,9 +167,11 @@ class ResearcherController extends Controller
                 if($model->save()){
                     $agency->researcher_id=$model->id;
                     $agency->personal_code = $_POST['Researcher']['personal_code'];
-                    $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];                        $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
+                    $agency->faculty_id = $_POST['ResearcherAgency']['faculty_id'];                        
+                    $agency->institution_id = $_POST['ResearcherAgency']['institution_id'];
                     $agency->save();
                 }
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('update', [
@@ -179,8 +183,6 @@ class ResearcherController extends Controller
                 
                 ]);
             }
-        
-        
     }
 
     /**
@@ -190,8 +192,12 @@ class ResearcherController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
+    {   
         $model = $this->findModel($id);
+        $session = Yii::$app->session;
+        if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
+            throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+        }
         $this->findModel($id)->delete();
         $this->findAgency($model->personal_code)->delete();
         return $this->redirect(['index']);

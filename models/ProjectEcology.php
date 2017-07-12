@@ -3,7 +3,8 @@
 namespace app\models;
 
 use Yii;
-
+use yii\behaviors\BlameableBehavior;
+use \yii\web\UploadedFile;
 /**
  * This is the model class for table "project_ecology".
  *
@@ -31,6 +32,16 @@ class ProjectEcology extends \yii\db\ActiveRecord
         return 'project_ecology';
     }
 
+    public function behaviors()
+    {
+        return [
+            BlameableBehavior::className(),
+            'fileBehavior' => [
+                'class' => \app\components\UploadBehavior::className()
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -56,28 +67,66 @@ class ProjectEcology extends \yii\db\ActiveRecord
             'year' => 'ปีงบประมาณ',
             'name' => 'ชื่อโครงการวิจัย',
             'personal_code' => 'หัวหน้าโครงการวิจัย',
-<<<<<<< HEAD:models/ProjectGarjan.php
             'faculty_id' => 'คณะ', //รหัสคณะของหัวหน้าวิจัย
-=======
-            'faculty_id' => 'คณะ',
->>>>>>> 949ea62be18f9e3caa349ed0652c688a67c91b0f:models/ProjectEcology.php
             'budget' => 'งบประมาณ',
-<<<<<<< HEAD:models/ProjectEcology.php
-=======
             'type_id' => 'รหัสประเภทของโครงการ',
->>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:models/ProjectGarjan.php
             'summary' => 'สรุปผลงานวิจัย',
             'type_id' => 'รหัสด้าน',
             'created_by' => 'สร้างโดย',
             'created_date' => 'สร้างเมื่อ',
-            'updated_by' => 'อัพเดตโดย',
-            'updated_date' => 'อัพเดตเมื่อ',
+            'updated_by' => 'แก้ไขล่าสุดโดย',
+            'updated_date' => 'แก้ไขล่าสุดเมื่อ',
             'schedule' => 'ผู้เข้าร่วมโครงการ',
             'start' => 'วันเริ่มต้นโครงการ',
             'stop' => 'วันสิ้นสุดโครงการ'
 
         ];
     }
+    
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) 
+        {
+            if($this->isNewRecord)
+            {
+                $this->created_date = new \yii\db\Expression('NOW()');
+            }
+            $this->updated_date = new \yii\db\Expression('NOW()');
+            return true;
+        }
+        return false;
+    }
+    // new code here
+	public function upload($model,$attribute)
+	{
+		$evidence_file  = UploadedFile::getInstance($model, $attribute);
+		$path = $this->getUploadPath();
+		if ($this->validate() && $evidence_file !== null) 
+		{
+			$fileName = md5($evidence_file->baseName.time()) . '.' . $evidence_file->extension;
+			//$fileName = $photo->baseName . '.' . $photo->extension;
+			if($evidence_file->saveAs($path.$fileName))
+			{
+				return $fileName;
+			}
+		}
+		return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
+	}
+
+	public function getUploadPath()
+	{
+		return Yii::getAlias('@webroot').'/'.$this->upload_foler.'/';
+	}
+
+	public function getUploadUrl()
+	{
+		return Yii::getAlias('@web').'/'.$this->upload_foler.'/';
+	}
+
+	public function getPhotoViewer()
+	{
+		return empty($this->evidence_file) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->evidence_file;
+	}
 
     public function getResearcher ()
     {

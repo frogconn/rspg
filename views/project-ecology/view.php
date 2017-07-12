@@ -1,17 +1,17 @@
 <?php
+use yii\base\Controller;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
 
 use yii\widgets\DetailView;
-use yii\base\Controller;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectEcology */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Project Ecologies', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิทยาและชุมชน', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-ecology-view">
@@ -47,24 +47,33 @@ $this->params['breadcrumbs'][] = $this->title;
             'year',
             'name',
             [
+                'format'=>'raw',
+                'attribute'=>'หัวหน้าโครงการ',
+                'value'=>$researcher->fullname_th,
+            ],
+            [
                 'label'=>'ผู้ร่วมโครงการ',
                 'format'=>'raw',
                 'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
             ],
             'budget',
-<<<<<<< HEAD:views/project-ecology/view.php
-=======
-            'type_id',
->>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:views/project-garjan/view.php
             'summary:ntext',
             'start',
             'stop',
 
             //'type_id',
-            //'created_by',
-            //'created_date',
-            //'updated_by',
-            //'updated_date',
+            'created_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
+            ],
+            'updated_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 </div>

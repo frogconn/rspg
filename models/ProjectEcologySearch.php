@@ -12,7 +12,6 @@ use app\models\ProjectEcology;
  */
 class ProjectEcologySearch extends ProjectEcology
 {
-    public $searchAll;
     public $type;
     public $fullname_th;
     /**
@@ -22,11 +21,7 @@ class ProjectEcologySearch extends ProjectEcology
     {
         return [
             [['id', 'faculty_id', 'type_id'], 'integer'],
-<<<<<<< HEAD:models/ProjectEcologySearch.php
-            [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'updated_by', 'updated_date', 'type', 'searchAll', 'fullname_th'], 'safe'],
-=======
-            [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'update_by', 'update_date'], 'safe'],
->>>>>>> 32166677218cc90a151bd949d0e1180b2f71b497:models/ProjectGarjanSearch.php
+            [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'updated_by', 'updated_date', 'type', 'fullname_th'], 'safe'],
             [['budget'], 'number'],
         ];
     }
@@ -84,11 +79,11 @@ class ProjectEcologySearch extends ProjectEcology
             'updated_date' => $this->updated_date,
         ]);*/
 
-        $query->orFilterWhere(['like', 'name', $this->searchAll])
-            ->orFilterWhere(['like', 'researcher.fullname_th', $this->searchAll])
-            ->orFilterWhere(['like', 'summary', $this->searchAll])
-            ->orFilterWhere(['like', 'year', $this->searchAll])
-            ->orFilterWhere(['like', 'project_type.type', $this->searchAll]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'year', $this->year])
+            ->andFilterWhere(['like', 'summary', $this->summary])
+            ->andFilterWhere(['like', 'project_type.type', $this->type])
+            ->andFilterWhere(['like', 'researcher.fullname_th', $this->fullname_th]);
 
         return $dataProvider;
     }

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourceMicrology */
 
 $this->title = $model->genus;
-$this->params['breadcrumbs'][] = ['label' => 'Resource Micrologies', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัยากรจุลินทรีย์', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-micrology-view">
@@ -48,10 +48,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'benefit:ntext',
             //'image_id',
             //'type_id',
-            //'created_date',
-            //'created_by',
-            //'updated_date',
-            //'updated_by',
+            'created_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
+            ],
+            'updated_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 </div>

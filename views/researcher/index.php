@@ -35,8 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
 					[
 						'options' => ['enctype' => 'multipart/form-data']
 	]				); ?>
+	
 				    <?php $list = ['Y' => 'Yes', 'N' => 'No'];
 					echo $form->field($searchModel, 'is_foreigner')->radioList($list); ?>
+					
+					<?php $list = ['M' => 'Male', 'F' => 'Female'];
+					echo $form->field($searchModel, 'gender')->radioList($list); ?>
+					
+					<?= $form->field($searchModel, 'fullname_th')->textInput(['maxlength' => true]) ?>
+					
+					<?= Html::a('ค้นหา', ['#'], ['class' => 'btn btn-success']) ?>
 					<?php ActiveForm::end(); ?>
 			</div>
 		</div>
@@ -46,19 +54,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
-            //'id',
+            // 'id',
             'personal_code',
-            'is_foreigner',
-            //'title',
-            //'firstname_th',
-            //'lastname_th',
+            // 'is_foreigner',
+            // 'title',
+            // 'firstname_th',
+            // 'lastname_th',
             // 'firstname_en',
             // 'lastname_en',
-             'fullname_th',
+            'fullname_th',
             // 'fullname_en',
-             'gender',
-            // 'email:email',
-            // 'telephone',
+            // 'gender',
+            'email',
+            'telephone',
             // 'evidence_file',
             // 'created_date',
             // 'created_by',

@@ -3,9 +3,9 @@
 namespace app\models;
 
 use Yii;
-use \yii\web\UploadedFile;
 
 use yii\behaviors\BlameableBehavior;
+use \yii\web\UploadedFile;
 
 /**
  * This is the model class for table "researcher".
@@ -90,10 +90,10 @@ class Researcher extends \yii\db\ActiveRecord
             'email' => 'อีเมล',
             'telephone' => 'เบอร์โทรศัพท์',
             'evidence_file' => 'ไฟล์หลักฐาน',
-            'created_date' => 'Created Date',
-            'created_by' => 'Created By',
-            'updated_date' => 'Updated Date',
-            'updated_by' => 'Updated By',
+            'created_by' => 'สร้างโดย',
+            'created_date' => 'สร้างเมื่อ',
+            'updated_by' => 'แก้ไขล่าสุดโดย',
+            'updated_date' => 'แก้ไขล่าสุดเมื่อ',
             'isForeigner' => 'ชาวต่างชาติ',
 			'gGender' => 'เพศ',
         ];

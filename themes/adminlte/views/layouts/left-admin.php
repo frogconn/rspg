@@ -79,10 +79,59 @@ use app\components\MenuHelper;
             				    'label' => 'พืชอนุรักษ์ยางนา',
             				    'icon' => 'leaf',
             				    'url' => '@web/project-garjan',
+            				
             			    ],
             		    ],
             	    ],
+                    [
+            		    'label' => 'ตั้งค่าผู้ใช้งาน',
+            		    'icon' => 'cog',
+            		    'url' => '#',
+            		    'items' => [
+                            [
+            				    'label' => 'จัดการสิทธิ์',
+            				    'icon' => 'share',
+            				    'url' => '#',
+            				    'items' => [
+            					    ['label' => 'Assignments', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/assignment']],
+            			    	    ['label' => 'Role', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/role']],
+            					    ['label' => 'Permission', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/permission']],
+            				        ['label' => 'Route', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/route']],
+            					    ['label' => 'Rule', 'icon' => 'fa fa-caret-right', 'url' => ['/admin/rule']],
+            				    ],
+            			    ],
+            		    ],
+            	    ],
+                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['user/security/login'], 'visible' => Yii::$app->user->isGuest],
+                    [
+                        'label' => 'Same tools',
+                        'icon' => 'share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
+                            [
+                                'label' => 'Level One',
+                                'icon' => 'circle-o',
+                                'url' => '#',
+                                'items' => [
+                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
+                                    [
+                                        'label' => 'Level Two',
+                                        'icon' => 'circle-o',
+                                        'url' => '#',
+                                        'items' => [
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ]
         )?>
