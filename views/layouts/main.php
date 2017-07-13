@@ -41,14 +41,15 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-				['label' => 'Sign in', 'url' => ['/user/security/login']]
+				['label' => 'Sign in', 'url' => ['/security/login']]
             ) : (
-				['label' => 'Account(' . Yii::$app->user->identity->username . ')', 'items'=>[
-					['label' => 'Profile', 'url' => ['/user/settings/profile']],
-					['label' => 'Account', 'url' => ['/user/settings/account']],
-					['label' => 'Logout', 'url' => ['/user/security/logout'],'linkOptions' => ['data-method' => 'post']],
-				]],
-				['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest],
+				['label' => 'Account(' . Yii::$app->user->identity->username . ')', 
+                    'items'=>[
+					    ['label' => 'Profile', 'url' => ['/settings/profile']],
+					    ['label' => 'Account', 'url' => ['/settings/account']],
+					    ['label' => 'Logout', 'url' => ['/security/logout'],'linkOptions' => ['data-method' => 'post']],
+				    ]
+                ]
                 /*'<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(

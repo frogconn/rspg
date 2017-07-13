@@ -50,10 +50,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'benefit:ntext',
             //'image_id',
             //'type_id',
-            //'created_date',
-            //'created_by',
-            //'updated_date',
-            //'updated_by',
+            'created_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
+            ],
+            'updated_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 </div>
