@@ -99,15 +99,15 @@ class ResearcherSearch extends Researcher
         ->andFilterWhere(['like', 'is_foreigner', $this->searchAll]);
 */
 
-        $query->andFilterWhere(['like', 'personal_code', $this->personal_code])
+        $query->orFilterWhere(['like', 'personal_code', $this->searchAll])
             ->andFilterWhere(['like', 'is_foreigner', $this->is_foreigner])
             //->andFilterWhere(['like', 'title', $this->title])
             //->andFilterWhere(['like', 'firstname_th', $this->firstname_th])
             //->andFilterWhere(['like', 'lastname_th', $this->lastname_th])
             //->andFilterWhere(['like', 'firstname_en', $this->firstname_en])
             //->andFilterWhere(['like', 'lastname_en', $this->lastname_en])
-            ->andFilterWhere(['like', 'fullname_th', $this->fullname_th])
-            ->andFilterWhere(['like', 'fullname_en', $this->fullname_en])
+            ->orFilterWhere(['like', 'fullname_th', $this->searchAll])
+            ->orFilterWhere(['like', 'fullname_en', $this->searchAll])
             ->andFilterWhere(['like', 'gender', $this->gender]);
             //->andFilterWhere(['like', 'email', $this->email])
             //->andFilterWhere(['like', 'telephone', $this->telephone])

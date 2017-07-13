@@ -23,7 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-   
+    <div class="box box-success">
+        <!--div class="box-header with-border">
+            <h3 class="box-title">ค้นหา</h3>
+        </div-->
+        <div class="box-body">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+        <!-- /.box-body -->
+    </div>
 
     <div class="box box-success">
             <!--div class="box-header with-border">
@@ -32,18 +40,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
             // 'id',
-            //'personal_code',
+            'personal_code',
             // 'is_foreigner',
              [
                  'attribute' => 'is_foreigner',
                  'value' =>'isForeigner',
-                 'filter'=>Html::activeDropDownList($searchModel, 'is_foreigner',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','is_foreigner'),['class'=>'form-control','prompt' => 'เลือกชาวต่างชาติ']),
-                 'label' => 'ชาวต่างชาติ'
+                 //'filter'=>Html::activeDropDownList($searchModel, 'isForeigner',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','isForeigner'),['class'=>'form-control','prompt' => 'เลือกเพศ']),
+                 //'label' => 'ชาวต่างชาติ'
              ],
             // 'title',
             // 'firstname_th',
@@ -55,8 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
              [
                  'attribute' => 'gender',
                  'value' =>'gGender',
-                 'filter'=>Html::activeDropDownList($searchModel, 'gender',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','gender'),['class'=>'form-control','prompt' => 'เลือกเพศ']),
-                 'label' => 'เพศ'
+                 //'filter'=>Html::activeDropDownList($searchModel, 'gGender',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','gGender'),['class'=>'form-control','prompt' => 'เลือกเพศ']),
+                 //'label' => 'เพศ'
              ],
             //'email',
             //'telephone',
