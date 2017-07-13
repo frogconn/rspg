@@ -2,8 +2,11 @@
 use kartik\widgets\ActiveForm;
 use kartik\widgets\DepDrop;
 
+use yii\helpers\ArrayHelper;
+use app\models\Researcher;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ResearcherSearch */
@@ -47,6 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
              [
                  'attribute' => 'is_foreigner',
                  'value' =>'isForeigner',
+                 //'filter'=>Html::activeDropDownList($searchModel, 'isForeigner',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','isForeigner'),['class'=>'form-control','prompt' => 'เลือกเพศ']),
+                 //'label' => 'ชาวต่างชาติ'
              ],
             // 'title',
             // 'firstname_th',
@@ -58,9 +63,11 @@ $this->params['breadcrumbs'][] = $this->title;
              [
                  'attribute' => 'gender',
                  'value' =>'gGender',
+                 //'filter'=>Html::activeDropDownList($searchModel, 'gGender',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','gGender'),['class'=>'form-control','prompt' => 'เลือกเพศ']),
+                 //'label' => 'เพศ'
              ],
-            'email',
-            'telephone',
+            //'email',
+            //'telephone',
             // 'evidence_file',
             // 'created_date',
             // 'created_by',

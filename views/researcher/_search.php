@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <div class="col-xs-5">
+    <div class="col-xs-4">
        <?= $form->field($model, 'searchAll') ?>
     </div>
     
@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 	    echo $form->field($model, 'is_foreigner')->dropdownList($list); ?>
 	</div>
 
-    <div class="col-xs-2">
+    <div class="col-xs-3">
         <?php $list = ['' => 'ทั้งหมด','M' => 'ชาย', 'F' => 'หญิง'];
 	    echo $form->field($model, 'gender')->dropdownList($list); ?>
     </div>
