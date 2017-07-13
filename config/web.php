@@ -68,6 +68,7 @@ $config = [
     				'' => 'site/index',
     				'register' => 'site/register',
     				'view' => 'site/view',
+                    'admin' => 'site/admin',
     				'page/<alias:[\w\W\d\D]+>' => 'site/content',
     				'<controller:\w+[-\w]*>/<id:\d+>' => '<controller>/view',
     				'<controller:\w+[-\w]*>/<action:\w+[-\w]*>/<id:\d+>' => '<controller>/<action>',
@@ -77,7 +78,7 @@ $config = [
     ],
 	'modules' => [
   
-  'admin' => [
+  'user-admin' => [
             'class' => 'mdm\admin\Module',
         ],
 		'user' => [
