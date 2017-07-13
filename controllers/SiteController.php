@@ -3,12 +3,13 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\ContactForm;
+use app\models\LoginForm;
+use app\models\ProjectGarjan;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -61,8 +62,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        echo "";
-        //return $this->render('index');
+        $this->layout ='frontend';
+
+        $model = ProjectGarjan::find()->all();
+        return $this->render('index',['model'=>$model]);
     }
 
     public function actionAdmin(){
