@@ -2,8 +2,11 @@
 use kartik\widgets\ActiveForm;
 use kartik\widgets\DepDrop;
 
+use yii\helpers\ArrayHelper;
+use app\models\Researcher;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ResearcherSearch */
@@ -20,15 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <div class="box box-success">
-        <!--div class="box-header with-border">
-            <h3 class="box-title">ค้นหา</h3>
-        </div-->
-        <div class="box-body">
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-        </div>
-        <!-- /.box-body -->
-    </div>
+   
 
     <div class="box box-success">
             <!--div class="box-header with-border">
@@ -37,16 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
             // 'id',
-            'personal_code',
+            //'personal_code',
             // 'is_foreigner',
              [
                  'attribute' => 'is_foreigner',
                  'value' =>'isForeigner',
+                 'filter'=>Html::activeDropDownList($searchModel, 'is_foreigner',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','is_foreigner'),['class'=>'form-control','prompt' => 'เลือกชาวต่างชาติ']),
+                 'label' => 'ชาวต่างชาติ'
              ],
             // 'title',
             // 'firstname_th',
@@ -58,9 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
              [
                  'attribute' => 'gender',
                  'value' =>'gGender',
+                 'filter'=>Html::activeDropDownList($searchModel, 'gender',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','gender'),['class'=>'form-control','prompt' => 'เลือกเพศ']),
+                 'label' => 'เพศ'
              ],
-            'email',
-            'telephone',
+            //'email',
+            //'telephone',
             // 'evidence_file',
             // 'created_date',
             // 'created_by',
