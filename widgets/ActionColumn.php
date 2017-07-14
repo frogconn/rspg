@@ -102,7 +102,7 @@ class ActionColumn extends yii\grid\Column
         parent::init();
         $this->initDefaultButtons();
     }
-
+ 
     /**
      * Initializes the default button rendering callbacks.
      */
