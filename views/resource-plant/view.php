@@ -64,7 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!--p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p-->
                     <div class="center">
                         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                            <?= Html::img('@web/uploads/files/'.$attach_files->name,['class'=>'img-thumbnail center']);?>
+                            <?php foreach ($attach_files as $image): ?>
+                                <?= Html::img('@web/uploads/files/'.$image->name,['class'=>'img-thumbnail center']);?>
+                            <?php endforeach ?>
                         </div>
                     </div>
                 </div>

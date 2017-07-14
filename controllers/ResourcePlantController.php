@@ -245,7 +245,8 @@ class ResourcePlantController extends Controller
 
     protected function findImage($id)
     {
-        if (($model = AttachFiles::findOne(['itemId'=>$id,'model'=>'app\models\ResourcePlant'])) !== null) {
+        if (($model = AttachFiles::find()->andWhere(['model'=>'app\models\ResourcePlant'])
+            ->andWhere(['itemId'=>$id])->all()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
