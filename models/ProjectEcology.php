@@ -141,4 +141,8 @@ class ProjectEcology extends \yii\db\ActiveRecord
     public function getProjectType(){
         return $this->hasOne(ProjectType::className(),['id'=>'type_id']);
     }
+
+    public function getResearcherFaculty(){
+        return $this->hasOne(ResearcherFaculty::className(),['id'=>'faculty_id']);
+    }
 }

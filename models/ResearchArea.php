@@ -37,8 +37,8 @@ class ResearchArea extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['created_date', 'updated_date'], 'safe'],
+            [[], 'required'],
+            [['created_date', 'updated_date' ,'name'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 127],
         ];

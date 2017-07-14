@@ -1,8 +1,15 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+
 use yii\grid\GridView;
+
 use yii\widgets\Pjax;
+
+use app\models\ResourceType;
+use app\models\ResearchArea;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ResourceMicrologySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -16,24 +23,31 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+    <div class="box box-success">
+        <!--div class="box-header with-border">
+            <h3 class="box-title">ค้นหา</h3>
+        </div-->
+        <div class="box-body">
+            <?php echo $this->render('_search', ['model' => $searchModel, 'type_name' => $type_name , 'zone_name' => $zone_name]); ?>
+        </div>
+        <!-- /.box-body -->
+    </div>
 
     <div class="box box-success">
             <!--div class="box-header with-border">
               <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
             </div-->
 
-            <div class="box-body">
 
 
-<?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
-<?php echo $this->render('_search', ['model' => $searchModel]); ?>
-<br>
+
     <?= GridView::widget([
         'id' => 'grid-user',
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+        'filterModel' => $searchModel,       
         'tableOptions' => [
             'class' => 'table table-bordered table-striped table-hover',
             ],
@@ -43,10 +57,12 @@ $this->params['breadcrumbs'][] = $this->title;
              [
 
                  'attribute' => 'type_name',
+                 'value' => 'resourceType.name',
                  'label' => 'ประเภท',
-                 'value' => 'resourceType.name'
+                 
  
             ],
+
             //'id',
             'genus',
             'species',
@@ -55,8 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 
                  'attribute' => 'zone_name',
-                 'label' => 'ข้อมูลพื้นที่วิจัย',
-                 'value' => 'researchArea.name'
+                 'value' => 'researchArea.name',
+                 'label' => 'ข้อมูลพื้นที่วิจัย'
  
             ],
             
@@ -75,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
               ],
         ],
     ]); ?>
-<?php yii\widgets\Pjax::end(); ?></div>
+</div>
 </div>
 
 </div>

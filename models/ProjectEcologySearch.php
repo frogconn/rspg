@@ -14,6 +14,7 @@ class ProjectEcologySearch extends ProjectEcology
 {
     public $type;
     public $fullname_th;
+    public $name;
     /**
      * @inheritdoc
      */
@@ -21,7 +22,7 @@ class ProjectEcologySearch extends ProjectEcology
     {
         return [
             [['id', 'faculty_id', 'type_id'], 'integer'],
-            [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'updated_by', 'updated_date', 'type', 'fullname_th'], 'safe'],
+            [['year', 'name', 'personal_code', 'summary', 'created_by', 'created_date', 'updated_by', 'updated_date', 'type', 'fullname_th', 'name'], 'safe'],
             [['budget'], 'number'],
         ];
     }
@@ -44,7 +45,7 @@ class ProjectEcologySearch extends ProjectEcology
      */
     public function search($params)
     {
-        $query = ProjectEcology::find()->joinWith('projectType')->joinWith('researcher');
+        $query = ProjectEcology::find()->joinWith('projectType')->joinWith('researcher')->joinWith('researcherFaculty');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -68,8 +69,13 @@ class ProjectEcologySearch extends ProjectEcology
             'asc' => ['researcher.fullname_th' => SORT_ASC],
             'desc' => ['researcher.fullname_th'=> SORT_DESC], 
         ];
+
+        $dataProvider->sort->attributes['name'] = [
+            'asc' => ['researcher_faculty.name' => SORT_ASC],
+            'desc' => ['researcher_faculty.name'=> SORT_DESC], 
+        ];
         // grid filtering conditions
-        /*$query->andFilterWhere([
+        $query->andFilterWhere([
             'id' => $this->id,
             'year' => $this->year,
             'faculty_id' => $this->faculty_id,
@@ -77,12 +83,13 @@ class ProjectEcologySearch extends ProjectEcology
             'type_id' => $this->type_id,
             'created_date' => $this->created_date,
             'updated_date' => $this->updated_date,
-        ]);*/
+        ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'year', $this->year])
             ->andFilterWhere(['like', 'summary', $this->summary])
             ->andFilterWhere(['like', 'project_type.type', $this->type])
+            ->andFilterWhere(['like', 'researcher_faculty.name', $this->name])
             ->andFilterWhere(['like', 'researcher.fullname_th', $this->fullname_th]);
 
         return $dataProvider;

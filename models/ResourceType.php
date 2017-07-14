@@ -31,8 +31,8 @@ class ResourceType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'class'], 'required'],
-            [['created_date', 'updated_date'], 'safe'],
+            [['class'], 'required'],
+            [['created_date', 'updated_date', 'name'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 127],
             [['class'], 'string', 'max' => 63],

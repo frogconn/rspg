@@ -15,15 +15,15 @@ class ResourceMicrologySearch extends ResourceMicrology
     /**
      * @inheritdoc
      */
-    public $searchAll;
     public $zone_name;
     public $type_name;
+    public $searchAll;
 
     public function rules()
     {
         return [
             [['id', 'zone_id', 'image_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['genus', 'species', 'information', 'benefit', 'created_date', 'updated_date','zone_name','searchAll','type_name'], 'safe'],
+            [[ 'information', 'benefit', 'created_date', 'updated_date','searchAll'], 'safe'],
         ];
     }
 
@@ -72,8 +72,7 @@ class ResourceMicrologySearch extends ResourceMicrology
         ];
 
         // grid filtering conditions
-        /*$query->orFilterWhere([
-            'id' => $this->searchAll,
+        $query->andFilterWhere([
             'zone_id' => $this->zone_id,
             'image_id' => $this->image_id,
             'type_id' => $this->type_id,
@@ -81,15 +80,13 @@ class ResourceMicrologySearch extends ResourceMicrology
             'created_by' => $this->created_by,
             'updated_date' => $this->updated_date,
             'updated_by' => $this->updated_by,
-        ]);*/
+        ]);
 
         $query
             ->orFilterWhere(['like', 'genus', $this->searchAll])
-            ->orFilterWhere(['like', 'research_area.name', $this->searchAll])
+            ->andFilterWhere(['like', 'research_area.name', $this->zone_name])
             ->orFilterWhere(['like', 'species', $this->searchAll])
-            ->orFilterWhere(['like', 'information', $this->searchAll])
-            ->orFilterWhere(['like', 'benefit', $this->searchAll])
-            ->orFilterWhere(['like', 'resource_type.name', $this->searchAll]);
+            ->andFilterWhere(['like', 'resource_type.name', $this->type_name]);
 
 
         return $dataProvider;

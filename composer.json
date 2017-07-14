@@ -27,7 +27,8 @@
         "trntv/yii2-datetime-widget": "*",
         "dektrium/yii2-user": "0.9.*@dev",
         "unclead/yii2-multiple-input": "~2.0",
-        "et-soft/yii2-widget-select-year": "*"
+        "et-soft/yii2-widget-select-year": "*",
+        "kartik-v/yii2-date-range": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

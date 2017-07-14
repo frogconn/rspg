@@ -59,11 +59,18 @@ class ResourceMicrologyController extends Controller
     public function actionIndex()
     {
         $searchModel = new ResourceMicrologySearch();
+         $type_name = new ResourceType();
+         $zone_name = new ResearchArea();
+
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'type_name'=> $type_name,
+            'zone_name' => $zone_name,
         ]);
     }
 

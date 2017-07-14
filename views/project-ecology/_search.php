@@ -13,17 +13,19 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-        'options' => ['data-pjax' => true]
+        
     ]); ?>
 
+ty_id
+     <?= $form->field($searchModel, 'type')?>
 
-     <div class="input-group">
-      <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> ค้นหา</button>
-       
-      </span>
-    </div>
+    <?= $form->field($searchModel, 'year') ?>
+
+    <?= $form->field($searchModel, 'name') ?>
+
+    <?= $form->field($searchModel, 'fullname_th') ?>
+
+     <?= $form->field($searchModel, 'fuculty_id') ?>
 
     <?php ActiveForm::end(); ?>
 
