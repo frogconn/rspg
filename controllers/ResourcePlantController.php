@@ -181,7 +181,6 @@ class ResourcePlantController extends Controller
         $this->layout ='frontend';
         $searchModel = new ResourcePlantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

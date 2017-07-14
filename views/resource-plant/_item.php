@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 ?>
 <div class="post-preview">
-    <a href="view/">
+    <a href="view/#id">
         <h2 class="post-title">
             <?php echo $model->common_name; ?>
         </h2>
