@@ -58,17 +58,12 @@ class ResourcePlantController extends Controller
      * Lists all ResourcePlant models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionAdmin()
     {
         $searchModel = new ResourcePlantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        /*if (Yii::$app->user->isGuest) {
-            $this->layout ='frontend';
-            return $this->redirect('index-user');
-        }*/
         
-        return $this->render('index', [
+        return $this->render('admin', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -178,6 +173,12 @@ class ResourcePlantController extends Controller
         $model->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionIndex()
+    {
+        $this->layout ='frontend';
+        return $this->redirect('index');
     }
 
     /**

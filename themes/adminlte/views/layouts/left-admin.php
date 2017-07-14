@@ -58,7 +58,7 @@ use app\components\MenuHelper;
             				    'icon' => 'share',
             				    'url' => '#',
             				    'items' => [
-            					    ['label' => 'ข้อมูลพืช', 'icon' => 'circle-o', 'url' => ['/resource-plant']],
+            					    ['label' => 'ข้อมูลพืช', 'icon' => 'circle-o', 'url' => ['/resource-plant/admin']],
             			    	    ['label' => 'ข้อมูลสัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal']],
             					    ['label' => 'ข้อมูลจุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology']],
             				    ],
