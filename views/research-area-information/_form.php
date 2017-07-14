@@ -27,7 +27,6 @@ use app\models\AddressProvince;
     <?= $form->field($province, 'name')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(AddressProvince::find()->all(), 'id', 'name'),
             'language' => 'th',
-            
             'options' => [
                 'value' => $province->id,
                 'placeholder' => 'เลือกจังหวัด',
@@ -40,24 +39,26 @@ use app\models\AddressProvince;
     ?>
 
     <?= $form->field($amphur, 'name')->widget(DepDrop::classname(), [
-            'options'=>['id'=>'ddl-amphur'],
             'data'=> $amphur_list,
+            'value' => $amphur->id,
+            'options'=>['id'=>'ddl-amphur'],
             'pluginOptions'=>[
                 'depends'=>['ddl-province'],
                 'placeholder'=>'เลือกอำเภอ',
                 'url'=>Url::to(['/research-area-information/get-amphur'])
-            ]
+            ],
         ]); 
     ?>
 
     <?= $form->field($district, 'name')->widget(DepDrop::classname(), [
-			'options'=>['id'=>'ddl-district'],
 			'data' => $district_list,
+            'options'=>['id'=>'ddl-district'],
 			'pluginOptions'=>[
 				'depends'=>['ddl-province', 'ddl-amphur'],
 				'placeholder'=>'เลือกตำบล',
 				'url'=>Url::to(['/research-area-information/get-district'])
-           ]
+           ],
+           
         ]); 
     ?>
 
@@ -69,9 +70,9 @@ use app\models\AddressProvince;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($researchArea->isNewRecord ? 'Create' : 'Update', ['class' => $researchArea->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($researchArea->isNewRecord ? 'สร้าง' : 'แก้ไขข้อมูล', ['class' => $researchArea->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('Cancle',[ 'research-area-information/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',[ 'research-area-information/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>

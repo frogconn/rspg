@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use \yii\web\UploadedFile;
+use \dektrium\user\models\User;
 
 /**
  * This is the model class for table "resource_plant".
@@ -131,5 +132,10 @@ class ResourcePlant extends \yii\db\ActiveRecord
 
     public function getResearchArea (){
         return $this->hasOne (ResearchArea::className(),['id'=>'zone_id']);
+    }
+
+    // Username, who create or update data
+    public function getUser (){
+        return $this->hasOne (User::className(), ['id'=>'updated_by']);
     }
 }

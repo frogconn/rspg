@@ -14,15 +14,30 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-	<?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'personal_code') ?>
+    <div class="col-xs-4">
+       <?= $form->field($model, 'searchAll') ?>
+    </div>
+    
+    <div class="col-xs-3">
+        <?php $list = ['' => 'ทั้งหมด','Y' => 'ใช่', 'N' => 'ไม่ใช่'];
+	    echo $form->field($model, 'is_foreigner')->dropdownList($list); ?>
+	</div>
 
-    <?= $form->field($model, 'is_foreigner') ?>
+    <div class="col-xs-3">
+        <?php $list = ['' => 'ทั้งหมด','M' => 'ชาย', 'F' => 'หญิง'];
+	    echo $form->field($model, 'gender')->dropdownList($list); ?>
+    </div>
+	<!--?= $form->field($model, 'id') ?-->
 
-    <?= $form->field($model, 'title') ?>
+    <!--?= $form->field($model, 'personal_code') ?-->
 
-    <?= $form->field($model, 'firstname_th') ?>
+    <!--?= $form->field($model, 'is_foreigner') ?-->
+
+    <!--?= $form->field($model, 'title') ?-->
+
+    <!--?= $form->field($model, 'firstname_th') ?-->
+
     <?php // echo $form->field($model, 'lastname_th') ?>
 
     <?php // echo $form->field($model, 'firstname_en') ?>
@@ -49,17 +64,13 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'updated_by') ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-    <div class="input-group">
-      <?= Html::activeTextInput($model, 'searchAll',['class'=>'form-control','placeholder'=>'ค้นหาข้อมูล...']) ?>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> ค้นหา</button>
-       
-      </span>
-     </div>
-
-    <?php ActiveForm::end(); ?>
-
+    <div class="col-xs-2">
+        <div class="form-group">
+        <br>
+            <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
+            <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
+            <?= Html::a('ยกเลิก', ['reset'], ['class' => 'btn btn-default']) ?>
+        <?php ActiveForm::end(); ?>
+        </div>
+    </div>
 </div>

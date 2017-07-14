@@ -1,6 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+
+use app\models\ResourceType;
+use app\models\ResearchArea;
+
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
@@ -16,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="box box-success">
@@ -26,32 +31,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="box-body">
 
-<?php yii\widgets\Pjax::begin(['id' => 'grid-user-pjax','timeout'=>5000]); ?>
-<?php echo $this->render('_search', ['model' => $searchModel]); ?>
-<br>
+
  <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
-        'tableOptions' => [
+        'filterModel' => $searchModel,
+        /*'tableOptions' => [
             'class' => 'table table-bordered table-striped table-hover',
-            ],
+            ],*/
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
             
             //'id',
             [
-                 'attribute' => 'type_name',
+                 'attribute' => 'type_id',
+                 'value' => 'resourceType.name',
+                 'filter'=>Html::activeDropDownList($searchModel, 'type_id',ArrayHelper::map(ResourceType::find()->where (['class' => 'สัตว์และแมลง'])->all(), 'id','name'),['class'=>'form-control','prompt' => 'เลือกประเภท']),
                  'label' => 'ประเภท',
-                 'value' => 'resourceType.name'
             ],
             'common_name',
             'location_name',
-            'science_name',
-            'family_name',
+            //'science_name',
+            //'family_name',
             [  
-                'attribute' => 'zone_name',  // !!! important to matches the name attribute
-                'label'=>'ชื่อพื้นที่วิจัย',
-                'value'=> 'researchArea.name', 
+                'attribute' => 'zone_id',
+                 'value' => 'researchArea.name',
+                 'filter'=>Html::activeDropDownList($searchModel, 'zone_id',ArrayHelper::map(ResearchArea::find()->asArray()->all(), 'id', 'name'),['class'=>'form-control','prompt' => 'เลือกพื้นที่วิจัย']),
+                 'label' => 'ข้อมูลพื้นที่วิจัย'
             ], 
             // 'information:ntext',
             //'zone_id',
@@ -69,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
               ],
         ],
     ]); ?>
-<?php yii\widgets\Pjax::end(); ?></div>
+
 </div>
 
 </div>

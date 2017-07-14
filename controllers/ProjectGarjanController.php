@@ -201,13 +201,12 @@ class ProjectGarjanController extends Controller
                 $project->stop = $post['ProjectGarjan']['stop'];
                 $project->year = $post['ProjectGarjan']['year'];
                 $project->name = $post['ProjectGarjan']['name'];
-                $project->personal_code = $post['ProjectGarjan']['personal_code'];
                 $project->budget = $post['ProjectGarjan']['budget'];
                 $project->summary = $post['ProjectGarjan']['summary'];
-                $project->save();
+                $project->save(false);
 
                 $project->faculty_id = $post['ResearcherFaculty']['name'];
-                $project->save();
+                $project->save(false);
 
                 $partition = ProjectPartitions::find()->where(['project_id'=>$project->id])->all();
                 foreach ($partition as $model) {

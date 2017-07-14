@@ -63,9 +63,9 @@ use app\models\ResearchArea;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($animal->isNewRecord ? 'Create' : 'Update', ['class' => $animal->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($animal->isNewRecord ? 'สร้าง' : 'แก้ไขข้อมูล', ['class' => $animal->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('Cancle',[ 'resource-animal/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',[ 'resource-animal/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>

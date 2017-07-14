@@ -72,7 +72,7 @@ class ResourceAnimalSearch extends ResourceAnimal
         ];
 
         // grid filtering conditions
-       /* $query->andFilterWhere([
+        $query->andFilterWhere([
             'id' => $this->id,
             'zone_id' => $this->zone_id,
             'image_id' => $this->image_id,
@@ -81,16 +81,16 @@ class ResourceAnimalSearch extends ResourceAnimal
             'created_by' => $this->created_by,
             'updated_date' => $this->updated_date,
             'updated_by' => $this->updated_by,
-        ]);*/
+        ]);
 
-        $query->orFilterWhere(['like', 'common_name', $this->searchAll])
-            ->orFilterWhere(['like', 'location_name', $this->searchAll])
-            ->orFilterWhere(['like', 'science_name', $this->searchAll])
-            ->orFilterWhere(['like', 'family_name', $this->searchAll])
-            ->orFilterWhere(['like', 'information', $this->searchAll])
-            ->orFilterWhere(['like', 'research_area.name', $this->searchAll])
-            ->orFilterWhere(['like', 'benefit', $this->searchAll])
-            ->orFilterWhere(['like', 'resource_type.name', $this->searchAll]);
+        $query->andFilterWhere(['like', 'common_name', $this->common_name])
+            ->andFilterWhere(['like', 'location_name', $this->location_name])
+            ->andFilterWhere(['like', 'science_name', $this->science_name])
+            ->andFilterWhere(['like', 'family_name', $this->family_name])
+            //->andFilterWhere(['like', 'information', $this->information])
+            ->andFilterWhere(['like', 'research_area.name', $this->zone_name])
+            //->andFilterWhere(['like', 'benefit', $this->benefit])
+            ->andFilterWhere(['like', 'resource_type.name', $this->type_name]);
 
         return $dataProvider;
     }

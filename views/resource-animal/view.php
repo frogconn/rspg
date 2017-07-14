@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourceAnimal */
 
 $this->title = $model->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Resource Animals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-animal-view">
@@ -15,17 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Back',[ 'resource-animal/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('ย้อนกลับ',[ 'resource-animal/'], ['class' => 'btn bg-navy']) ?>
 
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-         <?= Html::a('Create Continue',[ 'resource-animal/create'], ['class' => 'btn bg-green']) ?>
+         <?= Html::a('สร้างข้อมูลเพิ่ม',[ 'resource-animal/create'], ['class' => 'btn bg-green']) ?>
     </p>
 
       <div class="box box-success">
@@ -50,18 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'benefit:ntext',
             //'image_id',
             //'type_id',
-            'created_date',
-            [
-                'format'=>'raw',
-                'attribute'=>'สร้างโดย',
-                'value'=>$created_by->username,
-            ],
-            'updated_date',
-            [
-                'format'=>'raw',
-                'attribute'=>'แก้ไขล่าสุดโดย',
-                'value'=>$updated_by->username,
-            ],
+            //'created_date',
+            //'created_by',
+            //'updated_date',
+            //'updated_by',
         ],
     ]) ?>
 </div>

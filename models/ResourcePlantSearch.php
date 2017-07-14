@@ -19,13 +19,14 @@ class ResourcePlantSearch extends ResourcePlant
     public $searchAll;
     public $zone_name;
     public $type_name;
+    public $username;
     
     public function rules()
     {
         return [
             [['id', 'zone_id', 'image_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['common_name', 'location_name', 'science_name', 'family_name', 'information', 'benefit', 'created_date', 'updated_date','zone_name', 'type_name', 'searchAll']
-            , 'safe'],
+            [['common_name', 'location_name', 'science_name', 'family_name', 'information', 'benefit', 'created_date', 'updated_date','zone_name',
+             'type_name', 'username','searchAll'], 'safe'],
         ];
     }
 
@@ -47,7 +48,7 @@ class ResourcePlantSearch extends ResourcePlant
      */
     public function search($params)
     {
-        $query = ResourcePlant::find()->joinWith('researchArea')->joinWith('resourceType');
+        $query = ResourcePlant::find()->joinWith('researchArea')->joinWith('resourceType')->joinWith('user');
 
         // add conditions that should always apply here
 
@@ -73,8 +74,13 @@ class ResourcePlantSearch extends ResourcePlant
             'desc'=>['resource_type.name'=>SORT_DESC],
         ];
 
+        $dataProvider->sort->attributes['username']=[
+            'asc'=>['user.username'=>SORT_ASC],
+            'desc'=>['user.username'=>SORT_DESC],
+        ];
+
         // grid filtering conditions
-        /*$query->andFilterWhere([
+        $query->andFilterWhere([
             'id' => $this->id,
             'zone_id' => $this->zone_id,
             'image_id' => $this->image_id,
@@ -83,16 +89,17 @@ class ResourcePlantSearch extends ResourcePlant
             'created_by' => $this->created_by,
             'updated_date' => $this->updated_date,
             'updated_by' => $this->updated_by,
-        ]);*/
+        ]);
 
-        $query->orFilterWhere(['like', 'common_name', $this->searchAll])
-            ->orFilterWhere(['like', 'research_area.name', $this->searchAll])
-            ->orFilterWhere(['like', 'location_name', $this->searchAll])
-            ->orFilterWhere(['like', 'science_name', $this->searchAll])
-            ->orFilterWhere(['like', 'family_name', $this->searchAll])
-            ->orFilterWhere(['like', 'information', $this->searchAll])
-            ->orFilterWhere(['like', 'benefit', $this->searchAll])
-            ->orFilterWhere(['like', 'resource_type.name', $this->searchAll]);
+        $query->andFilterWhere(['like', 'common_name', $this->common_name])
+            ->andFilterWhere(['like', 'research_area.name', $this->zone_name])
+            ->andFilterWhere(['like', 'location_name', $this->location_name])
+            ->andFilterWhere(['like', 'science_name', $this->science_name])
+            ->andFilterWhere(['like', 'family_name', $this->family_name])
+            ->andFilterWhere(['like', 'user.username', $this->username])
+            //->andFilterWhere(['like', 'information', $this->information])
+           // ->andFilterWhere(['like', 'benefit', $this->benefit])
+            ->andFilterWhere(['like', 'resource_type.name', $this -> type_name]);
 
         return $dataProvider;
     }

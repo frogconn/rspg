@@ -35,7 +35,7 @@ use app\components\MenuHelper;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     [
-                        'label' => 'หน้าแรก', 'icon' => 'home', 'url' => '@web'
+                        'label' => 'หน้าแรก', 'icon' => 'home', 'url' => '@web/admin'
                     ],
                     [
                         'label' => 'ข้อมูลนักวิจัย',
@@ -58,7 +58,7 @@ use app\components\MenuHelper;
             				    'icon' => 'share',
             				    'url' => '#',
             				    'items' => [
-            					    ['label' => 'ข้อมูลพืช', 'icon' => 'circle-o', 'url' => ['/resource-plant']],
+            					    ['label' => 'ข้อมูลพืช', 'icon' => 'circle-o', 'url' => ['/resource-plant/index-admin']],
             			    	    ['label' => 'ข้อมูลสัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal']],
             					    ['label' => 'ข้อมูลจุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology']],
             				    ],

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\ProjectGarjan;
+use add\models\Researcher;
 
 /**
  * ProjectGarjanSearch represents the model behind the search form about `app\models\ProjectGarjan`.
@@ -44,7 +45,8 @@ class ProjectGarjanSearch extends ProjectGarjan
      */
     public function search($params)
     {
-        $query = ProjectGarjan::find();
+
+        $query = ProjectGarjan::find()->joinWith('researcher')->joinWith('projectType');
 
         // add conditions that should always apply here
 
@@ -84,8 +86,8 @@ class ProjectGarjanSearch extends ProjectGarjan
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'year', $this->year])
-            ->andFilterWhere(['like', 'summary', $this->summary])
+            ->orFilterWhere(['like', 'year', $this->year])
+            //->andFilterWhere(['like', 'summary', $this->summary])
             ->andFilterWhere(['like', 'project_type.type', $this->type])
             ->andFilterWhere(['like', 'researcher.fullname_th', $this->fullname_th]);
 

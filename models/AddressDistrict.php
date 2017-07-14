@@ -30,6 +30,7 @@ class AddressDistrict extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'amphur_id', 'province_id'], 'required'],
             [['amphur_id', 'province_id', 'region_id'], 'integer'],
             [['code'], 'string', 'max' => 6],
             [['name'], 'string', 'max' => 127],

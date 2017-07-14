@@ -5,14 +5,15 @@ use yii\helpers\Html;
 /* @var $content string */
 
 
-if (Yii::$app->controller->action->id === 'login') {
+if (Yii::$app->controller->action->id === 'login' ||
+    Yii::$app->controller->action->id === 'register') {
 /**
  * Do not use this code in your template. Remove it.
  * Instead, use the code  $this->layout = '//main-login'; in your controller.
  */
     echo $this->render(
         'main-login',
-        ['content' => $content]
+        ['content' => $content] //Login page
     );
 } else {
 
@@ -41,8 +42,7 @@ if (Yii::$app->controller->action->id === 'login') {
     <div class="wrapper">
 
         <?= $this->render(
-            'header.php',
-            ['directoryAsset' => $directoryAsset]
+            'header.php', ['directoryAsset' => $directoryAsset]
         ) ?>
 
         <?php if(Yii::$app->session['user_role'] == 'Admin') {?>

@@ -59,7 +59,7 @@ use yii\helpers\Url;
         ]);
     ?>
 
-    <?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
+    <!--?= $form->field($faculty, 'name')->widget(DepDrop::classname(), [
             'data'=> $faculty_list,
             'options'=>['id'=>'ddl-faculty'],
             'pluginOptions'=>[
@@ -68,7 +68,7 @@ use yii\helpers\Url;
                 'url'=>Url::to(['/project-ecology/get-faculty'])
             ]
         ]); 
-    ?>
+    ?-->
 
     <?= $form->field($project, 'schedule')->widget(MultipleInput::className(), [
             'columns' => [
@@ -159,9 +159,9 @@ use yii\helpers\Url;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-	               <?= Html::submitButton($project->isNewRecord ? 'Create' : 'Update', ['class' => $project->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	               <?= Html::submitButton($project->isNewRecord ? 'สร้าง' : 'แก้ไขข้อมูล', ['class' => $project->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('Cancle',[ 'project-ecology/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',[ 'project-ecology/'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>
@@ -176,3 +176,22 @@ use yii\helpers\Url;
 <script>
     document.getElementById('ddl-faculty').value="<?php echo $faculty->id; ?>";
 </script>
+
+<?php
+    $script = <<< JS
+    // here you right all your javascript stuff
+    $('#ddl-header').change(function(){
+        /*var personal_code = $(this).val();
+        $.get('get-faculty', { personal_code : personal_code }, function(data){
+            var data = $.parseJSON(data);
+            alert(data);
+            $('#researcherfaculty-name').attr('value', data.name);
+        });*/
+        $("#ddl-faculty").depdrop({
+            depends: ['ddl-header'],
+            url: '/project-ecology/get-faculty'
+        });
+    }).change();
+JS;
+$this->registerJs($script);
+?>
