@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 use app\assets\FrontendAsset;
 use yii\helpers\Url;
+
+
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -60,6 +62,14 @@ FrontendAsset::register($this);
                         </li>
                         <li>
                             <a href="contact.html">ติดต่อเรา</a>
+                        </li>
+                        <li>
+                            <?php if (Yii::$app->user->isGuest){ ?>
+                            <a href="<?=Url::to('user/security/login')?>" class="btn btn-danger btn-sm" role="button">LOGIN</a>
+                            <?php }else{ ?>
+                                    <a href="index.php" class="btn btn-danger btn-sm" role="button">LOGOUT</a>
+                                    <?php } ?>
+
                         </li>
                     </ul>
                 </div>
