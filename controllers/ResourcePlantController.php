@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 
+use app\models\AttachFiles;
 use app\models\ResearchArea;
 use app\models\ResourcePlant;
 use app\models\ResourcePlantSearch;
@@ -58,12 +59,12 @@ class ResourcePlantController extends Controller
      * Lists all ResourcePlant models.
      * @return mixed
      */
-    public function actionAdmin()
+    public function actionIndexAdmin() // url : resource-plant/index-admin
     {
         $searchModel = new ResourcePlantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
-        return $this->render('admin', [
+        return $this->render('index-admin', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -74,13 +75,13 @@ class ResourcePlantController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionViewAdmin($id)
     {
         $model = $this->findModel($id);
         $created_by = $this->findUser($model->created_by);
         $updated_by = $this->findUser($model->updated_by);
         
-        return $this->render('view', [
+        return $this->render('view-admin', [
             'model' => $this->findModel($id),
             'created_by' => $created_by,
             'updated_by' => $updated_by,
@@ -112,7 +113,7 @@ class ResourcePlantController extends Controller
                 $plant->save(false);
 
                 Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-                return $this->redirect(['view', 'id' => $plant->id]);
+                return $this->redirect(['view-admin', 'id' => $plant->id]);
             }
         } else {
             return $this->render('create', [
@@ -147,7 +148,7 @@ class ResourcePlantController extends Controller
             $plant->save();
 
             Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-            return $this->redirect(['view', 'id' => $plant->id]);
+            return $this->redirect(['view-admin', 'id' => $plant->id]);
         } else {
             return $this->render('update', [
                 'plant' => $plant,
@@ -178,7 +179,28 @@ class ResourcePlantController extends Controller
     public function actionIndex()
     {
         $this->layout ='frontend';
-        return $this->redirect('index');
+        $searchModel = new ResourcePlantSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        $this->layout ='frontend';
+        $model = $this->findModel($id);
+        $attach_files = $this->findImage($id);
+        $updated_by = $this->findUser($model->updated_by);
+        
+        return $this->render('view', [
+            'attach_files'=>$attach_files,
+            'model' => $this->findModel($id),
+            'updated_by' => $updated_by,
+        ]);
     }
 
     /**
@@ -220,6 +242,15 @@ class ResourcePlantController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[user]The requested page does not exist.');
+        }
+    }
+
+    protected function findImage($id)
+    {
+        if (($model = AttachFiles::findOne(['itemId'=>$id,'model'=>'app\models\ResourcePlant'])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
         }
     }
 }

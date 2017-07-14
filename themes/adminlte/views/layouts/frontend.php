@@ -37,11 +37,26 @@ FrontendAsset::register($this);
                         <li>
                             <a href="index.php">หน้าหลัก</a>
                         </li>
-                        <li>
-                            <a href="about.html">ข้อมูลทรัพยากร</a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                                aria-haspopup="true" aria-expanded="false">ข้อมูลทรัพยากร
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="resource-plant/">ทรัพยากรพืช</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">ทรัพยากรสัตว์</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">ทรัพยากรจุลินทรีย์</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="post.html">โครงการวิจัย</a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">โครงการวิจัย
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">โครงการวิจัยนิเวศและชุมชน</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">โครงการวิจัยยางนา</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="contact.html">ติดต่อเรา</a>
@@ -52,21 +67,7 @@ FrontendAsset::register($this);
                 </div>
             <!-- /.container -->
             </nav>
-            <!-- Page Header -->
-            <!-- Set your background image for this header on the line below. -->
-            <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/home-bg.jpg'])?>')">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                            <div class="site-heading">
-                                <span style='white-space: pre;'><h2>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ</h2></span>
-                                <hr class="small">
-                                <span class="subheading">ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
+            
             <?= $content ?>
 
         <?php $this->endBody() ?>
