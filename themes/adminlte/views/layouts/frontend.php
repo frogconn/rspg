@@ -37,7 +37,7 @@ FrontendAsset::register($this);
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="index.php">หน้าหลัก</a>
+                            <a href="<?php echo Yii::$app->homeUrl;?>">หน้าหลัก</a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
