@@ -45,7 +45,15 @@ class ResourceAnimalSearch extends ResourceAnimal
      */
     public function search($params)
     {
-        $query = ResourceAnimal::find()->joinWith('researchArea')->joinWith('resourceType');
+        $session = Yii::$app->session;
+            
+        // Is user admin or staff ?
+        if ($session['user_role'] != 'Researcher') {
+            $query = ResourceAnimal::find();
+        } else {
+            $query = ResourceAnimal::find()->where(['resource_animal.created_by'=>$session['user_id']]);
+        }
+        $query->joinWith('researchArea')->joinWith('resourceType');
 
         // add conditions that should always apply here
 

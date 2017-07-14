@@ -48,7 +48,15 @@ class ResourcePlantSearch extends ResourcePlant
      */
     public function search($params)
     {
-        $query = ResourcePlant::find()->joinWith('researchArea')->joinWith('resourceType')->joinWith('user');
+        $session = Yii::$app->session;
+            
+        // Is user admin or staff ?
+        if ($session['user_role'] != 'Researcher') {
+            $query = ResourcePlant::find();
+        } else {
+            $query = ResourcePlant::find()->where(['resource_plant.created_by'=>$session['user_id']]);
+        }
+         $query->joinWith('researchArea')->joinWith('resourceType')->joinWith('user');
 
         // add conditions that should always apply here
 

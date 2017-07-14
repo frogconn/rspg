@@ -45,7 +45,15 @@ class ResourceMicrologySearch extends ResourceMicrology
      */
     public function search($params)
     {
-        $query = ResourceMicrology::find()->joinWith('researchArea')->joinWith('resourceType');
+        $session = Yii::$app->session;
+            
+        // Is user admin or staff ?
+        if ($session['user_role'] != 'Researcher') {
+            $query = ResourceMicrology::find();
+        } else {
+            $query = ResourceMicrology::find()->where(['resource_micrology.created_by'=>$session['user_id']]);
+        }
+        $query->joinWith('researchArea')->joinWith('resourceType');
 
         // add conditions that should always apply here
 

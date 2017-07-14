@@ -46,7 +46,15 @@ class ProjectGarjanSearch extends ProjectGarjan
     public function search($params)
     {
 
-        $query = ProjectGarjan::find()->joinWith('researcher')->joinWith('projectType');
+        $session = Yii::$app->session;
+            
+        // Is user admin or staff ?
+        if ($session['user_role'] != 'Researcher') {
+            $query = ProjectGarjan::find();
+        } else {
+            $query = ProjectGarjan::find()->where(['project_garjan.created_by'=>$session['user_id']]);
+        }
+        $query->joinWith('researcher')->joinWith('projectType');
 
         // add conditions that should always apply here
 

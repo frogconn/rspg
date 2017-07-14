@@ -45,7 +45,16 @@ class ProjectEcologySearch extends ProjectEcology
      */
     public function search($params)
     {
-        $query = ProjectEcology::find()->joinWith('projectType')->joinWith('researcher')->joinWith('researcherFaculty');
+
+        $session = Yii::$app->session;
+            
+        // Is user admin or staff ?
+        if ($session['user_role'] != 'Researcher') {
+            $query = ProjectEcology::find();
+        } else {
+            $query = ProjectEcology::find()->where(['project_ecology.created_by'=>$session['user_id']]);
+        }
+        $query->joinWith('projectType')->joinWith('researcher')->joinWith('researcherFaculty');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

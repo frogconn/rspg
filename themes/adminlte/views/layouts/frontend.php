@@ -65,10 +65,18 @@ FrontendAsset::register($this);
                         </li>
                         <li>
                             <?php if (Yii::$app->user->isGuest){ ?>
-                            <a href="<?=Url::to('user/security/login')?>" class="btn btn-danger btn-sm" role="button">LOGIN</a>
+                            <a href="<?=Url::to('user/security/login')?>">เข้าสู่ระบบ</a>
                             <?php }else{ ?>
-                                    <a href="index.php" class="btn btn-danger btn-sm" role="button">LOGOUT</a>
-                                    <?php } ?>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo Yii::$app->session['username']; ?>
+                                    <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="admin">โครงงานวิจัย</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="<?=Url::to('user/security/logout')?>" data-method="post">ออกจากระบบ</a></li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
 
                         </li>
                     </ul>
