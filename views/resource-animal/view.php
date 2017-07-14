@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourceAnimal */
 
 $this->title = $model->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'Resource Animals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-animal-view">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('ย้อนกลับ',[ 'resource-animal/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('กลับ',[ 'resource-animal/'], ['class' => 'btn bg-navy']) ?>
 
         <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('ลบ', ['delete', 'id' => $model->id], [
@@ -50,10 +50,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'benefit:ntext',
             //'image_id',
             //'type_id',
-            //'created_date',
-            //'created_by',
-            //'updated_date',
-            //'updated_by',
+            'created_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'สร้างโดย',
+                'value'=>$created_by->username,
+            ],
+            'updated_date',
+            [
+                'format'=>'raw',
+                'attribute'=>'แก้ไขล่าสุดโดย',
+                'value'=>$updated_by->username,
+            ],
         ],
     ]) ?>
 </div>
