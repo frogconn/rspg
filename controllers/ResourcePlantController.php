@@ -184,7 +184,6 @@ class ResourcePlantController extends Controller
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            
         ]);
     }
 
