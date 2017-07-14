@@ -35,7 +35,7 @@ use app\components\MenuHelper;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     [
-                        'label' => 'หน้าแรก', 'icon' => 'home', 'url' => '@web'
+                        'label' => 'หน้าแรก', 'icon' => 'home', 'url' => '@web/admin'
                     ],
                     [
                         'label' => 'ข้อมูลนักวิจัย',

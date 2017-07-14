@@ -22,6 +22,7 @@ use \dektrium\user\models\User;
  */
 class ResourcePlantController extends Controller
 {
+    //ublic $layout = 'main';
     /**
      * @inheritdoc
      */
@@ -62,6 +63,11 @@ class ResourcePlantController extends Controller
         $searchModel = new ResourcePlantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        /*if (Yii::$app->user->isGuest) {
+            $this->layout ='frontend';
+            return $this->redirect('index-user');
+        }*/
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -78,6 +84,7 @@ class ResourcePlantController extends Controller
         $model = $this->findModel($id);
         $created_by = $this->findUser($model->created_by);
         $updated_by = $this->findUser($model->updated_by);
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
             'created_by' => $created_by,

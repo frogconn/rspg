@@ -63,9 +63,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout ='frontend';
-
-        $model = ProjectGarjan::find()->all();
-        return $this->render('index',['model'=>$model]);
+        //$model = ProjectGarjan::find()->all();
+        return $this->render('index');
     }
 
     public function actionAdmin(){

@@ -28,23 +28,23 @@ FrontendAsset::register($this);
                         <span class="sr-only">Toggle navigation</span>
                         Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                    <a class="navbar-brand" href="index.php">RSPG</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index.php">หน้าหลัก</a>
                         </li>
                         <li>
-                            <a href="about.html">About</a>
+                            <a href="about.html">ข้อมูลทรัพยากร</a>
                         </li>
                         <li>
-                            <a href="post.html">Sample Post</a>
+                            <a href="post.html">โครงการวิจัย</a>
                         </li>
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="contact.html">ติดต่อเรา</a>
                         </li>
                     </ul>
                 </div>
@@ -59,15 +59,15 @@ FrontendAsset::register($this);
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                             <div class="site-heading">
-                                <h1>Clean Blog</h1>
+                                <span style='white-space: pre;'><h2>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ</h2></span>
                                 <hr class="small">
-                                <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                                <span class="subheading">ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
-        <?= $content ?>
+            <?= $content ?>
 
         <?php $this->endBody() ?>
     </body>
