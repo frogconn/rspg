@@ -54,7 +54,7 @@ class ActionColumn extends yii\grid\Column
      *
      * @see buttons
      */
-    public $template = '{view} {update} {delete}';
+    public $template = '{view-admin} {update} {delete}';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following
@@ -108,8 +108,8 @@ class ActionColumn extends yii\grid\Column
      */
     protected function initDefaultButtons()
     {
-        if (!isset($this->buttons['view'])) {
-            $this->buttons['view'] = function ($url, $model, $key) {
+        if (!isset($this->buttons['view-admin'])) {
+            $this->buttons['view-admin'] = function ($url, $model, $key) {
                 $options = array_merge([
                     'title' => Yii::t('yii', 'View'),
                     'aria-label' => Yii::t('yii', 'View'),
