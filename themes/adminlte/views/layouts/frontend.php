@@ -16,6 +16,7 @@ FrontendAsset::register($this);
     <head>
         <meta charset="<?= Yii::$app->charset ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -44,7 +45,7 @@ FrontendAsset::register($this);
                                 aria-haspopup="true" aria-expanded="false">ข้อมูลทรัพยากร
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="resource-plant/">ทรัพยากรพืช</a></li>
+                                <li><a href="<?php echo Url::base().'/resource-plant'; ?>">ทรัพยากรพืช</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">ทรัพยากรสัตว์</a></li>
                                 <li role="separator" class="divider"></li>
@@ -65,7 +66,7 @@ FrontendAsset::register($this);
                         </li>
                         <li>
                             <?php if (Yii::$app->user->isGuest){ ?>
-                            <a href="<?=Url::to('user/security/login')?>">เข้าสู่ระบบ</a>
+                            <a href="<?php echo Url::base().'/user/security/login'; ?>">เข้าสู่ระบบ</a>
                             <?php }else{ ?>
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo Yii::$app->session['username']; ?>

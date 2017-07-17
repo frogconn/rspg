@@ -1,7 +1,12 @@
 <?php
+use app\assets\AppAsset;
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+
+AppAsset::register($this);
+
 
 /* @var $this yii\web\View */
 ?>

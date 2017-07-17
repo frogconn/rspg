@@ -23,6 +23,7 @@ class FrontendAsset extends AssetBundle
         'themes/frontend/css/bootstrap.min.css',
         'themes/frontend/css/clean-blog.min.css',
         'themes/frontend/css/clean-blog.css',
+        'themes/frontend/css/style.css'
     ];
     public $js = [
         //'js/yii_overrides.js',
@@ -37,4 +38,7 @@ class FrontendAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
         'app\assets\SweetAlertAsset',
     ];
+
+
 }
+
