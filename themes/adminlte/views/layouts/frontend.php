@@ -48,16 +48,16 @@ FrontendAsset::register($this);
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<?php echo Url::base().'/resource-animal'; ?>">ทรัพยากรสัตว์</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="<?php echo Url::base().'/resource-micrology'; ?>">ทรัพยากรจุลินทรีย์</a></li>
+                                <li><a href="#">ทรัพยากรจุลินทรีย์</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">โครงการวิจัย
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo Url::base().'/project-ecology'; ?>">โครงการวิจัยนิเวศและชุมชน</a></li>
+                                <li><a href="#">โครงการวิจัยนิเวศและชุมชน</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="<?php echo Url::base().'/project-garjan'; ?>">โครงการวิจัยยางนา</a></li>
+                                <li><a href="#">โครงการวิจัยยางนา</a></li>
                             </ul>
                         </li>
                         <li>

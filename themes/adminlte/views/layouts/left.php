@@ -59,7 +59,7 @@ use app\components\MenuHelper;
             				    'url' => '#',
             				    'items' => [
             					    ['label' => 'ข้อมูลพืช', 'icon' => 'circle-o', 'url' => ['/resource-plant/index-admin']],
-            			    	    ['label' => 'ข้อมูลสัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal']],
+            			    	    ['label' => 'ข้อมูลสัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal/index-admin']],
             					    ['label' => 'ข้อมูลจุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology']],
             				    ],
             			    ],
