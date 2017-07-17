@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 
+use app\models\AttachFiles;
 use app\models\ResourceAnimal;
 use app\models\ResourceAnimalSearch;
 use app\models\ResearchArea;
@@ -57,35 +58,36 @@ class ResourceAnimalController extends Controller
      * Lists all ResourceAnimal models.
      * @return mixed
      */
-    public function actionIndex()
+	 public function actionIndexAdmin() // url : resource-plant/index-admin
     {
         $searchModel = new ResourceAnimalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
+        
+        return $this->render('index-admin', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
+	 
+	  /**
      * Displays a single ResourceAnimal model.
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
+	 public function actionViewAdmin($id)
     {
         $model = $this->findAnimal($id);
-        $created_by = $this -> findUser($model->created_by);
-        $updated_by = $this -> findUser($model->updated_by);
-        return $this->render('view', [
+        $created_by = $this->findUser($model->created_by);
+        $updated_by = $this->findUser($model->updated_by);
+        
+        return $this->render('view-admin', [
             'model' => $this->findAnimal($id),
             'created_by' => $created_by,
             'updated_by' => $updated_by,
         ]);
     }
-
-    /**
+	 
+/**
      * Creates a new ResourceAnimal model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -156,9 +158,8 @@ class ResourceAnimalController extends Controller
                 'area'   => $area,
             ]);
         }
-    }
-
-    /**
+    }	
+	/**
      * Deletes an existing ResourceAnimal model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
@@ -174,6 +175,36 @@ class ResourceAnimalController extends Controller
         $model->delete();
         return $this->redirect(['index']);
     }
+
+	 
+    public function actionIndex()
+    {
+		$this->layout ='frontend';
+        $searchModel = new ResourceAnimalSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            //'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    public function actionView($id)
+    {
+		$this->layout ='frontend';
+        $model = $this->findAnimal($id);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
+		
+        return $this->render('view', [
+            'model' => $this->findAnimal($id),
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
+        ]);
+    }
+
+    
 
     /**
      * Finds the ResourceAnimal model based on its primary key value.
@@ -215,6 +246,16 @@ class ResourceAnimalController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher]The requested page does not exist.');
+        }
+    }
+	
+	protected function findImage($id)
+    {
+        if (($model = AttachFiles::find()->andWhere(['model'=>'app\models\ResourceAnimal'])
+            ->andWhere(['itemId'=>$id])->all()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
         }
     }
 }
