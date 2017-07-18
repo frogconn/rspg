@@ -63,6 +63,26 @@ class ResearcherController extends Controller
      * Lists all Researcher models.
      * @return mixed
      */
+
+	public function actionViewAdmin($id)
+    {
+        $model = $this->findModel($id);
+        $agency = $this->findAgency($model->personal_code);
+        $instit = $this->findInstitution($agency->institution_id);
+        $faculty = $this->findFaculty($agency->faculty_id);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
+        return $this->render('view', [
+			'model' => $this->findModel($id),
+			//'attach_file' => $this->findAttach('app\models\Researcher',$id),
+            'instit' => $instit,
+            'faculty' => $faculty,
+            'agency' => $agency,
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new ResearcherSearch();

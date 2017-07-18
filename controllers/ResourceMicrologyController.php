@@ -56,6 +56,9 @@ class ResourceMicrologyController extends Controller
      * Lists all ResourceMicrology models.
      * @return mixed
      */
+
+    
+
     public function actionIndex()
     {
         $searchModel = new ResourceMicrologySearch();
@@ -208,7 +211,7 @@ class ResourceMicrologyController extends Controller
 
     protected function findUser($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = User::findOne($type_id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher]The requested page does not exist.');
