@@ -64,6 +64,22 @@ class ResearchAreaInformationController extends Controller
      * Lists all ResearchAreaInformation models.
      * @return mixed
      */
+
+
+    public function actionViewAdmin($id)
+    {
+        $model = $this->findModel($id);
+        $area_name = $this->findArea($model->area_id);
+        $created_by = $this -> findUser($model->created_by);
+        $updated_by = $this -> findUser($model->updated_by);
+        return $this->render('view', [
+            'model' => $model,
+            'area_name' => $area_name,
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new ResearchAreaInformationSearch();
