@@ -47,6 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             'personal_code',
             // 'is_foreigner',
+            'fullname_th',
+            'fullname_en',
              [
                  'attribute' => 'is_foreigner',
                  'value' =>'isForeigner',
@@ -58,9 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'lastname_th',
             // 'firstname_en',
             // 'lastname_en',
-            'fullname_th',
-            'fullname_en',
-             [
+            [
                  'attribute' => 'gender',
                  'value' =>'gGender',
                  //'filter'=>Html::activeDropDownList($searchModel, 'gGender',ArrayHelper::map(Researcher::find()->asArray()->all(), 'id','gGender'),['class'=>'form-control','prompt' => 'เลือกเพศ']),

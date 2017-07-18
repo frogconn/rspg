@@ -21,13 +21,9 @@ use app\models\ResearchArea;
         
     ]); ?>
 
-
-
-
-    <div class="col-xs-5">
+    <div class="col-xs-4">
        <?= $form->field($model, 'searchAll') ?>
     </div>
-
 
     <div class="col-xs-3">
         <?= $form ->field($type_name, 'name')->dropdownList (ArrayHelper::map(
@@ -37,7 +33,7 @@ use app\models\ResearchArea;
          ?>
     </div>
 
-    <div class="col-xs-2">
+    <div class="col-xs-3">
          <?= $form ->field($zone_name,'name')->dropdownList (ArrayHelper::map(
         ResearchArea::find()->all(), 'id','name'),[
                 'prompt'=>'ทั้งหมด'
@@ -45,7 +41,8 @@ use app\models\ResearchArea;
         ?>
     </div>
 <div class="col-xs-2">
-<br>
+<br
+>
         <div class="form-group">
             <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
             <!--?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?-->
