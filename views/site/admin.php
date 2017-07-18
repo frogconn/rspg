@@ -13,32 +13,16 @@ $this->title = '';
 	<div>
 	<div class="row">
         <div class="col-md-12">
-          
-            <!-- /.box-header -->
-            
-              <div class="row">
-                <div class="col-md-11">
-                  <p><center>
-					<h1>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ<br></h1>
-					<h2>สมเด็จพระเทพรัตนราชสุดาฯ สยามบรมราชกุมารี(อพ.สธ.)</h2>
-					<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:150px;']);?>
-					<h2>ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</h2>
-					</center>
-                  </p>
-                  <div class="chart">
-                    <!-- Sales Chart Canvas -->
-                    <canvas id="salesChart" style="height: 65px; width: 255px;" width="255" height="65"></canvas>
-                  </div>
-                  <!-- /.chart-responsive -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            
-            <!-- ./box-body -->
-            
-            <!-- /.box-footer -->
-          </div>
+		<p><center>
+			<h1>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ<br></h1>
+			<h2>สมเด็จพระเทพรัตนราชสุดาฯ สยามบรมราชกุมารี(อพ.สธ.)</h2>
+			<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:150px;']);?>
+			<h2>ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</h2>
+		</center></p>
+		<div class="chart">
+            <!-- Sales Chart Canvas -->
+			<canvas id="salesChart" style="height: 65px; width: 255px;" width="255" height="65"></canvas>
+        </div></div>
           <!-- /.box -->
         </div>
         <!-- /.col -->
@@ -48,8 +32,7 @@ $this->title = '';
 	<div class="clearfix"></div>
 
 	<div class="row">
-	<div class="col-md-4 col-sm-6 col-xs-12">
-	<div class="x_panel">
+	<div class="col-md-4">
 	<div class="box box-success">
 		<div class="box-header with-border">
 			<h3 class="box-title">ผลงานวิจัย</h3>
@@ -108,11 +91,10 @@ $this->title = '';
 		<a href="javascript:void(0)" class="uppercase">View All Products</a>
 		</di-->
 		<!-- /.box-footer -->
-	</div></div></div>
+	</div></div>
 	
 	<div class="row">
-	<div class="col-md-4 col-sm-6 col-xs-12">
-	<div class="x_panel">
+	<div class="col-md-4">
 	<div class="box box-success">
 		<div class="box-header with-border">
 			<h3 class="box-title">โครงงานวิจัย</h3>
@@ -151,7 +133,7 @@ $this->title = '';
 		<a href="javascript:void(0)" class="uppercase">View All Products</a>
 		</di-->
 		<!-- /.box-footer -->
-	</div></div></div>
+	</div></div>
 
 	<div class="clearfix"></div>
 </div>
