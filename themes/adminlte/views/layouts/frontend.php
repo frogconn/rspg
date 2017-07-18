@@ -1,13 +1,15 @@
 <?php
 use yii\helpers\Html;
-use app\assets\FrontendAsset;
 use yii\helpers\Url;
+
+use app\assets\FrontendAsset;
+use app\assets\AppAsset;
 
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-
+//AppAsset::register($this);
 FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -18,6 +20,7 @@ FrontendAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <link rel="stylesheet" href="style.css" />
         <?php $this->head() ?>
     </head>
     <body class="hold-transition <?= \dmstr\helpers\AdminLteHelper::skinClass() ?> sidebar-mini">
@@ -30,7 +33,7 @@ FrontendAsset::register($this);
                         <span class="sr-only">Toggle navigation</span>
                         Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.php">RSPG</a>
+                    <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl;?>">RSPG</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -87,7 +90,7 @@ FrontendAsset::register($this);
             </nav>
             
             <?= $content ?>
-
+        </div>>
         <?php $this->endBody() ?>
     </body>
 </html>

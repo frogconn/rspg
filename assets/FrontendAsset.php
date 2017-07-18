@@ -18,20 +18,23 @@ class FrontendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        //'css/site.css',
+        'css/site.css',
         'themes/frontend/css/bootstrap.css',
         'themes/frontend/css/bootstrap.min.css',
         'themes/frontend/css/clean-blog.min.css',
         'themes/frontend/css/clean-blog.css',
+        'themes/frontend/css/main.css',
+        
         
     ];
     public $js = [
-        //'js/yii_overrides.js',
+        'js/yii_overrides.js',
         '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
         'themes/frontend/js/bootstrap.js',
         'themes/frontend/js/bootstrap.min.js',
         'themes/frontend/js/clean-blog.js',
         'themes/frontend/js/clean-blog.min.js',
+        'themes/frontend/js/main.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
