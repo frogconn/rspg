@@ -24,7 +24,7 @@ use yii\helpers\Url;
 
     <div class="box-body">
 
-    <?php $list = ['Y' => 'Yes', 'N' => 'No'];
+    <?php $list = ['Y' => 'ใช่/Yes', 'N' => 'ไม่ใช่/No'];
     echo $form->field($model, 'is_foreigner')->radioList($list); ?>
 
     <?= $form->field($model, 'personal_code')->textInput(['maxlength' => true]) ?>
@@ -67,7 +67,7 @@ use yii\helpers\Url;
 
     <!--?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?-->
 
-    <?php $list = ['M' => 'Male', 'F' => 'Female'];
+    <?php $list = ['M' => 'ชาย/Male', 'F' => 'หญิง/Female'];
     echo $form->field($model, 'gender')->radioList($list); ?>
     <!--?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?-->
 
