@@ -47,13 +47,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'id' => 'grid-user',
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,       
+        //'filterModel' => $searchModel,       
         'tableOptions' => [
             'class' => 'table table-bordered table-striped table-hover',
             ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
 
+            'genus',
+            'species',
             [
 
                  'attribute' => 'type_name',
@@ -64,15 +66,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             //'id',
-            'genus',
-            'species',
+            
             //'information:ntext',
             //'zone_id',
             [
 
                  'attribute' => 'zone_name',
                  'value' => 'researchArea.name',
-                 'label' => 'ข้อมูลพื้นที่วิจัย'
+                 'label' => 'พื้นที่วิจัย'
  
             ],
             

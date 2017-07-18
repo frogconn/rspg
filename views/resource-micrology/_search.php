@@ -32,7 +32,7 @@ use app\models\ResearchArea;
     <div class="col-xs-3">
         <?= $form ->field($type_name, 'name')->dropdownList (ArrayHelper::map(
         ResourceType::find()->where (['class' => 'จุลินทรีย์'])->all(), 'id','name'),[
-                'prompt'=>'เลือกประเภทจุลินทรีย์'
+                'prompt'=>'ทั้งหมด'
                  ]);
          ?>
     </div>
@@ -40,7 +40,7 @@ use app\models\ResearchArea;
     <div class="col-xs-2">
          <?= $form ->field($zone_name,'name')->dropdownList (ArrayHelper::map(
         ResearchArea::find()->all(), 'id','name'),[
-                'prompt'=>'เลือกพื้นที่วิจัย'
+                'prompt'=>'ทั้งหมด'
                  ]);
         ?>
     </div>

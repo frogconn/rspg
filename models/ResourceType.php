@@ -46,7 +46,7 @@ class ResourceType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ลำดับประเภททรัพยากร',
-            'name' => 'ชื่อประเภท',
+            'name' => 'ประเภท',
             'class' => 'ชนิด',
             'created_date' => 'Created Date',
             'created_by' => 'Created By',

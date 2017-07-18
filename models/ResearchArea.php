@@ -51,7 +51,7 @@ class ResearchArea extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ลำดับชื่อพื้นที่วิจัย',
-            'name' => 'ชื่อข้อมูลพื้นที่วิจัย',
+            'name' => 'พื้นที่วิจัย',
             'created_date' => 'Created Date',
             'created_by' => 'Created By',
             'updated_date' => 'Updated Date',

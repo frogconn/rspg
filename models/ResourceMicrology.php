@@ -75,6 +75,7 @@ class ResourceMicrology extends \yii\db\ActiveRecord
             'created_date' => 'สร้างเมื่อ',
             'updated_by' => 'แก้ไขล่าสุดโดย',
             'updated_date' => 'แก้ไขล่าสุดเมื่อ',
+            'searchAll' => 'ค้นหา',
         ];
     }
 
