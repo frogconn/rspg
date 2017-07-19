@@ -71,6 +71,42 @@ class ProjectEcologyController extends Controller
      * Lists all ProjectEcology models.
      * @return mixed
      */
+
+     //new code 7/19/17
+    
+    public function actionIndexAdmin() // url : resource-plant/index-admin
+    {
+        $searchModel = new ProjectEcologySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        return $this->render('index-admin', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Displays a single ResourcePlant model.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionViewAdmin($id)
+    {
+        $model = $this->findModel($id);
+        $created_by = $this->findUser($model->created_by);
+        $updated_by = $this->findUser($model->updated_by);
+        $researcher =$this->findResearcher($model->created_by); //not complete edit $xxx
+        
+        return $this->render('view-admin', [
+            'model' => $this->findModel($id),
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
+            'reesearcher' => $researcher,
+        ]);
+    }
+     //new code 7/19/17
+//old code
+/*
     public function actionIndex()
     {
         $searchModel = new ProjectEcologySearch();
@@ -81,12 +117,13 @@ class ProjectEcologyController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
+*/
     /**
      * Displays a single ProjectEcology model.
      * @param integer $id
      * @return mixed
      */
+/*
     public function actionView($id)
     {
         $project = $this->findProject($id);
@@ -100,6 +137,8 @@ class ProjectEcologyController extends Controller
             'updated_by' => $updated_by,
         ]);
     }
+*/
+//old code
 
     /**
      * Creates a new ProjectEcology model.
@@ -146,11 +185,11 @@ class ProjectEcologyController extends Controller
 
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             } catch (Exception $e){
                 $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             }
         } else {
             return $this->render('create', [
@@ -224,11 +263,11 @@ class ProjectEcologyController extends Controller
                 }
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             } catch (Exception $e){
                 $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             }
 
         } else {
@@ -262,7 +301,7 @@ class ProjectEcologyController extends Controller
         }
         $project->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index-admin']);
     }
 
     /**
@@ -336,4 +375,24 @@ class ProjectEcologyController extends Controller
         }
         return $obj; // key of mapdata is id and name
     }
+
+    // new code 19 Jul 2017
+    protected function findModel($id)
+    {
+        if (($model = ProjectEcology::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[ProjectEcology]The requested page, plant does not exist.');
+        }
+    }
+
+        protected function findResearcher($id)
+    {
+        if (($model = ProjectEcology::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page, plant does not exist.'.$id);
+        }
+    }
+    // new code 19 Jul 2017
 }

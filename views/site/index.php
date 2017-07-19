@@ -47,7 +47,7 @@ FrontendAsset::register($this);
                         ข้อมูลโครงการวิจัย
                     </h1>
                     <h3 class="post-subtitle">
-                        <a href="#">โครงการวิจัยนิเวศวิทยาและชุมชน</a> 
+                        <a href="project-ecology/">โครงการวิจัยนิเวศวิทยาและชุมชน</a> 
                         <a href="#">โครงการวิจัยยางนา</a> 
                     </h3>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on September 18, 2014</p>
