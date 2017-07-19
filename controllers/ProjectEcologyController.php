@@ -105,8 +105,7 @@ class ProjectEcologyController extends Controller
         ]);
     }
      //new code 7/19/17
-//old code
-/*
+    
     public function actionIndex()
     {
         $searchModel = new ProjectEcologySearch();
@@ -117,13 +116,13 @@ class ProjectEcologyController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-*/
+    
     /**
      * Displays a single ProjectEcology model.
      * @param integer $id
      * @return mixed
      */
-/*
+    
     public function actionView($id)
     {
         $project = $this->findProject($id);
@@ -137,8 +136,6 @@ class ProjectEcologyController extends Controller
             'updated_by' => $updated_by,
         ]);
     }
-*/
-//old code
 
     /**
      * Creates a new ProjectEcology model.
