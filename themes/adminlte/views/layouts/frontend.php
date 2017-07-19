@@ -64,7 +64,7 @@ FrontendAsset::register($this);
                             </ul>
                         </li>
                         <li>
-                            <a href="contact.html">ติดต่อเรา</a>
+                            <a href="admin">ติดต่อเรา</a>
                         </li>
                         <li>
                             <?php if (Yii::$app->user->isGuest){ ?>

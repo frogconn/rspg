@@ -57,7 +57,29 @@ class ResourceMicrologyController extends Controller
      * @return mixed
      */
 
-    
+     public function actionIndexAdmin() // url : resource-plant/index-admin
+    {
+        $searchModel = new ResourceMicrologySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        return $this->render('index-admin', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+	 
+	 public function actionViewAdmin($id)
+    {
+        $model = $this->findMicro($id);
+        $created_by = $this->findUser($model->created_by);
+        $updated_by = $this->findUser($model->updated_by);
+        
+        return $this->render('view-admin', [
+            'model' => $this->findMicro($id),
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
+        ]);
+    }
 
     public function actionIndex()
     {
@@ -211,7 +233,7 @@ class ResourceMicrologyController extends Controller
 
     protected function findUser($id)
     {
-        if (($model = User::findOne($type_id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher]The requested page does not exist.');
