@@ -72,6 +72,20 @@ class ProjectGarjanController extends Controller
      * Lists all ProjectGarjan models.
      * @return mixed
      */
+    public function actionViewAdmin($id)
+    {
+        $project = $this->findProject($id);
+        $researcher = Researcher::findOne(['personal_code'=>$project->personal_code]);
+        $created_by = $this -> findUser($project->created_by);
+        $updated_by = $this -> findUser($project->updated_by);
+        return $this->render('view', [
+            'model' => $this->findProject($id),
+            'researcher' => $researcher,
+            'created_by' => $created_by,
+            'updated_by' => $updated_by,
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new ProjectGarjanSearch();
