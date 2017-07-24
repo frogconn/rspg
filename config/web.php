@@ -89,9 +89,9 @@ $config = [
 		'user' => [
 			'class' => 'dektrium\user\Module',
 			//map user table
-			'modelMap' => [
-				'User' => 'app\models\User',
-			],
+			//'modelMap' => [
+			//	'User' => 'app\models\User',
+			//],
 			//map user table
 			'enableUnconfirmedLogin' => true,
 			'confirmWithin' => 21600,
