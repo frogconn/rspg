@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use dektrium\user\models\User as BaseUser;
 
 /**
  * This is the model class for table "user".
@@ -26,7 +27,7 @@ use Yii;
  * @property SocialAccount[] $socialAccounts
  * @property Token[] $tokens
  */
-class User extends \yii\db\ActiveRecord
+class User extends BaseUser
 {
     /**
      * @inheritdoc
