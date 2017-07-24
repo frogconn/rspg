@@ -86,6 +86,17 @@ class ProjectGarjanController extends Controller
         ]);
     }
 
+    public function actionIndexAdmin()
+    {
+        $searchModel = new ProjectGarjanSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new ProjectGarjanSearch();

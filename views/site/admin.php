@@ -49,7 +49,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('ข้อมูลพื้นที่วิจัย', ['/research-area-information'], ['class' => 'profile-link']) ?>
+						<?= Html::a('ข้อมูลพื้นที่วิจัย', ['/research-area-information/index-admin'], ['class' => 'profile-link']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
@@ -59,7 +59,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('ข้อมูลพืช', ['/resource-plant'], ['class' => 'profile-link']) ?>
+						<?= Html::a('ข้อมูลพืช', ['/resource-plant/index-admin'], ['class' => 'profile-link']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
@@ -69,7 +69,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('ข้อมูลสัตว์และแมลง', ['/resource-animal'], ['class' => 'profile-link']) ?>
+						<?= Html::a('ข้อมูลสัตว์และแมลง', ['/resource-animal/index-admin'], ['class' => 'profile-link']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
@@ -79,7 +79,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('ข้อมูลจุลินทรีย์', ['/resource-micrology'], ['class' => 'profile-link']) ?>
+						<?= Html::a('ข้อมูลจุลินทรีย์', ['/resource-micrology/index-admin'], ['class' => 'profile-link']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
@@ -111,7 +111,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('งานด้านนิเวศวิทยาและชุมชน', null) ?>
+						<?= Html::a('งานด้านนิเวศวิทยาและชุมชน', ['/project-ecology/index-admin'], ['class' => 'profile-link']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>
@@ -121,7 +121,7 @@ $this->title = '';
 						<?= Html::img('img\none.png',['class'=>'img-thumbnail','style'=>'width:48px;height:48px']);?>
 					</div>
 					<div class="product-info">
-						<?= Html::a('พืชอนุรักษ์ยางนา', ['/project-garjan']) ?>
+						<?= Html::a('พืชอนุรักษ์ยางนา', ['/project-garjan/index-admin']) ?>
 						<span class="product-description"></span>
 					</div>
 				</li>

@@ -35,7 +35,7 @@ FrontendAsset::register($this);
                         ข้อมูลทรัพยากร
                     </h1>
                     <h3 class="post-subtitle">
-                        <a href="resource-plant/">ทรัพยากรพืช</a> 
+                        <a href="#">ทรัพยากรพืช</a> 
                         <a href="#">ทรัพยากรสัตว์และแมลง</a> 
                         <a href="#">ทรัพยากรจุลินทรีย์</a>
                     </h3>
