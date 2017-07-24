@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'registration-form',
                 ]); ?>
 
-				<?= $form->field($model, 'ownerId') ?>
+				<!--?= $form->field($model, 'ownerId') ?-->
 				
                 <?= $form->field($model, 'username') ?>
 

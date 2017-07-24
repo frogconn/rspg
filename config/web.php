@@ -16,9 +16,9 @@ $config = [
         'view' => [
           'theme' => [
 		  //override dektrium
-		    'pathMap' => [
-                '@dektrium/user/views' => '@app/views/user'
-            ],
+		  //  'pathMap' => [
+          //      '@dektrium/user/views' => '@app/views/user'
+          //  ],
 		  //override
             'basePath' => '@app/themes/adminlte',
             'baseUrl' => '@web/themes/adminlte',
