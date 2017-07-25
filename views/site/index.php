@@ -35,9 +35,9 @@ FrontendAsset::register($this);
                         ข้อมูลทรัพยากร
                     </h1>
                     <h3 class="post-subtitle">
-                        <a href="#">ทรัพยากรพืช</a> 
-                        <a href="#">ทรัพยากรสัตว์และแมลง</a> 
-                        <a href="#">ทรัพยากรจุลินทรีย์</a>
+                        <a href="resource-plant">ทรัพยากรพืช</a> 
+                        <a href="resource-animal">ทรัพยากรสัตว์และแมลง</a> 
+                        <a href="resource-micrology">ทรัพยากรจุลินทรีย์</a>
                     </h3>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on September 24, 2014</p>
             </div>
@@ -48,7 +48,7 @@ FrontendAsset::register($this);
                     </h1>
                     <h3 class="post-subtitle">
                         <a href="project-ecology/">โครงการวิจัยนิเวศวิทยาและชุมชน</a> 
-                        <a href="#">โครงการวิจัยยางนา</a> 
+                        <a href="project-garjan/">โครงการวิจัยยางนา</a> 
                     </h3>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on September 18, 2014</p>
             </div>
@@ -56,7 +56,7 @@ FrontendAsset::register($this);
             <div class="post-preview">
                 <a href="post.html">
                     <h2 class="post-title">
-                        สวนพฤกษศาสตร์โรงเรียน
+                        <a href="#">สวนพฤกษศาสตร์โรงเรียน</a>
                     </h2>
                 </a>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on August 24, 2014</p>
