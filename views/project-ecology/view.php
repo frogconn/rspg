@@ -41,20 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <h2 class="section-heading">ประเภท</h2>
-                    <p><?php echo $model->type_id; ?></p>
+                    <!--h2 class="section-heading">ประเภท</h2-->
+                    <!--p><?php echo $model->type_id; ?></p-->
 
-                    <h2 class="section-heading">ปีงบประมาณ</h2>
-                    <p><?php echo $model->year; ?></p>
+                    <!--h2 class="section-heading">ปีงบประมาณ</h2-->
+                    <!--p><?php echo $model->year; ?></p-->
 
                     <h2 class="section-heading">ชื่อโครงการวิจัย</h2>
                     <p><?php echo $model->name; ?></p>
 
-                    <h2 class="section-heading">หัวหน้าโครงการวิจัย</h2>
-                    <p><?php echo $model->personal_code; ?></p>
+                    <!--h2 class="section-heading">หัวหน้าโครงการวิจัย</h2-->
+                    <!--p><?php echo $model->personal_code; ?></p-->
 
-                    <h2 class="section-heading">งบประมาณ</h2>
-                    <p><?php echo $model->budget; ?></p>
+                    <!--h2 class="section-heading">งบประมาณ</h2-->
+                    <!--p><?php echo $model->budget; ?></p-->
 
                     <!--blockquote>The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote-->
 

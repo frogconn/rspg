@@ -73,12 +73,12 @@ use app\components\MenuHelper;
                             [
                                 'label' => 'งานด้านนิเวศวิทยาและชุมชน',
             				    'icon' => 'handshake-o',
-            				    'url' => '@web/project-ecology',
+            				    'url' => '@web/project-ecology/index-admin',
                             ],
                             [
             				    'label' => 'พืชอนุรักษ์ยางนา',
             				    'icon' => 'leaf',
-            				    'url' => '@web/project-garjan',
+            				    'url' => '@web/project-garjan/index-admin',
             			    ],
             		    ],
             	    ],

@@ -35,15 +35,9 @@ FrontendAsset::register($this);
                         ข้อมูลทรัพยากร
                     </h1>
                     <h3 class="post-subtitle">
-<<<<<<< HEAD
                         <a href="resource-plant/">ทรัพยากรพืช</a> 
                         <a href="resource-animal/">ทรัพยากรสัตว์และแมลง</a> 
-                        <a href="#">ทรัพยากรจุลินทรีย์</a>
-=======
-                        <a href="resource-plant">ทรัพยากรพืช</a> 
-                        <a href="resource-animal">ทรัพยากรสัตว์และแมลง</a> 
                         <a href="resource-micrology">ทรัพยากรจุลินทรีย์</a>
->>>>>>> b52dd75783fc853e44c53bb14959dcb7a9c31a7b
                     </h3>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on September 24, 2014</p>
             </div>

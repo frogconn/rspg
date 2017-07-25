@@ -1,89 +1,32 @@
 <?php
-
-use yii\helpers\Html;
-
-use yii\grid\GridView;
-
-use yii\widgets\Pjax;
-
-use yii\helpers\ArrayHelper;
-
-use app\models\ProjectType;
-use app\models\Researcher;
-use app\models\ResearcherFaculty;
+use yii\widgets\ListView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProjectEcologySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'ข้อมูลด้านนิเวศวิทยาและชุมชน';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="project-ecology-index">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <div class="box box-success">
-            <!-- class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div-->
-
-            <div class="box-body">
-
-
-<?php Pjax::begin(); ?>  
- <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
-
-            //'id',
-            [
-                 'attribute' => 'type_id',
-                 'label' => 'หมวดหมู่',
-                 'value' => 'projectType.type',
-                 'filter'=>Html::activeDropDownList($searchModel, 'type_id',ArrayHelper::map(ProjectType::find()->where (['topic' => 'นิเวศวิทยา'])->all(), 'id','type'),['class'=>'form-control','prompt' => 'เลือกหมวดหมู่']),
+<div class='project-ecology-index'>
+    <!-- Page Header -->
+            <!-- Set your background image for this header on the line below. -->
+            <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/home-bg.jpg'])?>')">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                            <div class="site-heading">
+                                <span style='white-space: pre;'><h2>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ</h2></span>
+                                <hr class="small">
+                                <span class="subheading">ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    <?php
+        echo ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_item',
+            'itemOptions' => [
+                'class' => 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'
             ],
-
-            'name',
-            [
-                 'attribute' => 'fullname_th',
-                 'label' => 'หัวหน้าโครงการ',
-                 'value' => 'researcher.fullname_th',
-            ],
-            [
-                 'attribute' => 'faculty_id',
-                 'label' => 'คณะ',
-                 'value' => 'researcherFaculty.name',
-                 'filter'=>Html::activeDropDownList($searchModel, 'faculty_id',ArrayHelper::map(ResearcherFaculty::find()->all(), 'id','name'),['class'=>'form-control','prompt' => 'เลือกคณะ'])
-            ],
-
-            'year',
-            
-
-            
-            
-            //'budget',
-            //'summary:ntext',
-            //'type_id',
-            //'created_by',
-            //'created_date',
-            //'updated_by',
-            //'updated_date',
-
-            [
-                'class' => 'app\widgets\ActionColumn',
-                'options' => ['style' => 'width:100px;text-align:center;'],
-            ],
-        ],
-    ]); ?>
-<?php Pjax::end(); ?></div>
-</div>
-
+        ]);
+    ?>
 </div>

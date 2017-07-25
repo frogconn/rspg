@@ -6,6 +6,7 @@ use Yii;
 
 use app\base\Model;
 
+use app\models\AttachFiles;
 use app\models\ProjectEcology;
 use app\models\ProjectEcologySearch;
 use app\models\ProjectPartitions;
@@ -108,6 +109,7 @@ class ProjectEcologyController extends Controller
     
     public function actionIndex()
     {
+        $this->layout ='frontend';
         $searchModel = new ProjectEcologySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -125,14 +127,14 @@ class ProjectEcologyController extends Controller
     
     public function actionView($id)
     {
-        $project = $this->findProject($id);
-        $researcher = Researcher::findOne(['personal_code'=>$project->personal_code]);
-        $created_by = $this -> findUser($project->created_by);
-        $updated_by = $this -> findUser($project->updated_by);
+        $this->layout ='frontend';
+        $model = $this->findProject($id);
+        $attach_files = $this->findImage($id);
+        $updated_by = $this->findUser($model->updated_by);
+        
         return $this->render('view', [
+            'attach_files'=>$attach_files,
             'model' => $this->findProject($id),
-            'researcher' => $researcher,
-            'created_by' => $created_by,
             'updated_by' => $updated_by,
         ]);
     }
@@ -383,7 +385,7 @@ class ProjectEcologyController extends Controller
         }
     }
 
-        protected function findResearcher($id)
+    protected function findResearcher($id)
     {
         if (($model = ProjectEcology::findOne(['id'=>$id])) !== null) {
             return $model;
@@ -391,4 +393,14 @@ class ProjectEcologyController extends Controller
             throw new NotFoundHttpException('[researcher]The requested page, plant does not exist.'.$id);
         }
     }
+    protected function findImage($id)
+    {
+        if (($model = AttachFiles::find()->andWhere(['model'=>'app\models\ResourcePlant'])
+            ->andWhere(['itemId'=>$id])->all()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
+        }
+    }
 }
+
