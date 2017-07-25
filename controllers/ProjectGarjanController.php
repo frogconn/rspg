@@ -72,37 +72,34 @@ class ProjectGarjanController extends Controller
      * Lists all ProjectGarjan models.
      * @return mixed
      */
-    public function actionIndex()
+	 public function actionIndexAdmin() // url : project-garjan/index-admin
     {
         $searchModel = new ProjectGarjanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
+        
+        return $this->render('index-admin', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
+	/**
      * Displays a single ProjectGarjan model.
      * @param integer $id
      * @return mixed
-     */
-    public function actionView($id)
+     */ 
+	 public function actionViewAdmin($id)
     {
-        $project = $this->findProject($id);
-        $researcher = Researcher::findOne(['personal_code'=>$project->personal_code]);
-        $created_by = $this -> findUser($project->created_by);
-        $updated_by = $this -> findUser($project->updated_by);
-        return $this->render('view', [
+        $model = $this->findProject($id);
+        $created_by = $this->findUser($model->created_by);
+        $updated_by = $this->findUser($model->updated_by);
+        
+        return $this->render('view-admin', [
             'model' => $this->findProject($id),
-            'researcher' => $researcher,
             'created_by' => $created_by,
             'updated_by' => $updated_by,
         ]);
     }
-
-    /**
+	 /**
      * Creates a new ProjectGarjan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -164,8 +161,7 @@ class ProjectGarjanController extends Controller
         }   
          
     }
-
-    /**
+	/**
      * Updates an existing ProjectGarjan model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -243,8 +239,7 @@ class ProjectGarjanController extends Controller
             ]);
         }
     }
-
-    /**
+	/**
      * Deletes an existing ProjectGarjan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -266,6 +261,39 @@ class ProjectGarjanController extends Controller
         $project->delete();
 
         return $this->redirect(['index']);
+    }
+ 
+	 
+	 
+    public function actionIndex()
+    {
+        $this->layout ='frontend';
+		$searchModel = new ProjectGarjanSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    
+    public function actionView($id)
+    {
+		
+        //$researcher = Researcher::findOne(['personal_code'=>$project->personal_code]);
+        $this->layout ='frontend';
+        $model = $this->findProject($id);
+        $attach_files = $this->findImage($id);
+        $updated_by = $this->findUser($model->updated_by);
+        
+        return $this->render('view', [
+            'attach_files'=>$attach_files,
+            'model' => $this->findProject($id),
+            'updated_by' => $updated_by,
+			
+			
+        ]);
     }
 
     /**
@@ -290,6 +318,16 @@ class ProjectGarjanController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[User]The requested page does not exist.');
+        }
+    }
+	
+	protected function findImage($id)
+    {
+        if (($model = AttachFiles::find()->andWhere(['model'=>'app\models\ProjectGarjan'])
+            ->andWhere(['itemId'=>$id])->all()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
         }
     }
 

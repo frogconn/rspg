@@ -15,6 +15,11 @@ $config = [
         ],
         'view' => [
           'theme' => [
+		  //override dektrium
+		  //  'pathMap' => [
+          //      '@dektrium/user/views' => '@app/views/user'
+          //  ],
+		  //override
             'basePath' => '@app/themes/adminlte',
             'baseUrl' => '@web/themes/adminlte',
           ],
@@ -83,6 +88,11 @@ $config = [
         ],
 		'user' => [
 			'class' => 'dektrium\user\Module',
+			//map user table
+			//'modelMap' => [
+			//	'User' => 'app\models\User',
+			//],
+			//map user table
 			'enableUnconfirmedLogin' => true,
 			'confirmWithin' => 21600,
 			'cost' => 12,

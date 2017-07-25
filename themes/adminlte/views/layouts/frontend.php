@@ -60,7 +60,7 @@ FrontendAsset::register($this);
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo Url::base().'/project-ecology'; ?>">โครงการวิจัยนิเวศและชุมชน</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">โครงการวิจัยยางนา</a></li>
+                                <li><a href="<?php echo Url::base().'/project-garjan'; ?>">โครงการวิจัยยางนา</a></li>
                             </ul>
                         </li>
                         <li>

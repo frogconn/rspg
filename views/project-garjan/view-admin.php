@@ -1,21 +1,24 @@
 <?php
+use yii\base\Controller;
+use app\model\Researcher;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ResourceAnimal */
+/* @var $model app\models\ProjectGarjan */
 
-$this->title = $model->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'โครงการยางนา', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resource-animal-view">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
+<div class="project-garjan-view">
 
     <p>
-        <?= Html::a('กลับ',[ 'resource-animal/index-admin'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('ย้อนกลับ',[ 'project-garjan/'], ['class' => 'btn bg-navy']) ?>
 
         <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('ลบ', ['delete', 'id' => $model->id], [
@@ -25,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-         <?= Html::a('สร้างข้อมูลเพิ่ม',[ 'resource-animal/create'], ['class' => 'btn bg-green']) ?>
+         <?= Html::a('สร้างข้อมูลเพิ่ม',[ 'project-garjan/create'], ['class' => 'btn bg-green']) ?>
     </p>
 
       <div class="box box-success">
@@ -39,16 +42,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id',
-            'resourceType.name',
-            'common_name',
-            'location_name',
-            'science_name',
-            'family_name',
-            'information:ntext',
-            //'zone_id',
-            'researchArea.name',
-            'benefit:ntext',
-            //'image_id',
+            'projectType.type',
+            'year',
+            'name',
+            [
+                'format'=>'raw',
+                'attribute'=>'หัวหน้าโครงการ',
+                'value'=>'researcher.fullname_th',
+            ],
+            [
+                'label'=>'ผู้ร่วมโครงการ',
+                'format'=>'raw',
+                'value'=>Yii::$app->controller->renderPartial('_partitions', array('model'=>$model), true),
+            ],
+            'budget',
+            'summary:ntext',
+            'start',
+            'stop',
             //'type_id',
             'created_date',
             [

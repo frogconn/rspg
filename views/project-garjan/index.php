@@ -1,86 +1,32 @@
 <?php
+use yii\widgets\ListView;
+use yii\helpers\Url;
 
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use app\models\ProjectType;
-use app\models\ProjectGarjan;
-use app\models\Researcher;
-
-use yii\grid\GridView;
-use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProjectGarjanSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'พืชอนุรักษ์ยางนา';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="project-garjan-index">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('สร้าง ', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <div class="box box-success">
-            <!--<div class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div-->
-
-            <div class="box-body">
-
-
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
-
-            //'id',
-			[
-            'attribute' => 'type_id',
-				 'value' => 'projectType.type',
-                 'filter'=>Html::activeDropDownList($searchModel, 'type_id',ArrayHelper::map(ProjectType::find()->Where (['topic' => 'ยางนา'])->all(), 'id','type'),['class'=>'form-control','prompt' => 'เลือกหมวดหมู่']),
-				 'label' => 'หมวดหมู่'
-			],
-			
-			
-            'year',
-			'name',
-			[
-			'label' => 'หัวหน้าโครงการ',
-			'attribute' => 'fullname_th',
-			'value' => 'researcher.fullname_th',
-			],
-			
-			
-			/*[
-                 'attribute' => 'personal_code',
-                 'label' => 'หัวหน้าโครงการ',
-                 'value' => 'researcher.fullname_th',
-                 'filter'=>Html::activeDropDownList($searchModel, 'personal_code',ArrayHelper::map(Researcher::find()->asArray()->all(), 'personal_code','fullname_th'),['class'=>'form-control','prompt' => 'เลือกหัวหน้าโครงการ'])
-            ],*/
-            //'faculty_id',
-            // 'budget',
-            // 'type_id',
-            // 'summary:ntext',
-            // 'start',
-            // 'stop',
-            // 'created_by',
-            // 'created_date',
-            // 'update_by',
-            // 'update_date',
-
-              [
-                'class' => 'app\widgets\ActionColumn',
-                'options' => ['style' => 'width:100px;text-align:center;'],
-              ],
-        ],
-    ]); ?>
-
-				</div>
-		</div>
+<div class='project-garjan-index'>
+    <!-- Page Header -->
+            <!-- Set your background image for this header on the line below. -->
+            <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/home-bg.jpg'])?>')">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                            <div class="site-heading">
+                                <span style='white-space: pre;'><h2>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ</h2></span>
+                                <hr class="small">
+                                <span class="subheading">ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    <?php
+        echo ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_item',
+            'itemOptions' => [
+                'class' => 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'
+            ],
+        ]);
+    ?>
 </div>

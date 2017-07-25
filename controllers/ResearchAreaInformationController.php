@@ -80,6 +80,17 @@ class ResearchAreaInformationController extends Controller
         ]);
     }
 
+     public function actionIndexAdmin()
+    {
+        $searchModel = new ResearchAreaInformationSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new ResearchAreaInformationSearch();
