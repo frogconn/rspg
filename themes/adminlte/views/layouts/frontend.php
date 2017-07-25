@@ -51,7 +51,7 @@ FrontendAsset::register($this);
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<?php echo Url::base().'/resource-animal'; ?>">ทรัพยากรสัตว์</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">ทรัพยากรจุลินทรีย์</a></li>
+                                <li><a href="<?php echo Url::base().'/resource-micrology'; ?>">ทรัพยากรจุลินทรีย์</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

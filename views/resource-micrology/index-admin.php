@@ -12,10 +12,10 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ResourcePlantSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'ข้อมูลทรัพยากรพืช';
+$this->title = 'ข้อมูลทรัพยากรจุลินทรีย์';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resource-plant-index">
+<div class="resource-micrology-index">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -48,8 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
                  'label' => 'ประเภท',  
  
             ],
-            'common_name',
-            'location_name',
+            'genus',
+            'species',
             //'science_name',
             //'family_name',
             

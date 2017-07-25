@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\AttachFiles;
 use app\models\ResearchArea;
 use app\models\ResourceMicrology;
 use app\models\ResourceMicrologySearch;
@@ -83,19 +84,12 @@ class ResourceMicrologyController extends Controller
 
     public function actionIndex()
     {
+       $this->layout ='frontend';
         $searchModel = new ResourceMicrologySearch();
-         $type_name = new ResourceType();
-         $zone_name = new ResearchArea();
-
-
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'type_name'=> $type_name,
-            'zone_name' => $zone_name,
         ]);
     }
 
@@ -106,12 +100,14 @@ class ResourceMicrologyController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout ='frontend';
         $model = $this->findMicro($id);
-        $created_by = $this -> findUser($model->created_by);
-        $updated_by = $this -> findUser($model->updated_by);
+        $attach_files = $this->findImage($id);
+        $updated_by = $this->findUser($model->updated_by);
+        
         return $this->render('view', [
+            'attach_files'=>$attach_files,
             'model' => $this->findMicro($id),
-            'created_by' => $created_by,
             'updated_by' => $updated_by,
         ]);
     }
@@ -237,6 +233,15 @@ class ResourceMicrologyController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher]The requested page does not exist.');
+        }
+    }
+     protected function findImage($id)
+    {
+        if (($model = AttachFiles::find()->andWhere(['model'=>'app\models\ResourcePlant'])
+            ->andWhere(['itemId'=>$id])->all()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
         }
     }
 }
