@@ -23,7 +23,7 @@ class ResourceMicrologySearch extends ResourceMicrology
     {
         return [
             [['id', 'zone_id', 'image_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [[ 'information', 'benefit', 'created_date', 'updated_date','searchAll'], 'safe'],
+            [['genus','species','information', 'benefit', 'created_date', 'updated_date','searchAll'], 'safe'],
         ];
     }
 
@@ -91,6 +91,8 @@ class ResourceMicrologySearch extends ResourceMicrology
         ]);
 
         $query
+            ->andFilterWhere(['like', 'genus', $this->genus])
+            ->andFilterWhere(['like', 'species', $this->species])
             ->orFilterWhere(['like', 'genus', $this->searchAll])
             ->andFilterWhere(['like', 'research_area.name', $this->zone_name])
             ->orFilterWhere(['like', 'species', $this->searchAll])

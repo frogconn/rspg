@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use \yii\web\UploadedFile;
-use \dektrium\user\models\User;
+//use \dektrium\user\models\User;
 
 /**
  * This is the model class for table "resource_plant".

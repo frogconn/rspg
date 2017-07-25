@@ -1,98 +1,32 @@
 <?php
-
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-
-use yii\grid\GridView;
-
-use yii\widgets\Pjax;
-
-use app\models\ResourceType;
-use app\models\ResearchArea;
+use yii\widgets\ListView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ResourceMicrologySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'ข้อมูลทรัพยากรจุลินทรีย์';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resource-micrology-index">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('สร้าง', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <div class="box box-success">
-        <!--div class="box-header with-border">
-            <h3 class="box-title">ค้นหา</h3>
-        </div-->
-        <div class="box-body">
-            <?php echo $this->render('_search', ['model' => $searchModel, 'type_name' => $type_name , 'zone_name' => $zone_name]); ?>
-        </div>
-        <!-- /.box-body -->
-    </div>
-
-    <div class="box box-success">
-            <!--div class="box-header with-border">
-              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
-            </div-->
-
-
-
-
-    <?= GridView::widget([
-        'id' => 'grid-user',
-        'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,       
-        'tableOptions' => [
-            'class' => 'table table-bordered table-striped table-hover',
+<div class='resource-micrology-index'>
+    <!-- Page Header -->
+            <!-- Set your background image for this header on the line below. -->
+            <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/home-bg.jpg'])?>')">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                            <div class="site-heading">
+                                <span style='white-space: pre;'><h2>โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ</h2></span>
+                                <hr class="small">
+                                <span class="subheading">ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    <?php
+        echo ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_item',
+            'itemOptions' => [
+                'class' => 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'
             ],
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn','options'=> ['style'=>'width:50px;']],
-
-            'genus',
-            'species',
-            [
-
-                 'attribute' => 'type_name',
-                 'value' => 'resourceType.name',
-                 'label' => 'ประเภท',
-                 
- 
-            ],
-
-            //'id',
-            
-            //'information:ntext',
-            //'zone_id',
-            [
-
-                 'attribute' => 'zone_name',
-                 'value' => 'researchArea.name',
-                 'label' => 'พื้นที่วิจัย'
- 
-            ],
-            
-            // 'benefit:ntext',
-            // 'image_id',
-            // 'type_id',
-            // 'created_date',
-            // 'created_by',
-            // 'updated_date',
-            // 'updated_by',
-
-              [
-                'class' => 'app\widgets\ActionColumn',
-                'options' => ['style' => 'width:100px;text-align:center;'],
-              
-              ],
-        ],
-    ]); ?>
-</div>
-</div>
-
+        ]);
+    ?>
 </div>

@@ -391,5 +391,4 @@ class ProjectEcologyController extends Controller
             throw new NotFoundHttpException('[researcher]The requested page, plant does not exist.'.$id);
         }
     }
-    // new code 19 Jul 2017
 }
