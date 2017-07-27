@@ -190,7 +190,7 @@ class ResourceMicrologyController extends Controller
         }  
         $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index-admin']);
     }
 
     /**

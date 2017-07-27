@@ -236,7 +236,7 @@ class ResearchAreaInformationController extends Controller
         }
         ResearchArea::findOne($model->area_id)->delete();
         $model->delete();
-        return $this->redirect(['index']);
+        return $this->redirect(['index-admin']);
     }
 
     /**
