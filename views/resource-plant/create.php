@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ResourcePlant */
 
 $this->title = 'Create Resource Plant';
-$this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-plant-create">

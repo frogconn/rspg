@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ResourceAnimal */
 
 $this->title = $animal->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = ['label' => $animal->common_name, 'url' => ['view', 'id' => $animal->id]];
 $this->params['breadcrumbs'][] = 'แก้ไข';
 ?>

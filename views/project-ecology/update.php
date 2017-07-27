@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ProjectEcology */
 
 $this->title = $project->name;
-$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิทยาและชุมชน', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิทยาและชุมชน', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = ['label' => $project->name, 'url' => ['view', 'id' => $project->id]];
 $this->params['breadcrumbs'][] = 'แก้ไข';
 ?>

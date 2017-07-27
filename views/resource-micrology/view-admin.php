@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourceMicrology */
 
 $this->title = $model->genus;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัยากรจุลินทรีย์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัยากรจุลินทรีย์', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-micrology-view">

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ResourceAnimal */
 
 $this->title = 'สร้างทรัพยากรสัตว์และแมลงใหม่';
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์และแมลง', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์และแมลง', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-animal-create">

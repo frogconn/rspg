@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ResourceMicrology */
 
 $this->title = $micro->genus;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรย์จุลินทรีย์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรย์จุลินทรีย์', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = ['label' => $micro->genus, 'url' => ['view', 'id' => $micro->id]];
 $this->params['breadcrumbs'][] = 'แก้ไข';
 ?>

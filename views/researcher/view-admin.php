@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Researcher */
 
 $this->title = $model->title.$model->firstname_th." ".$model->lastname_th;
-$this->params['breadcrumbs'][] = ['label' => 'ข้อมูลนักวิจัย', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ข้อมูลนักวิจัย', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="researcher-view">

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ProjectEcology */
 
 $this->title = 'สร้างโครงการนิเวศวิยาและชุมชนใหม่';
-$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิยาและชุมชน', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิยาและชุมชน', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-ecology-create">

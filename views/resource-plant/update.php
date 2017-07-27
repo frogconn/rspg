@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ResourcePlant */
 
 $this->title = '' . $plant->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Resource Plants', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = ['label' => $plant->id, 'url' => ['view', 'id' => $plant->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

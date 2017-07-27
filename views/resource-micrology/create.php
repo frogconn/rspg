@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ResourceMicrology */
 
 $this->title = 'สร้างทรัพยากรจุลินทรีย์ใหม่';
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรจุลินทรีย์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรจุลินทรีย์', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-micrology-create">

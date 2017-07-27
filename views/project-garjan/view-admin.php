@@ -14,7 +14,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ProjectGarjan */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'โครงการยางนา', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการยางนา', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-garjan-view">

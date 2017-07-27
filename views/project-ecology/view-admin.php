@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ProjectEcology */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิทยาและชุมชน', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการนิเวศวิทยาและชุมชน', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-ecology-view">

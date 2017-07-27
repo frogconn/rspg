@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ProjectGarjan */
 
 $this->title = 'สร้างโครงการยางนาใหม่';
-$this->params['breadcrumbs'][] = ['label' => 'โครงการยางนา', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'โครงการยางนา', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-garjan-create">

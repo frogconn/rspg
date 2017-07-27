@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\ResourceAnimal */
 
 $this->title = $model->common_name;
-$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทรัพยากรสัตว์', 'url' => ['index-admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resource-animal-view">
