@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="project-garjan-view">
 
     <p>
-        <?= Html::a('ย้อนกลับ',[ 'project-garjan/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('ย้อนกลับ',[ 'project-garjan/index-admin/'], ['class' => 'btn bg-navy']) ?>
 
         <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('ลบ', ['delete', 'id' => $model->id], [

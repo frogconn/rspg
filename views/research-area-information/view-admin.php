@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('ย้อนกลับ',[ 'research-area-information/'], ['class' => 'btn bg-navy']) ?>
+        <?= Html::a('ย้อนกลับ',[ 'research-area-information/index-admin/'], ['class' => 'btn bg-navy']) ?>
         <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('ลบ', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger',
             'data' => [
