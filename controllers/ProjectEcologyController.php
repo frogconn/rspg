@@ -102,7 +102,7 @@ class ProjectEcologyController extends Controller
             'model' => $this->findModel($id),
             'created_by' => $created_by,
             'updated_by' => $updated_by,
-            'reesearcher' => $researcher,
+            'researcher' => $researcher,
         ]);
     }
      //new code 7/19/17
@@ -381,7 +381,7 @@ class ProjectEcologyController extends Controller
         if (($model = ProjectEcology::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('[ProjectEcology]The requested page, plant does not exist.');
+            throw new NotFoundHttpException('[ProjectEcology]The requested page, ecology does not exist.');
         }
     }
 
@@ -390,7 +390,7 @@ class ProjectEcologyController extends Controller
         if (($model = ProjectEcology::findOne(['id'=>$id])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('[researcher]The requested page, plant does not exist.'.$id);
+            throw new NotFoundHttpException('[researcher]The requested page, ecology does not exist.'.$id);
         }
     }
     protected function findImage($id)

@@ -92,11 +92,13 @@ class ProjectGarjanController extends Controller
         $model = $this->findProject($id);
         $created_by = $this->findUser($model->created_by);
         $updated_by = $this->findUser($model->updated_by);
+        $researcher =$this->findResearcher($model->created_by);
         
         return $this->render('view-admin', [
             'model' => $this->findProject($id),
             'created_by' => $created_by,
             'updated_by' => $updated_by,
+            'researcher' => $researcher,
         ]);
     }
 	 /**
@@ -144,11 +146,11 @@ class ProjectGarjanController extends Controller
 
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             } catch (Exception $e){
                 $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             }
         } else {
             return $this->render('create', [
@@ -222,11 +224,11 @@ class ProjectGarjanController extends Controller
                 }
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             } catch (Exception $e){
                 $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
-                return $this->redirect(['view', 'id' => $project->id]);
+                return $this->redirect(['view-admin', 'id' => $project->id]);
             }
 
         } else {
@@ -260,7 +262,7 @@ class ProjectGarjanController extends Controller
         }
         $project->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index-admin']);
     }
  
 	 
@@ -328,6 +330,14 @@ class ProjectGarjanController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
+        }
+    }
+    protected function findResearcher($id)
+    {
+        if (($model = ProjectGarjan::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher]The requested page, plant does not exist.'.$id);
         }
     }
 

@@ -8,6 +8,8 @@ use yii\helpers\Url;
 
 use yii\widgets\DetailView;
 
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectGarjan */
 
@@ -48,7 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'format'=>'raw',
                 'attribute'=>'หัวหน้าโครงการ',
-                'value'=>'researcher.fullname_th',
+                'value' => function($data) {
+                                return $data->researcher->fullname_th;
+                           },
             ],
             [
                 'label'=>'ผู้ร่วมโครงการ',
