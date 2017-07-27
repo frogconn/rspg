@@ -46,7 +46,7 @@ class ResearcherFaculty extends \yii\db\ActiveRecord
         return [
             'id' => 'ลำดับคณะ',
             'name' => 'ชื่อคณะ',
-            'institution_id' => 'ลำดับสถาบัน',
+            'institution_id' => 'ชื่อสถาบัน',
             'created_date' => 'Created Date',
             'created_by' => 'Created By',
             'updated_date' => 'Updated Date',

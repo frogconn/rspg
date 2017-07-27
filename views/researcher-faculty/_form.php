@@ -1,6 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+
+use app\models\ResearcherInstitution;
+
 use kartik\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -14,17 +18,28 @@ use kartik\widgets\ActiveForm;
 
     <div class="box-body">
 
+    <!--?= $form->field($model, 'institution_id')->textInput(['maxlength' => true]) ?-->
+	<?= $form->field($model, 'institution_id')->dropdownList(
+        ArrayHelper::map(ResearcherInstitution::find()->all(),
+            'id',
+            'name'),
+            [
+                //'data'=> $instit_list,
+                'id'=>'ddl-institution',
+                'prompt'=>'เลือกสถาบัน'
+            ]); 
+    ?>
+	
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'institution_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_date')->textInput() ?>
+    <!--?= $form->field($model, 'created_date')->textInput() ?-->
 
-    <?= $form->field($model, 'created_by')->textInput() ?>
+    <!--?= $form->field($model, 'created_by')->textInput() ?-->
 
-    <?= $form->field($model, 'updated_date')->textInput() ?>
+    <!--?= $form->field($model, 'updated_date')->textInput() ?-->
 
-    <?= $form->field($model, 'updated_by')->textInput() ?>
+    <!--?= $form->field($model, 'updated_by')->textInput() ?-->
 
 
 	</div>
