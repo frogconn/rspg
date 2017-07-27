@@ -15,6 +15,7 @@ use app\models\Researcher;
 use app\models\ResearcherAgency;
 use app\models\ResearcherFaculty;
 use app\models\ResearcherInstitution;
+use app\models\UserDB;
 
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -96,7 +97,8 @@ class ProjectEcologyController extends Controller
         $model = $this->findModel($id);
         $created_by = $this->findUser($model->created_by);
         $updated_by = $this->findUser($model->updated_by);
-        $researcher =$this->findResearcher($model->created_by); //not complete edit $xxx
+		$userdb =$this->findUserDB($model->created_by);
+        $researcher =$this->findResearcher($userdb->email); //not complete edit $xxx
         
         return $this->render('view-admin', [
             'model' => $this->findModel($id),
@@ -387,7 +389,7 @@ class ProjectEcologyController extends Controller
 
     protected function findResearcher($id)
     {
-        if (($model = ProjectEcology::findOne(['id'=>$id])) !== null) {
+        if (($model = Researcher::findOne(['email'=>$id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher]The requested page, ecology does not exist.'.$id);
@@ -400,6 +402,15 @@ class ProjectEcologyController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('[attachFiles]The requested page does not exist.');
+        }
+    }
+	// new code 27 Jul 2017
+	    protected function findUserDB($id)
+    {
+        if (($model = UserDB::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[UserDB]The requested page, ecology does not exist.'.$id);
         }
     }
 }
