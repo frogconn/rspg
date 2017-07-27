@@ -52,7 +52,7 @@ use yii\helpers\Url;
     <?php echo $form->field($project, 'personal_code')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(Researcher::find()->all(), 'personal_code', 'fullname_th'),
             'language' => 'th',
-            'options' => ['placeholder' => 'เลือกหัวหน้าโครงการ'],
+            'options' => ['placeholder' => 'เลือกหัวหน้าโครงการ', 'id'=>'ddl-header'],
             'pluginOptions' => [
                 'allowClear' => true
             ],
