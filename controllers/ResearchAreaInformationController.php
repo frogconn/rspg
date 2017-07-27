@@ -365,9 +365,9 @@ class ResearchAreaInformationController extends Controller
         return $obj;
     }
 	// new code 27 Jul 2017
-	protected function findDistrict($id)
+	protected function findResearchArea($id)
     {
-        if (($model = findResearchArea::findOne(['id'=>$id])) !== null) {
+        if (($model = ResearchArea::findOne(['id'=>$id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('[researcher-area]The requested page does not exist.'.$id);
