@@ -173,7 +173,7 @@ class ResourceAnimalController extends Controller
             throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
         }  
         $model->delete();
-        return $this->redirect(['index']);
+        return $this->redirect(['index-admin']);
     }
 
 	 
