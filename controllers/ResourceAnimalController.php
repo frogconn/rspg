@@ -110,7 +110,7 @@ class ResourceAnimalController extends Controller
             $animal->save();
 
             Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-            return $this->redirect(['view', 'id' => $animal->id]);
+            return $this->redirect(['view-admin', 'id' => $animal->id]);
         } else {
             return $this->render('create', [
                 'animal' => $animal,

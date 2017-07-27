@@ -133,7 +133,7 @@ class ResourceMicrologyController extends Controller
             $micro->save();
 
             Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
-            return $this->redirect(['view', 'id' => $micro->id]);
+            return $this->redirect(['view-admin', 'id' => $micro->id]);
         } else {
             return $this->render('create', [
                 'micro' => $micro,

@@ -49,7 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'format'=>'raw',
                 'attribute'=>'หัวหน้าโครงการ',
-                'value'=>$researcher->fullname_th,
+                'value' => function($data) {
+                                return $data->researcher->fullname_th;
+                           },
             ],
             [
                 'label'=>'ผู้ร่วมโครงการ',
