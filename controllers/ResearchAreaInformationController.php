@@ -234,8 +234,8 @@ class ResearchAreaInformationController extends Controller
         if ($session['user_role'] == 'Researcher' && !(\Yii::$app->user->can('updateOwnPost', ['model' => $model]))) {
             throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
         }
-        ResearchArea::findOne($model->area_id)->delete();
-        $model->delete();
+        $this->findResearchArea($model->area_id)->delete();
+        $this->findModel($id)->delete();
         return $this->redirect(['index-admin']);
     }
 
@@ -364,4 +364,14 @@ class ResearchAreaInformationController extends Controller
         }
         return $obj;
     }
+	// new code 27 Jul 2017
+	protected function findDistrict($id)
+    {
+        if (($model = findResearchArea::findOne(['id'=>$id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('[researcher-area]The requested page does not exist.'.$id);
+        }
+    }
+	
 }
