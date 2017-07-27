@@ -221,7 +221,7 @@ class ResearcherController extends Controller
         
         $this->findAgency($model->personal_code)->delete();
         $this->findModel($id)->delete();
-        return $this->redirect(['index-admin']);
+        return $this->redirect(['index']);
     }
 
     /**
