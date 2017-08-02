@@ -16,7 +16,7 @@ Thumbs.db
 /vendor
 /runtime
 /config/db.php
-
+/web/uploads
 
 # composer itself is not needed
 composer.phar
