@@ -16,19 +16,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/hibiscus-sabdariffa.jpg'])?>')">
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1><?php echo $model->common_name; ?></h1>
                         <h2 class="subheading">
-                            <?php 
+                            <?php
                                 function cutStr($str, $maxChars='', $holder=''){
                                     if (strlen($str) > $maxChars ){
                                         $str = iconv_substr($str, 0, $maxChars,"UTF-8") . $holder;
                                     }
                                         return $str;
                                     }
-                                echo cutStr($model->information, '100', '...'); 
+                                echo cutStr($model->information, '100', '...');
                             ?></h2>
                         <span class="meta"><?php echo 'โพสต์โดย ' . $updated_by->username . ' ล่าสุดเมื่อวันที่ '. $model->updated_date?></span>
                     </div>
@@ -39,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <article>
         <div class="container">
+          <div class="well">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <h2 class="section-heading">ชื่อสามัญ</h2>
@@ -67,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						 <?php foreach ($attach_files as $image): ?>
                                 <?= Html::img('@web/uploads/files/'.$image->name,['class'=>'img-thumbnail center']);?>
                             <?php endforeach ?>
-                            
+
                         </div>
                     </div>
                 </div>

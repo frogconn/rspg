@@ -21,14 +21,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="post-heading">
                         <h1><?php echo $model->genus; ?></h1>
                         <h2 class="subheading">
-                            <?php 
+                            <?php
                                 function cutStr($str, $maxChars='', $holder=''){
                                     if (strlen($str) > $maxChars ){
                                         $str = iconv_substr($str, 0, $maxChars,"UTF-8") . $holder;
                                     }
                                         return $str;
                                     }
-                                echo cutStr($model->information, '100', '...'); 
+                                echo cutStr($model->information, '100', '...');
                             ?></h2>
                         <span class="meta"><?php echo 'โพสต์โดย ' . $updated_by->username . ' ล่าสุดเมื่อวันที่ '. $model->updated_date?></span>
                     </div>
@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <article>
         <div class="container">
+          <div class="well">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <h2 class="section-heading">ชื่อGenus</h2>
@@ -51,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p><?php echo $model->information; ?></p>
 
                     <h2 class="section-heading">ประโยชน์</h2>
-                    <p><?php echo $model->benefit; ?></p>    
+                    <p><?php echo $model->benefit; ?></p>
 
                     <!--blockquote>The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote-->
 
