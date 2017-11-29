@@ -2,7 +2,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<div class="post-preview">
+<div class="well">
+
     <a href="<?= Url::to(['resource-plant/view', 'id'=>$model->id]);?>">
         <h2 class="post-title">
             <?php echo $model->common_name; ?>
