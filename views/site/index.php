@@ -14,7 +14,7 @@ FrontendAsset::register($this);
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
 <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/home-bg.jpg'])?>')">
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
@@ -25,10 +25,11 @@ FrontendAsset::register($this);
             </div>
         </div>
     </div>
-</header>
-<hr>
+    </header>
+    <marquee direction="left"font color="red"><font color="#FF8C00"><B><h3> โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ
+    ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ<h3><B></font></marquee>
 <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>
-<div class="container">
+  <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="well">

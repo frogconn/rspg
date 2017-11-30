@@ -13,4 +13,3 @@ use yii\helpers\Url;
     </a>
     <p class="post-meta"><?php echo 'โพสต์โดย ' . $model->updated_by . ' ล่าสุดเมื่อวันที่ '. $model->updated_date?></p>
 </div>
-<hr>
