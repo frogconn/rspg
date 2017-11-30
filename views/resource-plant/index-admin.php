@@ -45,14 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
 				 'attribute' => 'type_id',
                  'value' => 'resourceType.name',
                  'filter'=>Html::activeDropDownList($searchModel, 'type_id',ArrayHelper::map(ResourceType::find()->where (['class' => 'พืช'])->all(), 'id','name'),['class'=>'form-control','prompt' => 'เลือกประเภท']),
-                 'label' => 'ประเภท',  
- 
+                 'label' => 'ประเภท',
+
             ],
             'common_name',
             'location_name',
             //'science_name',
             //'family_name',
-			
+
              [
                 'attribute' => 'zone_id',
                  'value' => 'researchArea.name',

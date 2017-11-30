@@ -20,6 +20,9 @@ use yii\helpers\Url;
                     </div>
                 </div>
             </header>
+  <div class="well">
+    <table class="table table-bordered">
+      <div class="row">
     <?php
         echo ListView::widget([
             'dataProvider' => $dataProvider,
