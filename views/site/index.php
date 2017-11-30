@@ -27,33 +27,53 @@ FrontendAsset::register($this);
     </div>
 </header>
 <hr>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Special title treatment</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Special title treatment</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-preview">
+            <div class="well">
                     <h1 class="post-title">
                         ข้อมูลทรัพยากร
                     </h1>
                     <h3 class="post-subtitle">
-                        <a href="resource-plant/">ทรัพยากรพืช</a> 
-                        <a href="resource-animal/">ทรัพยากรสัตว์และแมลง</a> 
+                        <a href="resource-plant/">ทรัพยากรพืช</a>
+                        <a href="resource-animal/">ทรัพยากรสัตว์และแมลง</a>
                         <a href="resource-micrology">ทรัพยากรจุลินทรีย์</a>
                     </h3>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on September 24, 2014</p>
             </div>
             <hr>
-            <div class="post-preview">
+            <div class="well">
                     <h1 class="post-title">
                         ข้อมูลโครงการวิจัย
                     </h1>
                     <h3 class="post-subtitle">
-                        <a href="project-ecology/">โครงการวิจัยนิเวศวิทยาและชุมชน</a> 
-                        <a href="project-garjan/">โครงการวิจัยยางนา</a> 
+                        <a href="project-ecology/">โครงการวิจัยนิเวศวิทยาและชุมชน</a>
+                        <a href="project-garjan/">โครงการวิจัยยางนา</a>
                     </h3>
                 <p class="post-meta">Posted by <a href="#">RSPG</a> on September 18, 2014</p>
             </div>
             <hr>
-            <div class="post-preview">
+            <div class="well">
                 <a href="post.html">
                     <h2 class="post-title">
                         <a href="#">สวนพฤกษศาสตร์โรงเรียน</a>
