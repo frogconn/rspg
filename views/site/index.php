@@ -26,10 +26,15 @@ FrontendAsset::register($this);
         </div>
     </div>
 </header>
+<tr>
+      <td  width="1350" height="300"><marquee>
+    <font size="3" color="#FF6347"  > ยินดีต้อนรับเข้าสู่โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ </font ></marquee><br>
+        </marquee></td>
+      </tr>
 <hr>
 
 <div class="container">
-    <div class="">
+
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="well">
