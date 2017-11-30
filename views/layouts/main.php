@@ -1,3 +1,4 @@
+
 <?php
 
 /* @var $this \yii\web\View */
@@ -43,7 +44,7 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
 				['label' => 'Sign in', 'url' => ['/security/login']]
             ) : (
-				['label' => 'Account(' . Yii::$app->user->identity->username . ')', 
+				['label' => 'Account(' . Yii::$app->user->identity->username . ')',
                     'items'=>[
 					    ['label' => 'Profile', 'url' => ['/settings/profile']],
 					    ['label' => 'Account', 'url' => ['/settings/account']],
