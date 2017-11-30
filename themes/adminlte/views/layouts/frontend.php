@@ -84,6 +84,7 @@ FrontendAsset::register($this);
                         </li>
                     </ul>
                 </div>
+				
                 <!-- /.navbar-collapse -->
                 </div>
             <!-- /.container -->

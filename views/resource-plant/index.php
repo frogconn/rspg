@@ -20,7 +20,7 @@ use yii\helpers\Url;
                     </div>
                 </div>
             </header>
-  
+  <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>
     <table class="table table-bordered">
       <div class="row">
     <?php
