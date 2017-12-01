@@ -20,7 +20,19 @@ use yii\helpers\Url;
                     </div>
                 </div>
             </header>
-    <?php
+            <nav class="navbar navbar-light" style="background-color: #8B0BE1;">
+            <marquee direction="left"><font color="#ffff33"><B><h4> โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ
+            ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ<h4><B></font></marquee>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+            </div>
+            </nav>
+            <style>
+  body {
+      background-color: #AF34DC;
+  }
+  </style>
+<!--  <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>-->
+                <?php
         echo ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => '_item',

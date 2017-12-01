@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>
+
 <div class="well">
     <a href="<?= Url::to(['project-garjan/view', 'id'=>$model->id]);?>">
         <h2 class="post-title">
