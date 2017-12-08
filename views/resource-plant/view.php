@@ -37,7 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </header>
-
+    <style>
+      body {
+          background-color: #AF34DC;
+      }
+      </style>
     <article>
 
         <div class="container">
