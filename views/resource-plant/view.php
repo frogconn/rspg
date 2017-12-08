@@ -39,9 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </header>
 
     <article>
+
         <div class="container">
+          <br>
+            <br>
           <div class="well">
           <table class="table table-bordered">
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <h2 class="section-heading">ชื่อสามัญ</h2>

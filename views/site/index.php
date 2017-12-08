@@ -14,7 +14,7 @@ FrontendAsset::register($this);
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
 <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/home-bg.jpg'])?>')">
-    <div class="article-body">
+    <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
@@ -24,23 +24,22 @@ FrontendAsset::register($this);
                 </div>
             </div>
         </div>
-
     </div>
-
-      </header>
-      <nav class="navbar navbar-light" style="background-color: #8B0BE1;line-height: 15px;height: 40px;padding-top: 5px;">
-      <marquee direction="left"><font color="#ffff33"><B><h4> โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ
-      ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ<h4><B></font></marquee>
-      <div class="collapse navbar-collapse" id="navbarColor01">
-      </div>
-      </nav>
-          <style>
+    </header>
+    <nav class="navbar navbar-light" style="background-color: #8B0BE1;">
+    <marquee direction="left"><font color="#ffff33"><B><h4> โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ
+    ฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ<h4><B></font></marquee>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+    </div>
+    </nav>
+    <style>
 body {
-    background-color: #AF34DC;
+background-color: #AF34DC;
 }
 </style>
-<!--  <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>-->
-  <div class="container">
+
+<style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask22.jpg'])?>');}</style>
+<div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="well">

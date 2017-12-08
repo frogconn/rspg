@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -20,8 +21,10 @@ use yii\widgets\ActiveForm;
  * @var dektrium\user\Module $module
  */
 
+
 $this->title = Yii::t('user', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
@@ -104,5 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Connect::widget([
             'baseAuthUrl' => ['/user/security/auth'],
         ]) ?>
+    
+
     </div>
 </div>
