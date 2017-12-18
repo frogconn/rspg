@@ -31,7 +31,9 @@ use yii\helpers\Url;
       background-color: #AF34DC;
   }
   </style>
+
 <!--  <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>-->
+
     <table class="table table-bordered">
       <div class="row">
     <?php
