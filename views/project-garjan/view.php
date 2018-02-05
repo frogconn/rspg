@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <style>
       body {
-          background-color: #AF34DC;
+            background-color: #d0ccc6c4;
       }
       </style>
     <article>

@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/hibiscus-sabdariffa.jpg'])?>')">
+    <header class="intro-header" style="background-image: url('<?=Url::to(['/themes/frontend/img/animal.jpg'])?>')">
         <div class="container">
 
             <div class="row">
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <style>
       body {
-          background-color: #AF34DC;
+            background-color: #d0ccc6c4;
       }
       </style>
     <article>

@@ -28,7 +28,7 @@ use yii\helpers\Url;
             </nav>
             <style>
   body {
-      background-color: #AF34DC;
+      background-color: #d0ccc6c4;
   }
   </style>
 
