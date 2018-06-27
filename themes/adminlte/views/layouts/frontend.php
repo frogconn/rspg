@@ -39,7 +39,7 @@ FrontendAsset::register($this);
                         <span class="sr-only">Toggle navigation</span>
                         Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl;?>">RSPG</a>
+                    <!-- <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl;?>">RSPG</a> -->
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -77,7 +77,7 @@ FrontendAsset::register($this);
                             <a href="<?php echo Url::base().'/user/security/login'; ?>">เข้าสู่ระบบ</a>
                             <?php }else{ ?>
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo Yii::$app->session['username']; ?>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo Yii::$app->user->identity->username; ?>
                                     <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo Url::base().'/admin'; ?>">โครงงานวิจัย</a></li>
