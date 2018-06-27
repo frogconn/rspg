@@ -49,9 +49,10 @@ FrontendAsset::register($this);
                             <a href="<?php echo Yii::$app->homeUrl;?>">หน้าหลัก</a>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">ข้อมูลทรัพยากร
-                            <span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"aria-haspopup="true" aria-expanded="false">
+                              ข้อมูลทรัพยากร
+                            <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo Url::base().'/resource-plant'; ?>">ทรัพยากรพืช</a></li>
                                 <li role="separator" class="divider"></li>
@@ -61,7 +62,7 @@ FrontendAsset::register($this);
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">โครงการวิจัย
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"aria-haspopup="true" aria-expanded="false">โครงการวิจัย
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo Url::base().'/project-ecology'; ?>">โครงการวิจัยนิเวศและชุมชน</a></li>
@@ -77,7 +78,8 @@ FrontendAsset::register($this);
                             <a href="<?php echo Url::base().'/user/security/login'; ?>">เข้าสู่ระบบ</a>
                             <?php }else{ ?>
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo Yii::$app->user->identity->username; ?>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"aria-haspopup="true" aria-expanded="false">
+                                      <?php echo Yii::$app->user->identity->username; ?>
                                     <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo Url::base().'/admin'; ?>">จัดการข้อมูล</a></li>
