@@ -3,6 +3,7 @@ use yii\widgets\ListView;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
+$this->title = 'ทรัพยากรจุลินทรีย์';
 ?>
 <div class='resource-micrology-index'>
     <!-- Page Header -->

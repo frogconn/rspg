@@ -3,6 +3,7 @@ use yii\widgets\ListView;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
+$this->title = 'ทรัพยากรพืช';
 ?>
 
 <style>
