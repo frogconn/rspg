@@ -31,14 +31,18 @@ use yii\helpers\Url;
         background-color: #d0ccc6c4;
   }
   </style>
-<!--  <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>-->
+
+  <div class="container">
                 <?php
         echo ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => '_item',
-            'itemOptions' => [
-                'class' => 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'
-            ],
+            // 'itemOptions' => [
+            //     'class' => 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'
+            // ],
+            'summary' => '',
         ]);
     ?>
+</div>
+
 </div>

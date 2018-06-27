@@ -22,6 +22,12 @@ FrontendAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <link rel="stylesheet" href="style.css" />
         <?php $this->head() ?>
+
+        <style>
+        .pagination {
+          margin: 0 0 100px 0;
+        }
+        </style>
     </head>
     <body class="hold-transition <?= \dmstr\helpers\AdminLteHelper::skinClass() ?> sidebar-mini">
         <?php $this->beginBody() ?>
@@ -43,7 +49,7 @@ FrontendAsset::register($this);
                             <a href="<?php echo Yii::$app->homeUrl;?>">หน้าหลัก</a>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">ข้อมูลทรัพยากร
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -64,7 +70,7 @@ FrontendAsset::register($this);
                             </ul>
                         </li>
                         <li>
-                            <a href="admin">ติดต่อเรา</a>
+                            <a href="#">ติดต่อเรา</a>
                         </li>
                         <li>
                             <?php if (Yii::$app->user->isGuest){ ?>
@@ -84,16 +90,15 @@ FrontendAsset::register($this);
                         </li>
                     </ul>
                 </div>
-				
+
                 <!-- /.navbar-collapse -->
                 </div>
             <!-- /.container -->
             </nav>
-            
+
             <?= $content ?>
-        </div>>
+        </div>
         <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
-

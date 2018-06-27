@@ -4,6 +4,13 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 ?>
+
+<style>
+  body {
+      background-color: #d0ccc6c4;
+  }
+</style>
+
 <div class='resource-plant-index'>
     <!-- Page Header -->
             <!-- Set your background image for this header on the line below. -->
@@ -26,23 +33,17 @@ use yii\helpers\Url;
             <div class="collapse navbar-collapse" id="navbarColor01">
             </div>
             </nav>
-            <style>
-  body {
-      background-color: #d0ccc6c4;
-  }
-  </style>
 
 <!--  <style>body{background-image:url('<?=Url::to(['/themes/frontend/img/damask.jpg'])?>');}</style>-->
 
-    <table class="table table-bordered">
-      <div class="row">
-    <?php
-        echo ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemView' => '_item',
-            'itemOptions' => [
-                'class' => 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'
-            ],
-        ]);
-    ?>
+  <div class="container">
+      <?php
+          echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'itemView' => '_item',
+              'summary' => '',
+          ]);
+      ?>
+  </div>
+
 </div>
