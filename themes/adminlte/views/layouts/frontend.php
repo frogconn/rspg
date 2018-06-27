@@ -80,7 +80,7 @@ FrontendAsset::register($this);
                                     <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo Yii::$app->user->identity->username; ?>
                                     <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo Url::base().'/admin'; ?>">โครงงานวิจัย</a></li>
+                                        <li><a href="<?php echo Url::base().'/admin'; ?>">จัดการข้อมูล</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="<?=Url::to('user/security/logout')?>" data-method="post">ออกจากระบบ</a></li>
                                     </ul>
