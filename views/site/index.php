@@ -10,6 +10,7 @@ use yii\helpers\Url;
 FrontendAsset::register($this);
 
 /* @var $this yii\web\View */
+$this->title = 'โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ';
 ?>
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
@@ -29,7 +30,7 @@ FrontendAsset::register($this);
     <nav class="navbar navbar-light" style="background-color: #8B0BE1;">
     <marquee direction="left">
       <font color="#ffff33"><B>
-        <h4 style="padding-top: 15px;line-height:0px;"> 
+        <h4 style="padding-top: 15px;line-height:0px;">
           โครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริฐานข้อมูลการดำเนินงานหน่วยงานร่วมสนองพระราชดำริฯ
         <h4>
           <B>
