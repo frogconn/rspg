@@ -48,37 +48,59 @@ use app\components\MenuHelper;
             		    'icon' => 'folder',
             		    'url' => '#',
             		    'items' => [
-                            [
-                                'label' => 'ข้อมูลพื้นที่วิจัย',
-            				    'icon' => 'file-image-o',
-            				    'url' => '@web/research-area-information',
-                            ],
-                            [
-            				    'label' => 'ทรัพยากร',
-            				    'icon' => 'share',
-            				    'url' => '#',
-            				    'items' => [
-            					    ['label' => 'ข้อมูลพืช', 'icon' => 'circle-o', 'url' => ['/resource-plant/index-admin']],
-            			    	    ['label' => 'ข้อมูลสัตว์และแมลง', 'icon' => 'circle-o', 'url' => ['/resource-animal/index-admin']],
-            					    ['label' => 'ข้อมูลจุลินทรีย์', 'icon' => 'circle-o', 'url' => ['/resource-micrology/index-admin']],
-            				    ],
-            			    ],
+                      [
+                        'label' => 'ข้อมูลพื้นที่วิจัย',
+            				    'icon' => 'info-circle',
+            				    'url' => ['/research-area-information/index'],
+                        'active' => MenuHelper::Active('research-area-information')
+                      ],
+
             		    ],
             	    ],
+
+                  [
+                  'label' => 'ข้อมูลทรัพยากร',
+                  'icon' => 'folder',
+                  'url' => '#',
+                  'items' => [
+                    [
+                      'label' => 'ข้อมูลพืช',
+                      'icon' => 'info-circle',
+                      'url' => ['/resource-plant/index-admin'],
+                      'active' => MenuHelper::Active('resource-plant')
+                    ],
+                    [
+                      'label' => 'ข้อมูลสัตว์และแมลง',
+                      'icon' => 'info-circle',
+                      'url' => ['/resource-animal/index-admin'],
+                      'active' => MenuHelper::Active('resource-animal')
+                    ],
+                    [
+                      'label' => 'ข้อมูลจุลินทรีย์',
+                      'icon' => 'info-circle',
+                      'url' => ['/resource-micrology/index-admin'],
+                      'active' => MenuHelper::Active('resource-micrology')
+                    ],
+
+                  ],
+                ],
+
                     [
             		    'label' => 'โครงงานวิจัย',
             		    'icon' => 'folder',
             		    'url' => '#',
             		    'items' => [
-                            [
-                                'label' => 'งานด้านนิเวศวิทยาและชุมชน',
-            				    'icon' => 'handshake-o',
-            				    'url' => '@web/project-ecology/index-admin',
-                            ],
-                            [
+                      [
+                        'label' => 'งานด้านนิเวศวิทยาและชุมชน',
+            				    'icon' => 'info-circle',
+            				    'url' => ['/project-ecology/index-admin'],
+                        'active' => MenuHelper::Active('project-ecology')
+                      ],
+                      [
             				    'label' => 'พืชอนุรักษ์ยางนา',
-            				    'icon' => 'leaf',
-            				    'url' => '@web/project-garjan/index-admin',
+            				    'icon' => 'info-circle',
+            				    'url' => ['/project-garjan/index-admin'],
+                        'active' => MenuHelper::Active('project-garjan')
             			    ],
             		    ],
             	    ],

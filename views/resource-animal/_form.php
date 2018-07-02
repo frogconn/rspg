@@ -65,7 +65,7 @@ use app\models\ResearchArea;
                 <div class="col-sm-offset-2 col-sm-10">
 	               <?= Html::submitButton($animal->isNewRecord ? 'สร้าง' : 'แก้ไข', ['class' => $animal->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('ยกเลิก',[ 'resource-animal/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',['index-admin'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>

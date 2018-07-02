@@ -59,7 +59,7 @@ use app\models\ResearchArea;
                 <div class="col-sm-offset-2 col-sm-10">
 	               <?= Html::submitButton($micro->isNewRecord ? 'สร้าง' : 'แก้ไขข้อมูล', ['class' => $micro->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                  &nbsp;
-                 <?= Html::a('ยกเลิก',[ 'resource-micrology/'], ['class' => 'btn btn-default']) ?>
+                 <?= Html::a('ยกเลิก',['index-admin'], ['class' => 'btn btn-default']) ?>
 
                 </div>
             </div>
